@@ -174,7 +174,7 @@ class HomeController extends Controller
         $user->update();
 
 
-        alert()->success("Felicidades has terminado tu examen de ingles");
+        alert()->success("Congratulations, you have finished your English exam.");
 
 
         return back();

@@ -1393,9 +1393,13 @@
                                                 <center>
                                                     <div id="contador">Words: 0 of 125</div>
                                                     <br>
-                                                    <textarea name="miTextarea" id="miTextarea" cols="98" rows="10">
-                                                        Write here
-                                                    </textarea>
+
+
+                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                                        <label for="text-area" class="form-label">Textarea</label>
+                                                        <textarea class="form-control" name="miTextarea" id="miTextarea"  rows="5"></textarea>
+                                                    </div>
+
                                                 </center>
                                             </h5>
                                         </div>
@@ -1571,13 +1575,11 @@
 
 
                                                         <button type="button" id="startButton"
-                                                            class="btn btn-info">&nbsp;&nbsp;Start speaking
-                                                            test&nbsp;&nbsp;
+                                                            class="btn btn-info">&nbsp;&nbsp;Start speaking&nbsp;&nbsp;
                                                         </button>
 
                                                         <button type="button" id="stopButton" style="display: none"
-                                                            class="btn btn-danger">&nbsp;&nbsp;Stop speaking
-                                                            test&nbsp;&nbsp;
+                                                            class="btn btn-danger">&nbsp;&nbsp;Stop speaking&nbsp;&nbsp;
                                                         </button>
                                                         <br><br>
                                                         <audio id="audioPreview" controls></audio>
