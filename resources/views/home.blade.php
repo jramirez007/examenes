@@ -7,7 +7,6 @@
             body {
                 background-color: #BBCBDF;
             }
-
         </style>
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -144,7 +143,8 @@
                                 <div class="card text-black mb-3" style="max-width: 100rem;">
                                     <div class="card-header">
                                         <div class="card-text d-flex justify-content-left">
-                                            <h5 style="background-color: #1D5294; width: 100%; height: 80px; display: flex; align-items: center; justify-content: left; padding-left: 30px;">
+                                            <h5
+                                                style="background-color: #1D5294; width: 100%; height: 80px; display: flex; align-items: center; justify-content: left; padding-left: 30px;">
                                                 <span style="color: white">Structure</span>
                                             </h5>
 
@@ -294,7 +294,8 @@
                                             <div class="card text-black mb-3" style="max-width: 100rem;">
                                                 <div class="card-header">
                                                     <div class="card-text d-flex justify-content-left">
-                                                        <h5 style="background-color: #1D5294; width: 100%; height: 80px; display: flex; align-items: center; justify-content: left; padding-left: 30px;">
+                                                        <h5
+                                                            style="background-color: #1D5294; width: 100%; height: 80px; display: flex; align-items: center; justify-content: left; padding-left: 30px;">
                                                             <span style="color: white">Reading</span>
                                                         </h5>
 
@@ -303,8 +304,25 @@
                                                 <div class="card-body">
 
                                                     <h5 class="card-text">
-                                                        Read the text below. For questions 21 to 25, choose the best answer (a, b, c or d).
-                                                        In 1895, the well-known scientist Lord Kelvin said, "Heavier than air flying machines are impossible." Kelvin was wrong. In 1943, Thomas Watson, the chairman of International Business Machines (IBM) was also wrong when he said that he thought there would be a world market for only five or so computers. Predictions can be wrong, and it is very difficult to predict what the world will be like in 100, 50, or even 20 years. But this is something that scientists and politicians often do. They do so because they invent things and make decisions that shape the future of the world that we live in. In the past they didn’t have to think too much about the impact that their decisions had on the natural world. But that is now changing. More and more people believe that we should live within the rules set by nature. In other words, they think that in a world of fixed and limited resources, what is used up today will no longer be available for our children. We need to look at each human activity and try to change it or create alternatives if it is not sustainable. The rules for this are set by nature, not by man.<br>
+                                                        Read the text below. For questions 21 to 25, choose the best answer
+                                                        (a, b, c or d).
+                                                        In 1895, the well-known scientist Lord Kelvin said, "Heavier than
+                                                        air flying machines are impossible." Kelvin was wrong. In 1943,
+                                                        Thomas Watson, the chairman of International Business Machines (IBM)
+                                                        was also wrong when he said that he thought there would be a world
+                                                        market for only five or so computers. Predictions can be wrong, and
+                                                        it is very difficult to predict what the world will be like in 100,
+                                                        50, or even 20 years. But this is something that scientists and
+                                                        politicians often do. They do so because they invent things and make
+                                                        decisions that shape the future of the world that we live in. In the
+                                                        past they didn’t have to think too much about the impact that their
+                                                        decisions had on the natural world. But that is now changing. More
+                                                        and more people believe that we should live within the rules set by
+                                                        nature. In other words, they think that in a world of fixed and
+                                                        limited resources, what is used up today will no longer be available
+                                                        for our children. We need to look at each human activity and try to
+                                                        change it or create alternatives if it is not sustainable. The rules
+                                                        for this are set by nature, not by man.<br>
                                                     </h5>
                                                 </div>
                                             </div>
@@ -458,7 +476,8 @@
                                 <div class="card text-black mb-3" style="max-width: 100rem;">
                                     <div class="card-header">
                                         <div class="card-text d-flex justify-content-left">
-                                            <h5 style="background-color: #1D5294; width: 100%; height: 80px; display: flex; align-items: center; justify-content: left; padding-left: 30px;">
+                                            <h5
+                                                style="background-color: #1D5294; width: 100%; height: 80px; display: flex; align-items: center; justify-content: left; padding-left: 30px;">
                                                 <span style="color: white">Structure</span>
                                             </h5>
 
@@ -613,7 +632,8 @@
                                             <div class="card text-black mb-3" style="max-width: 100rem;">
                                                 <div class="card-header">
                                                     <div class="card-text d-flex justify-content-left">
-                                                        <h5 style="background-color: #1D5294; width: 100%; height: 80px; display: flex; align-items: center; justify-content: left; padding-left: 30px;">
+                                                        <h5
+                                                            style="background-color: #1D5294; width: 100%; height: 80px; display: flex; align-items: center; justify-content: left; padding-left: 30px;">
                                                             <span style="color: white">Reading</span>
                                                         </h5>
 
@@ -622,12 +642,29 @@
                                                 <div class="card-body">
 
                                                     <h5 class="card-text">
-                                                        Read the text below. For questions 46 to 50, choose the best answer (a, b, c or d).
-                                                        Many hotel chains and tour operators say that they take their environmental commitments seriously, but often they do not respect their social and economic responsibilities to the local community. So is it possible for travellers to help improve the lives of locals and still have a good holiday?
+                                                        Read the text below. For questions 46 to 50, choose the best answer
+                                                        (a, b, c or d).
+                                                        Many hotel chains and tour operators say that they take their
+                                                        environmental commitments seriously, but often they do not respect
+                                                        their social and economic responsibilities to the local community.
+                                                        So is it possible for travellers to help improve the lives of locals
+                                                        and still have a good holiday?
 
-                                                        The charity, Tourism Concern, thinks so. It has pioneered the concept of the fair-trade holiday. The philosophy behind fair-trade travel is to make sure that local people get a fair share of the income from tourism. The objectives are simple: employing local people wherever possible; offering fair wages and treatment; showing cultural respect; involving communities in deciding how tourism is developed; and making sure that visitors have minimal environmental impact.
+                                                        The charity, Tourism Concern, thinks so. It has pioneered the
+                                                        concept of the fair-trade holiday. The philosophy behind fair-trade
+                                                        travel is to make sure that local people get a fair share of the
+                                                        income from tourism. The objectives are simple: employing local
+                                                        people wherever possible; offering fair wages and treatment; showing
+                                                        cultural respect; involving communities in deciding how tourism is
+                                                        developed; and making sure that visitors have minimal environmental
+                                                        impact.
 
-                                                        Although there is currently no official fair-trade accreditation for holidays, the Association of Independent Tour Operators has worked hard to produce responsible tourism guidelines for its members. Some new companies, operated as much by principles as profits, offer a fantastic range of holidays for responsible and adventurous travellers.
+                                                        Although there is currently no official fair-trade accreditation for
+                                                        holidays, the Association of Independent Tour Operators has worked
+                                                        hard to produce responsible tourism guidelines for its members. Some
+                                                        new companies, operated as much by principles as profits, offer a
+                                                        fantastic range of holidays for responsible and adventurous
+                                                        travellers.
                                                         <br>
                                                     </h5>
                                                 </div>
@@ -773,7 +810,8 @@
                                 <div class="card text-black mb-3" style="max-width: 100rem;">
                                     <div class="card-header">
                                         <div class="card-text d-flex justify-content-left">
-                                            <h5 style="background-color: #1D5294; width: 100%; height: 80px; display: flex; align-items: center; justify-content: left; padding-left: 30px;">
+                                            <h5
+                                                style="background-color: #1D5294; width: 100%; height: 80px; display: flex; align-items: center; justify-content: left; padding-left: 30px;">
                                                 <span style="color: white">Structure</span>
                                             </h5>
 
@@ -926,7 +964,8 @@
                                             <div class="card text-black mb-3" style="max-width: 100rem;">
                                                 <div class="card-header">
                                                     <div class="card-text d-flex justify-content-left">
-                                                        <h5 style="background-color: #1D5294; width: 100%; height: 80px; display: flex; align-items: center; justify-content: left; padding-left: 30px;">
+                                                        <h5
+                                                            style="background-color: #1D5294; width: 100%; height: 80px; display: flex; align-items: center; justify-content: left; padding-left: 30px;">
                                                             <span style="color: white">Reading</span>
                                                         </h5>
 
@@ -935,11 +974,44 @@
                                                 <div class="card-body">
 
                                                     <h5 class="card-text">
-                                                        Read the text below. For questions 71 to 76, choose the best answer (a, b, c or d).
-                                                        Standards of spelling and grammar among an entire generation of English-speaking university students are now so poor that there is ‘a degree of crises in their written use of the language, the publisher of a new dictionary has warned. Its research revealed that students have only a limited grasp of the most basic rules of spelling, punctuation and meaning, blamed in part on an increasing dependence on ‘automatic tools’ such as computer spellcheckers and unprecedented access to rapid communication using e-mail and the Internet. The problem is not confined to the US, but applies also to students in Australia, Canada and Britain.
-                                                        Students were regularly found to be producing incomplete or rambling, poorly connected sentences, mixing metaphors ‘with gusto’ and overusing dull, devalued words such as ‘interesting’ and ‘good’. Overall they were unclear about appropriate punctuation, especially the use of commas, and failed to understand the basic rules of subject/verb agreement and the difference between ‘there’, ‘their’ and ‘they’re’.
-                                                        Kathy Rooney, editor-in-chief of the dictionary, said, ‘We need to be very concerned at the extent of the problems with basic spelling and usage that our research has revealed. This has significant implications for the future, especially for young people. We thought it would be useful to get in touch with teachers and academics to find out what problems their students were having with their writing and what extra help they might need from a dictionary. The results were quite shocking. We are sure that the use of computers has played a part. People rely increasingly on automatic tools such as spellcheckers that are much more passive than going to a dictionary and looking something up. That can lull them into a false sense of security.’
-                                                        Beth Marshall, an English professor, said, ‘The type of student we’re getting now is very different from what we were seeing 10 years ago and it is often worrying to find out how little students know. There are as many as 800 commonly misspelled words, particularly pairs of words that are pronounced similarly but spelled differently and that have different meanings – for example, “faze” and “phase”, and “pray” and “prey”.’
+                                                        Read the text below. For questions 71 to 76, choose the best answer
+                                                        (a, b, c or d).
+                                                        Standards of spelling and grammar among an entire generation of
+                                                        English-speaking university students are now so poor that there is
+                                                        ‘a degree of crises in their written use of the language, the
+                                                        publisher of a new dictionary has warned. Its research revealed that
+                                                        students have only a limited grasp of the most basic rules of
+                                                        spelling, punctuation and meaning, blamed in part on an increasing
+                                                        dependence on ‘automatic tools’ such as computer spellcheckers and
+                                                        unprecedented access to rapid communication using e-mail and the
+                                                        Internet. The problem is not confined to the US, but applies also to
+                                                        students in Australia, Canada and Britain.
+                                                        Students were regularly found to be producing incomplete or
+                                                        rambling, poorly connected sentences, mixing metaphors ‘with gusto’
+                                                        and overusing dull, devalued words such as ‘interesting’ and ‘good’.
+                                                        Overall they were unclear about appropriate punctuation, especially
+                                                        the use of commas, and failed to understand the basic rules of
+                                                        subject/verb agreement and the difference between ‘there’, ‘their’
+                                                        and ‘they’re’.
+                                                        Kathy Rooney, editor-in-chief of the dictionary, said, ‘We need to
+                                                        be very concerned at the extent of the problems with basic spelling
+                                                        and usage that our research has revealed. This has significant
+                                                        implications for the future, especially for young people. We thought
+                                                        it would be useful to get in touch with teachers and academics to
+                                                        find out what problems their students were having with their writing
+                                                        and what extra help they might need from a dictionary. The results
+                                                        were quite shocking. We are sure that the use of computers has
+                                                        played a part. People rely increasingly on automatic tools such as
+                                                        spellcheckers that are much more passive than going to a dictionary
+                                                        and looking something up. That can lull them into a false sense of
+                                                        security.’
+                                                        Beth Marshall, an English professor, said, ‘The type of student
+                                                        we’re getting now is very different from what we were seeing 10
+                                                        years ago and it is often worrying to find out how little students
+                                                        know. There are as many as 800 commonly misspelled words,
+                                                        particularly pairs of words that are pronounced similarly but
+                                                        spelled differently and that have different meanings – for example,
+                                                        “faze” and “phase”, and “pray” and “prey”.’
                                                         <br>
                                                     </h5>
                                                 </div>
@@ -1086,7 +1158,8 @@
                                 <div class="card text-black mb-3" style="max-width: 100rem;">
                                     <div class="card-header">
                                         <div class="card-text d-flex justify-content-left">
-                                            <h5 style="background-color: #1D5294; width: 100%; height: 80px; display: flex; align-items: center; justify-content: left; padding-left: 30px;">
+                                            <h5
+                                                style="background-color: #1D5294; width: 100%; height: 80px; display: flex; align-items: center; justify-content: left; padding-left: 30px;">
                                                 <span style="color: white">Listening</span>
                                             </h5>
 
@@ -1098,7 +1171,8 @@
                                             <b>Listening part.</b>
                                             <br><br>
                                             For each question, you will hear a short sentence. The sentence will be spoken
-                                            just one time. The sentences you hear will not be written out for you. After you hear each sentence, read the 4 choices on the screen and decide which
+                                            just one time. The sentences you hear will not be written out for you. After you
+                                            hear each sentence, read the 4 choices on the screen and decide which
                                             one is closest in meaning to the sentence you heard. Then select the best answer
                                             by clicking on it.
                                         </h5>
@@ -1414,7 +1488,8 @@
                                         <h5 class="card-title">
                                             <label for="nombre" class="form-check-label">
                                                 SECTION 9</label>
-                                                <input type="hidden" id="user_id" value="{{ auth()->user()->id }}" readonly>
+                                            <input type="hidden" id="user_id" value="{{ auth()->user()->id }}"
+                                                readonly>
                                         </h5>
                                         <h5 class="card-title">
 
@@ -1489,17 +1564,23 @@
                                                         </div>
                                                     </div> --}}
 
-
+                                                    <input type="text" name="audioData"  id="audioData">
 
 
                                                     <div>
 
 
-                                                        <button type="button" onclick="abrirPopup()"
+                                                        <button type="button" id="startButton"
                                                             class="btn btn-info">&nbsp;&nbsp;Start speaking
                                                             test&nbsp;&nbsp;
                                                         </button>
 
+                                                        <button type="button" id="stopButton" style="display: none"
+                                                            class="btn btn-danger">&nbsp;&nbsp;Stop speaking
+                                                            test&nbsp;&nbsp;
+                                                        </button>
+                                                        <br><br>
+                                                        <audio id="audioPreview" controls></audio>
 
                                                     </div>
 
@@ -1510,75 +1591,6 @@
 
                                         <br>
 
-
-                                        <div class="card-body" id="div_save_record" style="display:none;">
-
-                                            <form id="form_audio" method="POST" enctype="multipart/form-data">
-                                                @csrf
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="card-text">
-
-                                                            <center>
-                                                                <h5 class="card-title">
-
-
-
-                                                                    <br>
-                                                                    <label for="audioFile" class="form-label">Select the
-                                                                        most recent audio file called
-                                                                        recorded_audio:</label>
-                                                                    <input class="form-control" type="file"
-                                                                        name="audioFile" id="audioFile" accept="audio/*"
-                                                                        required>
-
-
-
-
-
-
-                                                                </h5>
-
-
-                                                            </center>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="card-text">
-
-                                                            <center>
-                                                                <div class="card-title">
-
-
-
-                                                                    <br>
-
-
-
-
-                                                                    <button type="button" class="btn btn-success"
-                                                                        onclick="subir_audio()">File upload
-                                                                    </button>
-
-
-
-                                                                    <div id="response"></div>
-
-
-                                                                </div>
-
-
-
-                                                            </center>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-
-
-                                        </div>
-
-                                        <br>
 
 
 
@@ -2069,7 +2081,7 @@
         // });
     </script>
 
-<script type="text/javascript">
+    {{-- <script type="text/javascript">
 function abrirPopup() {
     //testRecord();
 
@@ -2088,7 +2100,81 @@ function abrirPopup() {
         'width=' + ancho + ',height=' + alto + ',left=' + x + ',top=' + y + ',scrollbars=yes'
     );
 }
-</script>
+</script> --}}
+
+    <script>
+        let mediaRecorder;
+        let audioChunks = [];
+
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const audioPreview = document.getElementById('audioPreview');
+        const audioDataInput = document.getElementById('audioData');
+        //const submitButton = document.getElementById('submitButton');
+
+        startButton.addEventListener('click', async () => {
+
+            if (startButton) {
+                startButton.style.display = 'none';
+            }
+
+            if (stopButton) {
+                stopButton.style.display = 'block';
+            }
+            // Solicitar permiso para usar el micrófono
+            const stream = await navigator.mediaDevices.getUserMedia({
+                audio: true
+            });
+
+            // Crear el MediaRecorder
+            mediaRecorder = new MediaRecorder(stream);
+
+            // Manejar los datos de audio grabados
+            mediaRecorder.ondataavailable = (event) => {
+                audioChunks.push(event.data);
+            };
+
+            // Manejar el fin de la grabación
+            mediaRecorder.onstop = () => {
+                const audioBlob = new Blob(audioChunks, {
+                    type: 'audio/webm'
+                });
+                audioChunks = [];
+
+                // Crear una URL para previsualizar el audio grabado
+                 const audioURL = URL.createObjectURL(audioBlob);
+                 audioPreview.src = audioURL;
+
+                // Convertir el Blob a Base64 para enviarlo en el formulario
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    audioDataInput.value = reader.result; // Guardar Base64 en el campo oculto
+                    //submitButton.disabled = false; // Habilitar el botón de envío
+                };
+                reader.readAsDataURL(audioBlob);
+            };
+
+            // Iniciar la grabación
+            mediaRecorder.start();
+            startButton.disabled = true;
+            stopButton.disabled = false;
+        });
+
+        stopButton.addEventListener('click', () => {
+            // Detener la grabación
+            mediaRecorder.stop();
+            startButton.disabled = false;
+            stopButton.disabled = true;
+
+            if (startButton) {
+                startButton.style.display = 'block';
+            }
+
+            if (stopButton) {
+                stopButton.style.display = 'none';
+            }
+        });
+    </script>
 
 
 @endsection
