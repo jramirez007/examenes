@@ -1739,7 +1739,7 @@
     <script>
         $(document).ready(function() {
             //alert("ready!");
-            mostrarSeccion9();
+            //mostrarSeccion9();
 
 
             //startStopTimer();
