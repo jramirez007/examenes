@@ -1857,7 +1857,7 @@
 
             $.ajax({
                 //url: 'http://154.12.255.170/cursos/public/get_correcta/' + codigo, // The URL to call the route
-                url: 'http://localhost:8000/get_correcta/' + codigo, // The URL to call the route
+                url: 'https://cursos.coopweb.info/public/get_correcta/' + codigo, // The URL to call the route
                 type: 'GET', // Using GET request
                 success: function(response) {
 
