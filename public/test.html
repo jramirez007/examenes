@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+    <!DOCTYPE html>
+    <html lang="es">
+        <head>
+            <meta name="csrf-token" content="{{ csrf_token() }}">
+            <title>Record and send audio</title>
+            <!-- Enlace a Bootstrap -->
+            <link
+                href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+                rel="stylesheet"
+            />
+            <!-- Estilos personalizados -->
+            <style>
+                body {
+                    background-color: #f8f9fa;
+                    padding-top: 50px;
+                }
+                .container {
+                    max-width: 600px;
+                    margin: 0 auto;
+                }
+                .audio-container {
+                    padding: 20px;
+                    background-color: white;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                }
+                h1 {
+                    color: #007bff;
+                    text-align: center;
+                    margin-bottom: 20px;
+                }
+                h3 {
+                    color: #28a745;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="audio-container">
+                    <!-- Botones para grabar y detener -->
+                    <div class="d-flex justify-content-center mb-3">
+                        <button id="startButton" class="btn btn-success me-2">
+                            Start Recording
+                        </button>
+                        <button id="stopButton" class="btn btn-danger" disabled>
+                            Stop Recording
+                        </button>
+                    </div>
+
+                    <div
+                        id="div_speaking_animate"
+                        class="d-flex justify-content-center mb-3"
+                    >
+                        <center>
+                            <div id="chronometer2">
+                                <table width="100%">
+                                    <tr>
+                                        <td align="center">Remaining time</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center">45</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <br />
+                            <div id="microphone" style="display: none">
+                                <img
+                                    src="./assets/audio/speaking_animate.gif"
+                                    alt=""
+                                />
+                            </div>
+                        </center>
+                    </div>
+
+                    <!-- Reproductor de audio -->
+                    <h3>Preview:</h3>
+                    <audio id="audioPreview" class="w-100" controls></audio>
+
+                    <!-- Formulario -->
+                    <form
+                        id="audioForm"
+                        method="POST"
+                        enctype="multipart/form-data"
+                        class="mt-4"
+                    >
+                        <input
+                            type="hidden"
+                            name="user_id"
+                            id="user_id"
+                            readonly
+                        />
+                        <input
+                            type="hidden"
+                            name="audioData"
+                            id="audioData"
+                            class="form-control mb-3"
+                            placeholder="Description or file name"
+                            required
+                        />
+                        <button
+                            type="button"
+                            id="submitButton"
+                            class="btn btn-primary w-100"
+                            disabled
+                        >
+                            Send Audio 9
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <script
+                src="./assets/js/jquery-3.6.1.min.js"
+            ></script>
+
+            <script>
+                $(document).ready(function () {
+                    alert('uno');
+                    const userId = getQueryParam("user_id");
+                    document.getElementById("user_id").value = userId;
+                    document.getElementById(
+                        "div_speaking_animate"
+                    ).style.display = "none";
+
+                    alert('dos');
+
+                    $.ajaxSetup({
+                        headers: {
+                            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                                "content"
+                            ),
+                        },
+                    });
+
+                    alert('tres');
+                });
+
+                // Function to get the query parameter by name from the URL
+                function getQueryParam(name) {
+                    const urlParams = new URLSearchParams(
+                        window.location.search
+                    );
+                    return urlParams.get(name);
+                }
+            </script>
+
+            <!-- Bootstrap JS and Popper.js from CDN (for components like dropdowns, modals) -->
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+            <script>
+                let timer2;
+                let minutes2 = 0;
+                let seconds2 = 45;
+                let isRunning2 = false;
+
+                let mediaRecorder;
+                let audioChunks = [];
+
+                const startButton = document.getElementById("startButton");
+                const stopButton = document.getElementById("stopButton");
+                const audioPreview = document.getElementById("audioPreview");
+                const audioDataInput = document.getElementById("audioData");
+                const submitButton = document.getElementById("submitButton");
+
+                startButton.addEventListener("click", async () => {
+                    seconds2 = 45;
+
+                    startStopTimer2();
+
+                    document.getElementById("microphone").style.display =
+                        "block";
+
+                    // Solicitar permiso para usar el micrófono
+                    const stream = await navigator.mediaDevices.getUserMedia({
+                        audio: true,
+                    });
+
+                    // Crear el MediaRecorder
+                    mediaRecorder = new MediaRecorder(stream);
+
+                    // Manejar los datos de audio grabados
+                    mediaRecorder.ondataavailable = (event) => {
+                        audioChunks.push(event.data);
+                    };
+
+                    // Manejar el fin de la grabación
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(audioChunks, {
+                            type: "audio/webm",
+                        });
+                        audioChunks = [];
+
+                        // Crear una URL para previsualizar el audio grabado
+                        const audioURL = URL.createObjectURL(audioBlob);
+                        audioPreview.src = audioURL;
+
+                        // Convertir el Blob a Base64 para enviarlo en el formulario
+                        const reader = new FileReader();
+                        reader.onloadend = () => {
+                            audioDataInput.value = reader.result; // Guardar Base64 en el campo oculto
+                            submitButton.disabled = false; // Habilitar el botón de envío
+                        };
+                        reader.readAsDataURL(audioBlob);
+                    };
+
+                    // Iniciar la grabación
+                    mediaRecorder.start();
+                    startButton.disabled = true;
+                    stopButton.disabled = false;
+                });
+
+                stopButton.addEventListener("click", () => {
+                    // Detener la grabación
+                    mediaRecorder.stop();
+                    startButton.disabled = false;
+                    stopButton.disabled = true;
+
+                    document.getElementById("microphone").style.display =
+                        "none";
+
+                    document.getElementById(
+                        "chronometer2"
+                    ).innerHTML = `<table width='100%'><tr><td align="center">Remaining Time</td></tr><tr><td align="center">00</td></tr></table>`;
+
+                    seconds2 = 1;
+
+                    //seconds2 = 45;
+                });
+
+                // Function to start/stop the timer
+                function startStopTimer2() {
+                    // console.log('isRunning2='+isRunning2);
+                    // console.log('seconds2='+seconds2);
+
+                    if (isRunning2) {
+                        clearInterval(timer2);
+                        //document.getElementById('startStopButton').textContent = 'Start';
+                    } else {
+                        timer2 = setInterval(() => {
+                            console.log("isRunning2=" + isRunning2);
+                            console.log("seconds2=" + seconds2);
+                            seconds2--;
+                            if (seconds2 == 0 - 1 || seconds2 == "0-1") {
+                                //alert('detener');
+                                //seconds2 = '00'; // Ensure seconds2 stays at '00'
+                                // document.getElementById('chronometer2').value =
+                                //     'Por favor subir el archivo generado en downloads llamado recorded_audio.wav';
+
+                                // Stop the interval and set the timer state to false
+                                clearInterval(timer2);
+                                isRunning2 = false;
+
+                                stopButton.click();
+                            } else {
+                                //alert('dos');
+                                updateChronometer2();
+                            }
+                        }, 1000);
+
+                        //document.getElementById('startStopButton').textContent = 'Stop';
+                    }
+                    //isRunning2 = !isRunning2;
+                }
+
+                // Function to update the chronometer display
+                function updateChronometer2() {
+                    // Format minutes and seconds to be always two digits
+                    const formattedMinutes2 =
+                        minutes2 < 10 ? "0" + minutes2 : minutes2;
+                    const formattedSeconds2 =
+                        seconds2 < 10 ? "0" + seconds2 : seconds2;
+                    //document.getElementById('chronometer').textContent = `Remaining Time: ${formattedMinutes}:${formattedSeconds}`;
+
+                    document.getElementById(
+                        "chronometer2"
+                    ).innerHTML = `<table width='100%'><tr><td align="center">Remaining Time</td></tr><tr><td align="center">${formattedSeconds2}</td></tr></table>`;
+                }
+
+                $("#submitButton").on("click", function () {
+                    // $.ajax({
+                    //     url: "http://localhost/cursos/public/upload_audio_ok", // La URL del endpoint
+                    //     type: "POST",
+                    //     data: {
+                    //         user_id: document.getElementById("user_id").value,
+                    //         audioData:
+                    //             document.getElementById("audioData").value,
+                    //         _token: $('meta[name="csrf-token"]').attr(
+                    //             "content"
+                    //         ), // Enviando el token CSRF manualmente en el data
+                    //     },
+                    //     success: function (response) {
+                    //         console.log("Respuesta:", response);
+                    //     },
+                    //     error: function (xhr, status, error) {
+                    //         console.error("Error:", error);
+                    //     },
+                    // });
+
+                    $.ajax({
+                        url: "http://localhost/cursos/public/upload_audio_ok",
+                        method: "POST",
+                        data: {
+                            user_id: document.getElementById("user_id").value,
+                            audioData:
+                                document.getElementById("audioData").value,
+                        },
+                        success: function (response) {
+                            console.log("Respuesta exitosa:", response);
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error en la solicitud:", error);
+                        },
+                    });
+                });
+            </script>
+        </body>
+    </html>
+</html>
