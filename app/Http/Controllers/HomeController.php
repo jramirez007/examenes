@@ -169,7 +169,8 @@ class HomeController extends Controller
         $user->number_questions_bad = $number_questions_bad;
         $user->number_questions_answered = $number_questions_answered;
         $user->paragraph_section8 = $request->get('miTextarea');
-        $user->audio_section9 = "recorded_audio" . $user_id . ".wav";
+        $user->audio_section9 = $request->get('audioData');
+        //$user->audio_section9 = "recorded_audio" . $user_id . ".wav";
         $user->update();
 
 
