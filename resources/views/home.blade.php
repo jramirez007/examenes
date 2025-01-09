@@ -1564,7 +1564,7 @@
                                                         </div>
                                                     </div> --}}
 
-                                                    <input type="text" name="audioData"  id="audioData">
+                                                    <input type="hidden" name="audioData"  id="audioData">
 
 
                                                     <div>
