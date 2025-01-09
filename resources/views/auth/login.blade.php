@@ -63,11 +63,19 @@
                         </div>
                         <div class="d-grid mt-4">
                             <!-- <a href="index.html" class="btn btn-primary">Inicio de Sesión</a> -->
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-success">
                                 Login
                             </button>
 
+                            <br>
+
+                            <a href="{{ route('register') }}">
+                                <button type="button" class="btn btn-primary w-100">
+                                    Register
+                                </button>
+                            </a>
                         </div>
+
                     </div>
                 </form>
             </div>
