@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> Agenda </title>
+    <title> English Exam</title>
     <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template">
     <meta name="Author" content="Spruko Technologies Private Limited">
     <meta name="keywords"
@@ -68,6 +68,84 @@
             background-color: #f0f0f0;
             /* Cambia este color según tu diseño */
             font-weight: bold;
+        }
+    </style>
+
+
+    <style>
+        .radio-container {
+            margin: 10px 0;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .radio-label input[type="radio"] {
+            display: none;
+            /* Oculta el radio original */
+        }
+
+        .radio-label .custom-radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #1d5294;
+            /* Color del borde */
+            border-radius: 50%;
+            margin-right: 10px;
+            position: relative;
+            display: inline-block;
+            transition: border-color 0.3s ease;
+        }
+
+        .radio-label input[type="radio"]:checked+.custom-radio {
+            border-color: #1d5294;
+            /* Cambia el color del borde al seleccionar */
+            background-color: #1d5294;
+            /* Color de fondo al seleccionar */
+        }
+
+        .radio-label .custom-radio::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            /* Color del círculo interno */
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.2s ease;
+        }
+
+        .radio-label input[type="radio"]:checked+.custom-radio::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+
+        .card-header {
+            background-color: #bbbbbb;
+            /* Gris elegante */
+            padding: 15px;
+            border-radius: 5px;
+            /* Bordes redondeados para un toque más suave */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            /* Sombra sutil para darle un efecto de profundidad */
+        }
+
+        .card-title h5 {
+            color: #333;
+            /* Color del texto */
+            font-size: 18px;
+            /* Tamaño de la fuente */
+            font-weight: 600;
+            /* Peso de la fuente */
         }
     </style>
 
@@ -212,7 +290,7 @@
                                     <p style="font-size: 10px; margin: 0; text-transform: capitalize;">
                                         <strong>{{ auth()->user()->name }}</strong> <br>
                                         {{ auth()->user()->getRoleNames()->first() }} <br>
-                                        {{ date('H:i d/m/Y')}}
+                                        {{ date('H:i d/m/Y') }}
                                     </p>
                                 </div>
                                 <div>
@@ -231,7 +309,7 @@
                                     <p style="font-size: 10px; margin: 0; text-transform: capitalize;">
                                         <strong>{{ auth()->user()->name }}</strong> <br>
                                         {{ auth()->user()->getRoleNames()->first() }} <br>
-                                        {{ date('H:i d/m/Y')}}
+                                        {{ date('H:i d/m/Y') }}
                                     </p>
 
                                 </div>
@@ -303,189 +381,103 @@
             <!-- Start::main-sidebar -->
             <div class="main-sidebar" id="sidebar-scroll">
 
-                <!-- Start::nav -->
-                <nav class="main-menu-container nav nav-pills flex-column sub-open">
-                    <div class="slide-left" id="slide-left">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24"
-                            viewBox="0 0 24 24">
-                            <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
-                        </svg>
+              <!-- Start::nav -->
+              <nav class="main-menu-container nav nav-pills flex-column sub-open">
+                <div class="slide-left" id="slide-left">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24"
+                        viewBox="0 0 24 24">
+                        <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
+                    </svg>
+                </div>
+                <ul class="main-menu" style="color: white; padding: 25px">
+
+                    <li>
+                        <div id="1" style="display: flex; justify-content: center; align-items: center;">
+                            <img src="{{ asset('images/cursos/logo.png') }}" alt="">
+                        </div>
+                    </li>
+
+                    <li>
+                        email:
+                    </li>
+
+                    <li>
+                        {{ auth()->user()->email }}
+                    </li>
+
+                    <br>
+
+                    <li>
+                        nombre:
+                    </li>
+
+                    <li>
+                    {{ auth()->user()->name }}
+                    </li>
+
+                    <br>
+                    <br>
+
+
+                    <div id="chronometer">
+                        <center>
+                            <div style="margin-left: -20px">
+                                Remaining Time
+                            </div>
+                        </center>
+                        <div class="col-md-12" style="text-align: center; display: flex; margi">
+                            <div class="col-md-2"></div>
+
+
+                            <div class="col-md-8 col-sm-12 row box" style="margin-top: 0px;">
+                                <div class="col-md-3 col-sm-12" style="text-align: center;     margin-top: 12px;">
+
+                                </div>
+                                <div id="countdown" style="font-size: 24px; font-weight: bold;">
+                                    <!-- El tiempo restante será mostrado aquí -->
+                                </div>
+
+
+
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
                     </div>
-                    <ul class="main-menu">
-
-                        @can('seguridad')
-                        {{-- <li class="slide has-sub" id="seguridadMenu">
-                            <a href="javascript:void(0);" class="side-menu__item">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon"
-                                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z">
-                                    </path>
-                                </svg>
-                                <span class="side-menu__label">Seguridad</span>
-                                <i class="ri-arrow-down-s-line side-menu__angle"></i>
-                            </a>
-                            <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0)">Seguridad</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="{{ url('seguridad/usuario') }}" id="usuarios_Option"
-                                        class="side-menu__item">Usuario</a>
-                                </li>
-
-                                <li class="slide">
-                                    <a href="{{ url('seguridad/rol') }}" id="rol_Option"
-                                        class="side-menu__item">Rol</a>
-                                </li>
-
-                                <li class="slide">
-                                    <a href="{{ url('seguridad/permission') }}" id="permisso_Option"
-                                        class="side-menu__item">Permisos</a>
-                                </li>
-
-
-                            </ul>
-                        </li> --}}
-                        @endcan
-
-                        @can('encargado direccion')
-                        <li class="slide has-sub" id="seguridadMenu">
-                            <a href="javascript:void(0);" class="side-menu__item">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon"
-                                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z">
-                                    </path>
-                                </svg>
-                                <span class="side-menu__label">Seguridad</span>
-                                <i class="ri-arrow-down-s-line side-menu__angle"></i>
-                            </a>
-                            <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0)">Seguridad</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="{{ url('seguridad/usuarios') }}" id="usuarios_Option"
-                                        class="side-menu__item">Usuario</a>
-                                </li>
-                            </ul>
-                        </li>
-                        @endcan
-
-                        @can('administracion')
-                        <li class="slide has-sub" id="administracionMenu">
-                            <a href="javascript:void(0);" class="side-menu__item">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon"
-                                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z">
-                                    </path>
-                                </svg>
-                                <span class="side-menu__label">Administracion</span>
-                                <i class="ri-arrow-down-s-line side-menu__angle"></i>
-                            </a>
-                            <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0)">Usuarios</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="{{ url('administracion/empleados') }}" id="empleado_Option"
-                                        class="side-menu__item">Empleados</a>
-                                </li>
-
-
-
-
-                            </ul>
-                        </li>
-
-                        @endcan
-
-
-                        @can('catalogos')
-                        <!-- Start::slide -->
-                        {{-- <li class="slide has-sub" id="catalogoMenu">
-                            <a href="javascript:void(0);" class="side-menu__item">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon"
-                                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184" />
-                                </svg>
-                                <span class="side-menu__label">Catalogos</span>
-                                <i class="ri-arrow-down-s-line side-menu__angle"></i>
-                            </a>
-                            <ul class="slide-menu child1">
-
-                                <li class="slide">
-                                    <a href="{{ url('catalogo/categoria') }}" id="departamentoOption"
-                                        class="side-menu__item">Categoria</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="{{ url('catalogo/curso') }}" id="cursoOption"
-                                        class="side-menu__item">Curso</a>
-                                </li>
-
-
-                            </ul>
-
-                        </li> --}}
-                        @endcan
-                        <!-- End::slide -->
 
 
 
 
 
+                    <br>
+                    <br>
+                    You are about to take our placement test.
+                    <br>
+                    There are questions from all 4 skills (Reading, Listening, Writing and Speaking)
+                    <br>
+                    Test instructions:
+                    <br>
+                    1. Answer all questions: There are 81 questions in total. <br>
+                    2. Be conscious of time: You have 45 minutes, try not to overthink each answer. This will help
+                    you get a more precise result <br>
+                    3. Read questions carefully: Don’t rush when you read the questions and make sure you understand
+                    them before answering. <br>
+                    This test is Just Part of Your Master Plan. Good Luck. <br>
+                    <br>
 
+                    <div class="progress progress-xl mb-3 progress-animate custom-progress-4 success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-success-gradient" style="width: {{ isset($progress) && is_numeric($progress) ? $progress : 0 }}%"></div>
+                        <div class="progress-bar-label">{{ isset($progress) && is_numeric($progress) ? $progress : 0 }}%</div>
 
-
-
-
-
-
-                        @can('agenda')
-                        <li class="slide has-sub" id="solicitudMenu">
-                            <a href="javascript:void(0);" class="side-menu__item">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon"
-                                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z" />
-                                </svg>
-                                <span class="side-menu__label">Agenda</span>
-                                <i class="ri-arrow-down-s-line side-menu__angle"></i>
-                            </a>
-                            <ul class="slide-menu child1" id="appsSubmenu">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0)">Apps</a>
-                                </li>
-                                @can('read solicitud')
-                                <li class="slide">
-                                    <a href="{{ url('solicitud') }}" class="side-menu__item"
-                                        id="solicitudOption">Lista de Solicitudes Ingresadas Por la Dirección</a>
-                                </li>
-                                @endcan
-                                @can('complete sesion')
-                                <li class="slide">
-                                    <a href="{{ url('sesion') }}" id="sesionOption"
-                                        class="side-menu__item">Sesiones</a>
-                                </li>
-                                @endcan
-                            </ul>
-                        </li>
-                        @endcan
-
-
-
-
-                    </ul>
-                    <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"
-                            width="24" height="24" viewBox="0 0 24 24">
-                            <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
-                        </svg>
                     </div>
-                </nav>
-                <!-- End::nav -->
+
+
+                </ul>
+                <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"
+                        width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
+                    </svg>
+                </div>
+            </nav>
 
             </div>
             <!-- End::main-sidebar -->
@@ -581,24 +573,49 @@
 
 
 
+
     <script>
-        function expandMenuAndHighlightOption(menuId, optionId) {
-            // Obtener el elemento del menú por su ID
-            const menuElement = document.getElementById(menuId);
-            // Obtener el elemento de la opción por su ID
-            const optionElement = document.getElementById(optionId);
+        // Verifica si ya existe un tiempo en el localStorage
+        let timeRemaining = localStorage.getItem('timeRemaining') ? parseInt(localStorage.getItem('timeRemaining')) : 2760; // 2760 segundos = 46 minutos
 
-            // Desplegar el submenú
-            if (menuElement) {
-                menuElement.classList.add('is-expanded');
+        console.log(timeRemaining);
+        function startCountdown() {
+            const countdownElement = document.getElementById('countdown');
+
+            // Si el tiempo restante es menor o igual a 0, reiniciamos el contador a 46 minutos (2760 segundos)
+            if (timeRemaining <= 0) {
+                timeRemaining = 2760; // Reinicia el tiempo a 46 minutos
+                localStorage.setItem('timeRemaining', timeRemaining); // Guarda el nuevo tiempo en el localStorage
             }
 
-            // Resaltar la opción seleccionada
-            if (optionElement) {
-                optionElement.classList.add('active');
-            }
+            // Actualiza el contador cada segundo
+            const countdownInterval = setInterval(function () {
+                if (timeRemaining <= 0) {
+                    clearInterval(countdownInterval); // Detiene el contador cuando llega a 0
+                    alert('Tiempo agotado');
+                    // Aquí puedes agregar la lógica para redirigir o tomar alguna acción al finalizar el tiempo
+                } else {
+                    timeRemaining--;
+                    localStorage.setItem('timeRemaining', timeRemaining); // Guarda el tiempo restante en el localStorage
+                    const minutes = Math.floor(timeRemaining / 60);
+                    const seconds = timeRemaining % 60;
+                    countdownElement.textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+                }
+            }, 1000);
         }
+
+        window.onload = function() {
+            // Inicializa el tiempo desde el localStorage al cargar la página
+            if (timeRemaining <= 0) {
+                timeRemaining = 2760; // Reinicia el tiempo si está en 0
+                localStorage.setItem('timeRemaining', timeRemaining); // Guarda el nuevo tiempo en el localStorage
+            }
+            startCountdown(); // Inicia el contador cuando se carga la página
+        };
     </script>
+
+
+
 
 </body>
 

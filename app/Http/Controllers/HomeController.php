@@ -10,7 +10,7 @@ use App\Models\cursos\Respuesta;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller
 {
@@ -43,6 +43,13 @@ class HomeController extends Controller
         {
             return redirect('seguridad/usuario');
         }
+
+
+        return Redirect::to('curso/examen');
+
+        /*$preguntas_seccion1 = Pregunta::whereBetween('id', [1, 20])->get();
+
+        return view('examen.index', compact('preguntas_seccion1'));*/
 
         $examen = Examen::find(1);
         $curso = Curso::find($examen->curso_id);
