@@ -8,6 +8,10 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="card-body p-5">
+
+                        <div class="mb-3 d-flex justify-content-center">
+                            <p class="h5 mb-2 text-center">Placement test</p>
+                        </div>
                         <div class="mb-3 d-flex justify-content-center">
                             <div id="1" style="display: flex; justify-content: center; align-items: center;">
                                 <img src="{{ asset('images/cursos/logo.png') }}" alt="">
@@ -15,22 +19,6 @@
                             </div>
 
                         </div>
-
-                        <div class="mb-3 d-flex justify-content-center">
-
-
-
-                                <div class="card-text d-flex justify-content-left">
-                                    <h5 style="background-color: #1D5294; width: 100%; height: 80px; display: flex; align-items: center; justify-content: left; padding-left: 30px; padding-right: 30px;">
-                                        <span style="color: white">Placement test</span>
-                                    </h5>
-
-                                </div>
-
-
-                        </div>
-
-                        <p class="h5 mb-2 text-center">Login</p>
 
                         <div class="row gy-3">
                             <div class="col-xl-12">
@@ -63,7 +51,7 @@
                         </div>
                         <div class="d-grid mt-4">
                             <!-- <a href="index.html" class="btn btn-primary">Inicio de Sesión</a> -->
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary btn-lg">
                                 Login
                             </button>
 
