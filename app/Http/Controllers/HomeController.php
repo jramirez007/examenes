@@ -37,6 +37,13 @@ class HomeController extends Controller
 
     public function index()
     {
+
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('administrador'))
+        {
+            return redirect('seguridad/usuario');
+        }
+
         $examen = Examen::find(1);
         $curso = Curso::find($examen->curso_id);
         $tipos = TipoPregunta::get();

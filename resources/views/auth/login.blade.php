@@ -55,7 +55,15 @@
                                 Login
                             </button>
 
+                            <br>
+
+                            <a href="{{ route('register') }}">
+                                <button type="button" class="btn btn-primary w-100">
+                                    Register
+                                </button>
+                            </a>
                         </div>
+
                     </div>
                 </form>
             </div>
