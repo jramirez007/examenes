@@ -381,106 +381,117 @@
             <!-- Start::main-sidebar -->
             <div class="main-sidebar" id="sidebar-scroll">
 
-              <!-- Start::nav -->
-              <nav class="main-menu-container nav nav-pills flex-column sub-open">
-                <div class="slide-left" id="slide-left">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24"
-                        viewBox="0 0 24 24">
-                        <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
-                    </svg>
-                </div>
-                <ul class="main-menu" style="color: white; padding: 25px">
+                <!-- Start::nav -->
+                <nav class="main-menu-container nav nav-pills flex-column sub-open">
+                    <div class="slide-left" id="slide-left">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24"
+                            viewBox="0 0 24 24">
+                            <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
+                        </svg>
+                    </div>
+                    <ul class="main-menu" style="color: white; padding: 25px">
 
-                    <li>
-                        <div id="1" style="display: flex; justify-content: center; align-items: center;">
-                            <img src="{{ asset('images/cursos/logo.png') }}" alt="">
-                        </div>
-                    </li>
-
-                    <li>
-                        email:
-                    </li>
-
-                    <li>
-                        {{ auth()->user()->email }}
-                    </li>
-
-                    <br>
-
-                    <li>
-                        nombre:
-                    </li>
-
-                    <li>
-                    {{ auth()->user()->name }}
-                    </li>
-
-                    <br>
-                    <br>
-
-
-                    <div id="chronometer">
-                        <center>
-                            <div style="margin-left: -20px">
-                                Remaining Time
+                        <li>
+                            <div id="1" style="display: flex; justify-content: center; align-items: center;">
+                                <img src="{{ asset('images/cursos/logo.png') }}" alt="">
                             </div>
-                        </center>
-                        <div class="col-md-12" style="text-align: center; display: flex; margi">
-                            <div class="col-md-2"></div>
+                        </li>
+
+                        <li>
+                            email:
+                        </li>
+
+                        <li>
+                            {{ auth()->user()->email }}
+                        </li>
+
+                        <br>
+
+                        <li>
+                            nombre:
+                        </li>
+
+                        <li>
+                            {{ auth()->user()->name }}
+                        </li>
+
+                        <br>
+                        <br>
 
 
-                            <div class="col-md-8 col-sm-12 row box" style="margin-top: 0px;">
-                                <div class="col-md-3 col-sm-12" style="text-align: center;     margin-top: 12px;">
+                        <div id="chronometer">
+                            <center>
+                                <div style="margin-left: -20px">
+                                    Remaining Time
+                                </div>
+                            </center>
+                            <div class="col-md-12" style="text-align: center; display: flex; margi">
+                                <div class="col-md-2"></div>
+
+
+                                <div class="col-md-8 col-sm-12 row box" style="margin-top: 0px;">
+                                    <div class="col-md-3 col-sm-12" style="text-align: center;     margin-top: 12px;">
+
+                                    </div>
+                                    <div id="countdown" style="font-size: 24px; font-weight: bold;">
+                                        <!-- El tiempo restante será mostrado aquí -->
+                                    </div>
+
+
 
                                 </div>
-                                <div id="countdown" style="font-size: 24px; font-weight: bold;">
-                                    <!-- El tiempo restante será mostrado aquí -->
-                                </div>
-
-
-
+                                <div class="col-md-2"></div>
                             </div>
-                            <div class="col-md-2"></div>
                         </div>
+
+
+
+
+
+                        <br>
+                        <br>
+                        You are about to take our placement test.
+                        <br>
+                        There are questions from all 4 skills (Reading, Listening, Writing and Speaking)
+                        <br>
+                        Test instructions:
+                        <br>
+                        1. Answer all questions: There are 81 questions in total. <br>
+                        2. Be conscious of time: You have 45 minutes, try not to overthink each answer. This will help
+                        you get a more precise result <br>
+                        3. Read questions carefully: Don’t rush when you read the questions and make sure you understand
+                        them before answering. <br>
+                        This test is Just Part of Your Master Plan. Good Luck. <br>
+                        <br>
+
+                        <div class="progress progress-xl mb-3 progress-animate custom-progress-4 success"
+                            role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar bg-success-gradient"
+                                style="width: {{ isset($progress) && is_numeric($progress) ? $progress : 0 }}%"></div>
+                            <div class="progress-bar-label">
+                                {{ isset($progress) && is_numeric($progress) ? $progress : 0 }}%</div>
+
+                        </div>
+
+
+                    </ul>
+                    <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"
+                            width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
+                        </svg>
                     </div>
+                </nav>
 
 
-
-
-
-                    <br>
-                    <br>
-                    You are about to take our placement test.
-                    <br>
-                    There are questions from all 4 skills (Reading, Listening, Writing and Speaking)
-                    <br>
-                    Test instructions:
-                    <br>
-                    1. Answer all questions: There are 81 questions in total. <br>
-                    2. Be conscious of time: You have 45 minutes, try not to overthink each answer. This will help
-                    you get a more precise result <br>
-                    3. Read questions carefully: Don’t rush when you read the questions and make sure you understand
-                    them before answering. <br>
-                    This test is Just Part of Your Master Plan. Good Luck. <br>
-                    <br>
-
-                    <div class="progress progress-xl mb-3 progress-animate custom-progress-4 success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar bg-success-gradient" style="width: {{ isset($progress) && is_numeric($progress) ? $progress : 0 }}%"></div>
-                        <div class="progress-bar-label">{{ isset($progress) && is_numeric($progress) ? $progress : 0 }}%</div>
-
-                    </div>
-
-
-                </ul>
-                <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"
-                        width="24" height="24" viewBox="0 0 24 24">
-                        <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
-                    </svg>
-                </div>
-            </nav>
+                <form method="POST" id="formFinalizado" action="{{ url('curso/examen/finalizado') }}">
+                    @csrf
+                </form>
 
             </div>
             <!-- End::main-sidebar -->
+
+
+
 
         </aside>
         <!-- End::app-sidebar -->
@@ -576,9 +587,11 @@
 
     <script>
         // Verifica si ya existe un tiempo en el localStorage
-        let timeRemaining = localStorage.getItem('timeRemaining') ? parseInt(localStorage.getItem('timeRemaining')) : 2760; // 2760 segundos = 46 minutos
+        let timeRemaining = localStorage.getItem('timeRemaining') ? parseInt(localStorage.getItem('timeRemaining')) :
+            2760; // 2760 segundos = 46 minutos
 
         console.log(timeRemaining);
+
         function startCountdown() {
             const countdownElement = document.getElementById('countdown');
 
@@ -589,14 +602,21 @@
             }
 
             // Actualiza el contador cada segundo
-            const countdownInterval = setInterval(function () {
+            const countdownInterval = setInterval(function() {
                 if (timeRemaining <= 0) {
                     clearInterval(countdownInterval); // Detiene el contador cuando llega a 0
                     alert('Tiempo agotado');
-                    // Aquí puedes agregar la lógica para redirigir o tomar alguna acción al finalizar el tiempo
+                    const formulario = document.getElementById('formFinalizado');
+                    if (formulario) {
+                        formulario.submit();
+                    }
+
+
+
                 } else {
                     timeRemaining--;
-                    localStorage.setItem('timeRemaining', timeRemaining); // Guarda el tiempo restante en el localStorage
+                    localStorage.setItem('timeRemaining',
+                        timeRemaining); // Guarda el tiempo restante en el localStorage
                     const minutes = Math.floor(timeRemaining / 60);
                     const seconds = timeRemaining % 60;
                     countdownElement.textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
@@ -612,6 +632,7 @@
             }
             startCountdown(); // Inicia el contador cuando se carga la página
         };
+
     </script>
 
 

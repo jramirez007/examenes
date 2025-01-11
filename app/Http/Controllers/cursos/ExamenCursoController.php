@@ -140,6 +140,20 @@ class ExamenCursoController extends Controller
     {
         $section = $request->section;
 
+        $preguntasSeccionArray = [
+            [0, 0],    // Sección inicial (opcional)
+            [1, 20],   // Sección 1
+            [21, 25],  // Sección 2
+            [26, 45],  // Sección 3
+            [46, 50],  // Sección 4
+            [51, 70],  // Sección 5
+            [71, 76],  // Sección 6
+            [77, 79],  // Sección 7
+            [80, 80],  // Sección 8
+            [85, 85]   // Sección 9
+        ];
+
+
         //aca se crear o se busca el registro segun el caso
         $examen = ExamenCurso::firstOrCreate(
             ['user_id' => auth()->user()->id], // Condición de búsqueda
@@ -149,31 +163,41 @@ class ExamenCursoController extends Controller
             ]
         );
 
+        $indices = $preguntasSeccionArray[$request->section];
 
-        // Obtener todas las respuestas que comienzan con "respuesta_"
-        $respuestas = $request->all();
 
-        // Filtrar solo las claves que comienzan con "respuesta_"
-        $respuestas = array_filter($respuestas, function ($key) {
-            return strpos($key, 'respuesta_') === 0; // Verifica que la clave comience con "respuesta_"
-        }, ARRAY_FILTER_USE_KEY);
 
-        // Recorrer todas las respuestas
-        foreach ($respuestas as $key => $respuesta) {
-            // Extraer el número de la pregunta desde el nombre de la clave (ejemplo "respuesta_1")
-            $numeroPregunta = str_replace('respuesta_', '', $key);
+        for ($i = $indices[0]; $i <= $indices[1]; $i++) {
+            $respuestaPost = "respuesta_" . $i;
 
-            $resultado = ExamenCursoResultado::updateOrCreate(
-                [
-                    'examen_curso_id' => $examen->id,
-                    'pregunta_id' => $numeroPregunta,
-                    'respuesta_id' => $respuesta
-                ],
-                [
-                    'pregunta_id' => $numeroPregunta,
-                    'respuesta_id' => $respuesta
-                ]
-            );
+            if ($request->$respuestaPost) {
+                $respuesta = Respuesta::find($request->$respuestaPost);
+
+                $resultado = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', $i)->first();
+                if (!$resultado) {
+                    $resultado = new ExamenCursoResultado();
+                }
+
+                $resultado->examen_curso_id = $examen->id;
+                $resultado->pregunta_id = $i;
+
+                if ($respuesta) {
+                    $resultado->respuesta_id = $request->$respuestaPost;
+                    $resultado->correcta = $respuesta->correcta;
+                }
+                $resultado->save();
+            } else {
+                $respuesta = Respuesta::find($request->$respuestaPost);
+
+                $resultado = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', $i)->first();
+                if (!$resultado) {
+                    $resultado = new ExamenCursoResultado();
+                }
+
+                $resultado->examen_curso_id = $examen->id;
+                $resultado->pregunta_id = $i;
+                $resultado->save();
+            }
         }
 
         $section++;
@@ -235,21 +259,20 @@ class ExamenCursoController extends Controller
 
                 //return view('examen.reporte_pdf', compact('examen', 'preguntas', 'respuesta80', 'respuesta85','exportar'));
 
-                $pdf = Pdf::loadView('examen.reporte_pdf', [
-                    'examen' => $examen,
-                    'preguntas' => $preguntas,
-                    'respuesta80' => $respuesta80,
-                    'respuesta85' => $respuesta85,
-                    'exportar' => $exportar
-                ]
+                $pdf = Pdf::loadView(
+                    'examen.reporte_pdf',
+                    [
+                        'examen' => $examen,
+                        'preguntas' => $preguntas,
+                        'respuesta80' => $respuesta80,
+                        'respuesta85' => $respuesta85,
+                        'exportar' => $exportar
+                    ]
                 );
                 return $pdf->download('invoice.pdf');
-
-
-
             }
 
-            return view('examen.index', compact('examen', 'preguntas', 'respuesta80', 'respuesta85','exportar'));
+            return view('examen.index', compact('examen', 'preguntas', 'respuesta80', 'respuesta85', 'exportar'));
         }
 
         /*try {
@@ -265,9 +288,32 @@ class ExamenCursoController extends Controller
         }*/
     }
 
-    public function edit($id)
+
+    public function finalizado()
     {
-        //
+        $examen = ExamenCurso::firstOrCreate(
+            ['user_id' => auth()->user()->id], // Condición de búsqueda
+            [
+                // Datos a insertar si no existe
+                'user_id' => auth()->user()->id
+            ]
+        );
+
+        $preguntas = Pregunta::get();
+
+        foreach ($preguntas as $pregunta) {
+            $resultado = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', $pregunta->id)->first();
+            if (!$resultado) {
+                $resultado = new ExamenCursoResultado();
+                $resultado->examen_curso_id = $examen->id;
+                $resultado->pregunta_id = $pregunta->id;
+                $resultado->save();
+            }
+        }
+
+        $examen->finalizado = 1;
+        $examen->save();
+        return Redirect::to('curso/examen');
     }
 
     /**

@@ -77,84 +77,26 @@
                                     </audio>
                                 </div>
                             @endif
-                            <!-- Aquí se agregará el mensaje de error en caso de no seleccionar una respuesta -->
-                            <div class="error-message" style="display:none;">
-                                <div class="alert alert-danger" role="alert">
-                                    Por favor, selecciona una respuesta para esta pregunta.
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
             @endforeach
 
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-
-                <a href="{{ url('curso/examen/section') }}/{{ $section - 1 }}" {{ $section == 1 ? 'disabled' : '' }}>
-                    <button type="button"
-                        class="btn btn-primary btn-lg btn-wave">&nbsp;&nbsp;Preview&nbsp;&nbsp;</button></a>
-
-
-                <button type="button" class="btn btn-primary btn-lg btn-wave"
-                    onclick="validarFormulario()">&nbsp;&nbsp;Next&nbsp;&nbsp;</button>
+            <div class="row">
+                <div class="col-xl-6">
+                    @if ($section > 1)
+                        <a href="{{ url('curso/examen/section') }}/{{ $section - 1 }}">
+                            <button type="button"
+                                class="btn btn-primary btn-lg btn-wave">&nbsp;&nbsp;Preview&nbsp;&nbsp;</button></a>
+                    @endif
+                </div>
+                <div class="col-xl-6 text-end">
+                    <button type="submit" class="btn btn-primary btn-lg btn-wave">&nbsp;&nbsp;Next&nbsp;&nbsp;</button>
+                </div>
             </div>
             <br>
         </form>
 
     </div>
-    <script src="{{ asset('assets/js/jquery-3.6.1.min.js') }}" crossorigin="anonymous"></script>
-    <!-- SweetAlert2 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.min.css" rel="stylesheet">
-
-    <!-- SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.min.js"></script>
-
-    <script>
-        function validarFormulario() {
-            let valido = true;
-            let radios = document.querySelectorAll('input[type="radio"]');
-            let preguntas = new Set(); // Usamos un Set para evitar duplicados
-
-            // Ocultamos todos los mensajes de error
-            document.querySelectorAll('.error-message').forEach(errorDiv => {
-                errorDiv.style.display = 'none';
-            });
-
-            // Recorremos todos los botones de radio y marcamos las preguntas respondidas
-            radios.forEach(radio => {
-                if (radio.checked) {
-                    preguntas.add(radio.name);
-                }
-            });
-
-            // Verificamos que todas las preguntas tengan al menos una respuesta seleccionada
-            document.querySelectorAll('.card').forEach(card => {
-                let inputRadio = card.querySelector('input[type="radio"]');
-                if (inputRadio) { // Verificamos si existe un input[type="radio"]
-                    let preguntaId = inputRadio.name;
-                    if (!preguntas.has(preguntaId)) {
-                        valido = false;
-                        // Mostramos el mensaje de error
-                        const errorDiv = card.querySelector('.error-message');
-                        if (errorDiv) {
-                            errorDiv.style.display = 'block';
-                        }
-                    }
-                }
-            });
-
-            // Si todo está bien, enviamos el formulario
-            if (valido) {
-                document.getElementById("formExamen").submit();
-            } else {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Faltan respuestas',
-                    text: 'Por favor, selecciona una respuesta para todas las preguntas antes de continuar.',
-                    confirmButtonText: 'Entendido',
-                    timer: 3000 // Opcional: tiempo en milisegundos para cerrar automáticamente
-                });
-            }
-        }
-    </script>
 @endsection

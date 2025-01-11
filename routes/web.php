@@ -65,6 +65,7 @@ Route::get('curso/examen/admin', [ExamenCursoController::class, 'index_admin']);
 Route::post('curso/examen/section', [ExamenCursoController::class, 'store_section']);
 Route::post('curso/examen/section8', [ExamenCursoController::class, 'store_section8']);
 Route::post('curso/examen/section_final', [ExamenCursoController::class, 'store_section_final']);
+Route::post('curso/examen/finalizado', [ExamenCursoController::class, 'finalizado']);
 Route::get('curso/examen/section/{number}', [ExamenCursoController::class, 'show_section'])->name('curso.examen.section');
 Route::resource('curso/examen', ExamenCursoController::class);
 // Route::post('upload_audio', [CursoControler::class, 'upload_audio'])->name('upload_audio');
