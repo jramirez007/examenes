@@ -10,7 +10,7 @@ use App\Models\cursos\Respuesta;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller
 {
@@ -41,9 +41,21 @@ class HomeController extends Controller
         $user = User::find(auth()->user()->id);
         if($user->hasRole('administrador'))
         {
+<<<<<<< HEAD
             return redirect('seguridad/usuario');
         }
 
+=======
+            return redirect('curso/examen/admin');
+        }
+
+        return Redirect::to('curso/examen');
+
+        /*$preguntas_seccion1 = Pregunta::whereBetween('id', [1, 20])->get();
+
+        return view('examen.index', compact('preguntas_seccion1'));*/
+
+>>>>>>> 823cd6853ec766480b90da50900ad33bbb97e958
         $examen = Examen::find(1);
         $curso = Curso::find($examen->curso_id);
         $tipos = TipoPregunta::get();

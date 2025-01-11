@@ -36,7 +36,6 @@ Route::post('examen_evaluar', [HomeController::class,'examen_evaluar'])->name('e
 Route::get('get_correcta/{codigo}', [CursoControler::class, 'get_correcta']);
 
 
-
 //seguridad
 Route::post('seguridad/usuario/update_roles', [UserController::class, 'update_roles']);
 Route::get('seguridad/roles/update_permission', [RolController::class, 'update_permission']);
@@ -59,6 +58,12 @@ Route::post('catalogo/curso/delete_upload', [CursoControler::class,'delete_uploa
 Route::post('catalogo/curso/upload', [CursoControler::class,'upload']);
 Route::resource('catalogo/curso', CursoControler::class);
 
+Route::get('curso/examen/admin', [ExamenCursoController::class, 'index_admin']);
+Route::post('curso/examen/section', [ExamenCursoController::class, 'store_section']);
+Route::post('curso/examen/section8', [ExamenCursoController::class, 'store_section8']);
+Route::post('curso/examen/section_final', [ExamenCursoController::class, 'store_section_final']);
+Route::post('curso/examen/finalizado', [ExamenCursoController::class, 'finalizado']);
+Route::get('curso/examen/section/{number}', [ExamenCursoController::class, 'show_section'])->name('curso.examen.section');
 Route::resource('curso/examen', ExamenCursoController::class);
 // Route::post('upload_audio', [CursoControler::class, 'upload_audio'])->name('upload_audio');
 // Route::post('delete_audio', [CursoControler::class, 'delete_audio'])->name('delete_audio');

@@ -1,10 +1,6 @@
 @extends('menu')
 @section('contenido')
 
-    <link rel="stylesheet" href="{{ asset('assets/js/datatable/dataTables.bootstrap5.min.css') }}">
-    @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
-
-
 
 
 
@@ -13,7 +9,7 @@
             <div class="card custom-card">
                 <div class="card-header justify-content-between">
                     <div class="card-title">
-                        Students
+                        Examenes
                     </div>
 
                 </div>
@@ -36,46 +32,46 @@
                         <table id="datatable-basic" class="table table-bordered text-nowrap w-100">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>#</th>
                                     <th>Nombre</th>
                                     <!-- <th>usuario</th> -->
                                     <th>correo</th>
                                     <th>Questions ok</th>
                                     <th>Questions bad</th>
                                     <th>Audio</th>
-                                    <th></th>
+                                    <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($usuarios as $obj)
-                                    @if ($obj->id > 1)
-                                        <tr>
-                                            <td>{{ $obj->id }}</td>
-                                            <td>{{ $obj->name }}</td>
-                                            <td>{{ $obj->email }}</td>
-                                            <td>{{ $obj->number_questions_ok }}</td>
-                                            <td>{{ $obj->number_questions_bad }}</td>
-<<<<<<< HEAD
-                                            {{-- <td>
-=======
-                                            <td>
->>>>>>> 823cd6853ec766480b90da50900ad33bbb97e958
-                                                <div class="d-flex">
-                                                    <audio controls>
-                                                        <source src="{{ $obj->audio_section9 }}" type="audio/mp3">
-                                                        Tu navegador no soporta el elemento de audio.
-                                                    </audio>
+                                @foreach ($examenes as $obj)
+                                    <tr>
+                                        <td>{{ $obj->id }}</td>
+                                        <td>{{ $obj->usuario->name ?? '' }}</td>
+                                        <td>{{ $obj->usuario->email ?? '' }}</td>
+                                        <td>{{ $obj->number_questions_ok }}</td>
+                                        <td>{{ $obj->number_questions_bad }}</td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <audio controls>
+                                                    <source src="{{ $obj->getAudio() }}" type="audio/mp3">
+                                                    Tu navegador no soporta el elemento de audio.
+                                                </audio>
 
-                                                </div>
-                                            </td>
-                                            <td> <a href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#modal-paragraph-{{ $obj->id }}"
-                                                    class="btn btn-info shadow btn sharp me-1">
-                                                    <i class="bi bi-file-text"></i>
-                                                </a></td>
-                                        </tr>
-                                        @include('seguridad.usuarios.modal_paragraph')
-                                    @endif
+                                            </div>
+                                        </td>
+                                        <td>
+
+                                            <a href="{{url('curso/examen')}}/{{$obj->id}}?exportar=0" target="_blank" class="btn btn-success shadow btn sharp me-1">
+                                                <i class="bi bi-eye"></i>
+
+                                            </a>
+
+                                            <a href="{{url('curso/examen')}}/{{$obj->id}}?exportar=1" target="_blank" class="btn btn-warning shadow btn sharp me-1">
+                                                <i class="bi bi-file-earmark-pdf"></i>
+
+                                            </a>
+                                        </td>
+                                    </tr>
                                 @endforeach
 
                             </tbody>
@@ -85,8 +81,6 @@
             </div>
         </div>
     </div>
-
-
 
 
 

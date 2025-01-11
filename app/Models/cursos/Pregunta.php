@@ -19,9 +19,52 @@ class Pregunta extends Model
 
     protected $guarded = [];
 
-     // Definir la relación con el modelo Respuesta
-     public function respuestas()
-     {
-         return $this->hasMany(Respuesta::class);
-     }
+
+
+    // Definir la relación con el modelo Respuesta
+    public function respuestas()
+    {
+        return $this->hasMany(Respuesta::class);
+    }
+
+
+    public function getRespuesta($respuesta_id)
+    {
+        // Buscar el primer registro que coincida con 'respuesta_id' y 'pregunta_id'
+        $registro = ExamenCursoResultado::where('respuesta_id', $respuesta_id)
+            ->where('pregunta_id', $this->id)
+            ->whereHas('examenCurso', function ($query) {
+                $query->where('user_id', auth()->user()->id);
+            })
+            ->first();
+
+        $respuesta_id = null;
+
+        if ($registro) {
+            $respuesta_id = $registro->respuesta_id;
+        }
+
+
+        // Si no se encuentra el registro, puede devolver null, o un valor predeterminado
+        return  $respuesta_id;
+    }
+
+    public function getRespuestaAdmin($respuesta_id,$examen_curso_id)
+    {
+        // Buscar el primer registro que coincida con 'respuesta_id' y 'pregunta_id'
+        $registro = ExamenCursoResultado::where('respuesta_id', $respuesta_id)
+            ->where('pregunta_id', $this->id)
+            ->where('examen_curso_id', $examen_curso_id)
+            ->first();
+
+        $respuesta_id = null;
+
+        if ($registro) {
+            $respuesta_id = $registro->respuesta_id;
+        }
+
+
+        // Si no se encuentra el registro, puede devolver null, o un valor predeterminado
+        return  $respuesta_id;
+    }
 }
