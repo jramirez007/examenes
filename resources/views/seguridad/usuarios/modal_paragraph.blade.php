@@ -3,14 +3,14 @@
 
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">{{$obj->name}}</h5>
+                <h5 class="modal-title">{{ $obj->usuario->name ?? '' }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal">
                 </button>
             </div>
             <div class="modal-body">
                 <h6 class="text-base text-slate-900 dark:text-white leading-6">
                     <p class="lead mb-0">
-                        {{$obj->paragraph_section8}}
+                        {{$obj->getResposeText()}}
                     </p>
                 </h6>
             </div>

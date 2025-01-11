@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +9,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #f4f4f4;
+            background-color: #ffffff; /* Fondo blanco */
         }
 
         .container {
@@ -52,7 +51,7 @@
         }
 
         .card-title h5 {
-            font-size: 16px;
+            font-size: 14px;
             margin: 0;
             font-weight: normal;
         }
@@ -71,13 +70,12 @@
         }
 
         .answer-text {
-            font-size: 14px;
+            font-size: 12px;
             color: #555;
             margin-top: 10px;
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="page-header">
@@ -99,7 +97,7 @@
                         <div class="radio-container">
                             <label class="radio-label">
                                 <input type="radio" name="respuesta_{{ $pregunta->id }}" value="{{ $respuesta->id }}"
-                                    {{ $pregunta->getRespuestaAdmin($respuesta->id, $examen->id) == $respuesta->id ? 'checked' : '' }}>
+                                {{ $pregunta->getRespuestaAdmin($respuesta->id, $examen->id) == $respuesta->id ? 'checked' : '' }} disabled>
                                 {{ $respuesta->descripcion }}
                             </label>
                         </div>
@@ -108,14 +106,6 @@
                     <!-- Respuesta Textual para Pregunta 80 -->
                     @if ($pregunta->id == 80)
                         <div class="answer-text">{{ $respuesta80 }}</div>
-                    @elseif($pregunta->id == 85)
-                        <div id="audio-container">
-                            <audio controls>
-                                <!-- Cambiar el valor de src por el Base64 del audio -->
-                                <source src="{{ $respuesta85 }}" type="audio/mp3">
-                                Tu navegador no soporta el elemento de audio.
-                            </audio>
-                        </div>
                     @endif
 
                 </div>
@@ -123,5 +113,4 @@
         @endforeach
     </div>
 </body>
-
 </html>

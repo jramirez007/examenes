@@ -61,6 +61,7 @@ Route::post('catalogo/curso/delete_upload', [CursoControler::class,'delete_uploa
 Route::post('catalogo/curso/upload', [CursoControler::class,'upload']);
 Route::resource('catalogo/curso', CursoControler::class);
 
+Route::get('curso/examen/admin', [ExamenCursoController::class, 'index_admin']);
 Route::post('curso/examen/section', [ExamenCursoController::class, 'store_section']);
 Route::post('curso/examen/section8', [ExamenCursoController::class, 'store_section8']);
 Route::post('curso/examen/section_final', [ExamenCursoController::class, 'store_section_final']);
