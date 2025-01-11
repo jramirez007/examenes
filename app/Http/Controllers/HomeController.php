@@ -41,9 +41,8 @@ class HomeController extends Controller
         $user = User::find(auth()->user()->id);
         if($user->hasRole('administrador'))
         {
-            return redirect('seguridad/usuario');
+            return redirect('curso/examen/admin');
         }
-
 
         return Redirect::to('curso/examen');
 
