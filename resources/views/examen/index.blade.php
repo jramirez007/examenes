@@ -35,6 +35,24 @@
             color: #333;
         }
 
+        .header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header p {
+            font-size: 10px;
+            margin: 0;
+            text-transform: capitalize;
+        }
+
+        .header .btn {
+            font-size: 12px;
+            margin-left: 15px;
+        }
+
         .card {
             margin-bottom: 20px;
             border: 1px solid #ddd;
@@ -80,6 +98,30 @@
 
 <body>
     <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="d-flex align-items-center">
+                <div class="me-2 d-flex flex-column justify-content-center">
+                    <p>
+                        <strong>{{ auth()->user()->name }}</strong> <br>
+                    </p>
+                </div>
+                <div>
+                    <i class="bi bi-person-circle" style="font-size: 24px;"></i>
+                </div>
+                <a class="ms-3 btn btn-primary" href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    Cerrar sesión
+                </a>
+            </div>
+        </div>
+
+        <!-- Logout form -->
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+
+        <!-- Usuario -->
         <div class="page-header">
             <h5>{{ $examen->usuario->name ?? 'Nombre del Usuario' }}</h5>
         </div>
@@ -111,7 +153,6 @@
                     @elseif($pregunta->id == 85)
                         <div id="audio-container">
                             <audio controls>
-                                <!-- Cambiar el valor de src por el Base64 del audio -->
                                 <source src="{{ $respuesta85 }}" type="audio/mp3">
                                 Tu navegador no soporta el elemento de audio.
                             </audio>
