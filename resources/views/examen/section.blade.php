@@ -10,9 +10,9 @@
     </div>
 
     <div class="card custom-card">
-        <div class="card-header justify-content-between">
+        <div class="card-header justify-content-between" style="background-color:  #12498F !important; color: white  !important;">
             <div class="card-title">
-                <h5 class="mb-3">
+                <h5 class="mb-3"  style="color: inherit !important;">
                     @isset($title)
                         {{ $title }}
                     @endisset
