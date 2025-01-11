@@ -37,6 +37,13 @@ class HomeController extends Controller
 
     public function index()
     {
+
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('administrador'))
+        {
+            return redirect('seguridad/usuario');
+        }
+
         $examen = Examen::find(1);
         $curso = Curso::find($examen->curso_id);
         $tipos = TipoPregunta::get();
@@ -174,7 +181,7 @@ class HomeController extends Controller
         $user->update();
 
 
-        alert()->success("Congratulations, you have finished your English exam.");
+        alert()->success("Felicidades has terminado tu examen de ingles");
 
 
         return back();

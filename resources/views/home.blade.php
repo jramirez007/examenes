@@ -1397,7 +1397,7 @@
 
                                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                         <label for="text-area" class="form-label">Textarea</label>
-                                                        <textarea class="form-control" name="miTextarea" id="miTextarea"  rows="5"></textarea>
+                                                        <textarea class="form-control" name="miTextarea" id="miTextarea" rows="5"></textarea>
                                                     </div>
 
                                                 </center>
@@ -1509,7 +1509,7 @@
                                             <br>
                                             <br>
 
-                                            You have 20 seconds to prepare and 45 seconds to answer.
+                                            You have 30 seconds to prepare and 45 seconds to answer.
                                             <br>
                                             <br>
                                             Read the following question and record your answer.
@@ -1568,7 +1568,7 @@
                                                         </div>
                                                     </div> --}}
 
-                                                    <input type="hidden" name="audioData"  id="audioData">
+                                                    <input type="hidden" name="audioData" id="audioData">
 
 
                                                     <div>
@@ -1581,6 +1581,29 @@
                                                         <button type="button" id="stopButton" style="display: none"
                                                             class="btn btn-danger">&nbsp;&nbsp;Stop speaking&nbsp;&nbsp;
                                                         </button>
+
+                                                        <div id="div_speaking_animate"
+                                                            class="d-flex justify-content-center mb-3">
+                                                            <center>
+                                                                <div id="chronometer2">
+                                                                    <table width="100%">
+                                                                        <tr>
+                                                                            <td align="center">Remaining time</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td align="center">45</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+
+                                                                <br />
+                                                                <div id="microphone" style="display: none">
+                                                                    <img src="{{ asset('assets/audio/speaking_animate.gif') }}"
+                                                                        alt="">
+
+                                                                </div>
+                                                            </center>
+                                                        </div>
                                                         <br><br>
                                                         <audio id="audioPreview" controls></audio>
 
@@ -2105,6 +2128,11 @@ function abrirPopup() {
 </script> --}}
 
     <script>
+        let timer2;
+        let minutes2 = 0;
+        let seconds2 = 45;
+        let isRunning2 = false;
+
         let mediaRecorder;
         let audioChunks = [];
 
@@ -2112,12 +2140,21 @@ function abrirPopup() {
         const stopButton = document.getElementById('stopButton');
         const audioPreview = document.getElementById('audioPreview');
         const audioDataInput = document.getElementById('audioData');
+
+        const microphone = document.getElementById('microphone');
         //const submitButton = document.getElementById('submitButton');
 
         startButton.addEventListener('click', async () => {
 
             if (startButton) {
+
                 startButton.style.display = 'none';
+                microphone.style.display = 'block';
+
+                seconds2 = 45;
+                startStopTimer2();
+
+
             }
 
             if (stopButton) {
@@ -2144,8 +2181,8 @@ function abrirPopup() {
                 audioChunks = [];
 
                 // Crear una URL para previsualizar el audio grabado
-                 const audioURL = URL.createObjectURL(audioBlob);
-                 audioPreview.src = audioURL;
+                const audioURL = URL.createObjectURL(audioBlob);
+                audioPreview.src = audioURL;
 
                 // Convertir el Blob a Base64 para enviarlo en el formulario
                 const reader = new FileReader();
@@ -2168,6 +2205,16 @@ function abrirPopup() {
             startButton.disabled = false;
             stopButton.disabled = true;
 
+            document.getElementById("microphone").style.display =
+                "none";
+
+            document.getElementById(
+                    "chronometer2"
+                ).innerHTML =
+                `<table width='100%'><tr><td align="center">Remaining Time</td></tr><tr><td align="center">00</td></tr></table>`;
+
+            seconds2 = 1;
+
             if (startButton) {
                 startButton.style.display = 'block';
             }
@@ -2176,6 +2223,59 @@ function abrirPopup() {
                 stopButton.style.display = 'none';
             }
         });
+
+
+
+        // Function to start/stop the timer
+        function startStopTimer2() {
+            // console.log('isRunning2='+isRunning2);
+            // console.log('seconds2='+seconds2);
+
+            if (isRunning2) {
+                clearInterval(timer2);
+                //document.getElementById('startStopButton').textContent = 'Start';
+            } else {
+                timer2 = setInterval(() => {
+                    console.log("isRunning2=" + isRunning2);
+                    console.log("seconds2=" + seconds2);
+                    seconds2--;
+                    if (seconds2 == 0 - 1 || seconds2 == "0-1") {
+                        //alert('detener');
+                        //seconds2 = '00'; // Ensure seconds2 stays at '00'
+                        // document.getElementById('chronometer2').value =
+                        //     'Por favor subir el archivo generado en downloads llamado recorded_audio.wav';
+
+                        // Stop the interval and set the timer state to false
+                        clearInterval(timer2);
+                        isRunning2 = false;
+
+                        stopButton.click();
+                    } else {
+                        //alert('dos');
+                        updateChronometer2();
+                    }
+                }, 1000);
+
+                //document.getElementById('startStopButton').textContent = 'Stop';
+            }
+            //isRunning2 = !isRunning2;
+        }
+
+
+        // Function to update the chronometer display
+        function updateChronometer2() {
+            // Format minutes and seconds to be always two digits
+            const formattedMinutes2 =
+                minutes2 < 10 ? "0" + minutes2 : minutes2;
+            const formattedSeconds2 =
+                seconds2 < 10 ? "0" + seconds2 : seconds2;
+            //document.getElementById('chronometer').textContent = `Remaining Time: ${formattedMinutes}:${formattedSeconds}`;
+
+            document.getElementById(
+                    "chronometer2"
+                ).innerHTML =
+                `<table width='100%'><tr><td align="center">Remaining Time</td></tr><tr><td align="center">${formattedSeconds2}</td></tr></table>`;
+        }
     </script>
 
 

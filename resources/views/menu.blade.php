@@ -314,7 +314,7 @@
                     <ul class="main-menu">
 
                         @can('seguridad')
-                        <li class="slide has-sub" id="seguridadMenu">
+                        {{-- <li class="slide has-sub" id="seguridadMenu">
                             <a href="javascript:void(0);" class="side-menu__item">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon"
                                     fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -346,7 +346,7 @@
 
 
                             </ul>
-                        </li>
+                        </li> --}}
                         @endcan
 
                         @can('encargado direccion')
@@ -405,7 +405,7 @@
 
                         @can('catalogos')
                         <!-- Start::slide -->
-                        <li class="slide has-sub" id="catalogoMenu">
+                        {{-- <li class="slide has-sub" id="catalogoMenu">
                             <a href="javascript:void(0);" class="side-menu__item">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon"
                                     fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -426,46 +426,10 @@
                                         class="side-menu__item">Curso</a>
                                 </li>
 
-                                {{-- <li class="slide">
-                                    <a href="{{ url('catalogo/institucion') }}" id="institucionOption"
-                                        class="side-menu__item">Institucion</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="{{ url('catalogo/prioridad') }}" id="prioridadOption"
-                                        class="side-menu__item">Prioridades</a>
-                                </li> --}}
 
-
-                                {{-- <li class="slide">
-                                    <a href="{{ url('catalogo/puesto') }}" id="puestoOption"
-                                        class="side-menu__item">Puesto</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="{{ url('catalogo/sala') }}" id="salaoOption"
-                                        class="side-menu__item">Sala</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="{{ url('catalogo/sessiones_estado') }}" id="session_estado_Option"
-                                        class="side-menu__item">Session
-                                        Estado</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="{{ url('catalogo/solicitud_estado') }}" id="solicitud_estado_Option"
-                                        class="side-menu__item">Solicitud
-                                        Estado</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="{{ url('catalogo/tipo_session') }}" id="tipo_session_Option"
-                                        class="side-menu__item">Tipo de Sesion</a>
-                                </li>
-
-                                <li class="slide">
-                                    <a href="{{ url('configuracion') }}" id="tipo_session_Option"
-                                        class="side-menu__item">Configuración</a>
-                                </li> --}}
                             </ul>
 
-                        </li>
+                        </li> --}}
                         @endcan
                         <!-- End::slide -->
 

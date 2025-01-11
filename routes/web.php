@@ -34,9 +34,6 @@ Route::post('upload_audio', [HomeController::class, 'upload_audio'])->name('uplo
 Route::post('delete_audio', [HomeController::class, 'delete_audio'])->name('delete_audio');
 Route::post('examen_evaluar', [HomeController::class,'examen_evaluar'])->name('examen_evaluar');
 Route::get('get_correcta/{codigo}', [CursoControler::class, 'get_correcta']);
-Route::post('upload_audio_ok', [HomeController::class, 'upload_audio_ok']);
-Route::get('upload_audio_ok2', [HomeController::class, 'upload_audio_ok2']);
-
 
 
 

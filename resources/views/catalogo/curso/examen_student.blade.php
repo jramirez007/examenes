@@ -130,7 +130,7 @@
                                 @if ($pregunta->id == 1)
                                     <h5><b>PART 1
                                             <br>
-                                            Click on the best word or phrase (a, b, c or d) to fill each blank.</b></h5>
+                                            Choose the best word or phrase (a, b, c or d) to fill each blank.</b></h5>
                                 @endif
 
                                 @if ($pregunta->id == 21)
@@ -161,7 +161,7 @@
                                             <br>
                                             Structure.</b></h5>
 
-                                            Click on the best word or phrase (a, b, c or d) to fill each blank.
+                                    Choose the best word or phrase (a, b, c or d) to fill each blank.
                                     <br>
                                 @endif
 
@@ -194,7 +194,7 @@
                                             <br>
                                             Structure.</b></h5>
 
-                                            Click on the best word or phrase (a, b, c or d) to fill each blank.
+                                    Choose the best word or phrase (a, b, c or d) to fill each blank.
                                     <br>
                                 @endif
 
