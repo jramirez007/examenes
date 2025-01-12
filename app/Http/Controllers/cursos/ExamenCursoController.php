@@ -20,14 +20,24 @@ class ExamenCursoController extends Controller
     {
         $examen = ExamenCurso::where('user_id', auth()->user()->id)->where('finalizado', 1)->first();
         if ($examen) {
-            $preguntas = Pregunta::get();
-            $resultado80 = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 80)->first();
-            $respuesta80 = $resultado80->respuesta_text;
+            // $preguntas = Pregunta::get();
+            // $resultado80 = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 80)->first();
+            // $respuesta80 = $resultado80->respuesta_text;
 
-            $resultado85 = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 85)->first();
-            $respuesta85 = $resultado85->audio;
+            // $resultado85 = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 85)->first();
+            // $respuesta85 = $resultado85->audio;
 
-            return view('examen.index', compact('examen', 'preguntas', 'respuesta80', 'respuesta85'));
+            $fecha_examen_fin = ExamenCurso::where('user_id', auth()->user()->id)
+                    ->where('finalizado', 1)
+                    ->pluck('fecha');
+
+                    $fecha = $fecha_examen_fin[0]; // Fecha original
+                    $fecha_formateada = date("d/m/Y H:i:s", strtotime($fecha));
+
+
+
+
+            return view('examen.index', compact('fecha_formateada'));
         }
         return redirect()->route('curso.examen.section', ['number' => 1]);
     }
@@ -372,5 +382,33 @@ class ExamenCursoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function get_sections_89($id)
+    {
+        $examen = ExamenCurso::where('user_id', $id)->where('finalizado', 1)->first();
+
+        $number_words = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 80)->value('number_words');
+        $respuesta_text = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 80)->value('respuesta_text');
+
+        $audio_actual = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 85)->where('audio_actual', 1)->value('audio');
+
+        // $examen_curso_seccion8 = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 80)->get();
+
+        // $examen_curso_seccion9 = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 85)->where('audio_actual', 1)->get();
+
+        $pregunta_seccion8 = Pregunta::where('id', 80)->value('descripcion');
+        $pregunta_seccion9 = Pregunta::where('id', 85)->value('descripcion');
+
+        return response()->json([
+
+            'pregunta_seccion8' => $pregunta_seccion8,
+            'number_words' => $number_words,
+            'respuesta_text' => $respuesta_text,
+            'pregunta_seccion9' => $pregunta_seccion9,
+            'audio_actual' => $audio_actual,
+        ]);
+
     }
 }
