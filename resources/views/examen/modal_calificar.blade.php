@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
 
-            <form method="POST" action="#">
+            <form method="POST" action="{{ route('evaluate_section89') }}">
                 @csrf
 
                 <div class="modal-header">
@@ -16,6 +16,7 @@
                     <label for="nombre" class="form-check-label">
                         <b>
                             <center>Writing</center>
+                            <input type="text" value="{{ $obj->getSeccion8Id() }}" name="seccion8_id" readonly />
                         </b>
 
                         Global warming has become a serious threat to our planet.
@@ -57,7 +58,8 @@
                     <p class="card-text d-flex justify-content-center">
                         <label for="nombre" class="form-check-label">
                             <b>
-                                <center>Speaking</center>
+                                <center>Speaking </center>
+                                <input type="text" value="{{ $obj->getSeccion9Id() }}" name="seccion9_id" readonly />
                             </b>
 
 
@@ -372,4 +374,53 @@
         </form> --}}
     </div>
 </div>
-</div>
+
+<script>
+    // function load_sections89(id) {
+    //     //alert(id);
+    //     $('#modalSetScore').modal('show');
+
+    //     // alert(id);
+    //     // alert(control);
+
+    //     if (id > 0) {
+    //         //var selector = "#" + control;
+    //         //console.log(selector);
+    //         $.get("{{ url('http://localhost/cursos/public/curso/examen/get_sections_89') }}" + '/' + id, function(
+    //         //$.get("{{ url('https://cursos.coopweb.info/public/curso/examen/get_sections_89') }}" + '/' + id, function(
+    //             data) {
+    //             console.log('====================================');
+    //             console.log(data);
+    //             console.log('====================================');
+
+    //             document.getElementById('pregunta_seccion8').innerHTML = data.pregunta_seccion8;
+    //             document.getElementById('number_words').innerHTML = data.number_words;
+    //             document.getElementById('respuesta_text').innerHTML = data.respuesta_text;
+
+    //             document.getElementById('pregunta_seccion9').innerHTML = data.pregunta_seccion9;
+
+
+
+
+    //             var audioUrl = data.audio_actual; // Laravel Blade syntax to pass the value to JS
+
+    //             // Get the source element by its ID
+    //             var audioSource = document.getElementById('audioSource');
+
+    //             // Set the src attribute to the dynamically generated audio URL
+    //             audioSource.src = audioUrl;
+
+    //             // If the audio is already loaded, you can also play it directly
+    //             var audioElement = document.querySelector('audio');
+    //             audioElement.load(); // Reloads the audio with the new source
+    //             //audioElement.play(); // Plays the audio
+
+
+
+
+
+    //             //$(selector).html(_table);
+    //         });
+    //     }
+    // }
+</script>

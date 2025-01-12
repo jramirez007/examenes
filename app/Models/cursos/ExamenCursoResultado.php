@@ -21,6 +21,12 @@ class ExamenCursoResultado extends Model
         'fecha',
         'respuesta_text',
         'audio',
+        'observacion_seccion8',
+        'puntos_seccion8',
+        'observacion_seccion9',
+        'puntos_seccion9',
+        'audio_actual',
+        'number_words'
     ];
 
     // Relación belongsTo con ExamenCurso

@@ -25,6 +25,27 @@ class ExamenCurso extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function getSeccion8Id()
+    {
+        try {
+            // Intentar obtener el resultado de la base de datos
+            $resultado = ExamenCursoResultado::where('examen_curso_id', $this->id)
+                ->where('pregunta_id', 80)
+                ->first();
+
+            // Verificar si se encontró el registro
+            if ($resultado) {
+                return $resultado->id;
+            } else {
+                // Si no se encuentra el resultado, devolver null
+                return null;
+            }
+        } catch (\Exception $e) {
+            // En caso de cualquier excepción, devolver null
+            return null;
+        }
+    }
+
     public function getResposeText()
     {
         try {
@@ -51,11 +72,33 @@ class ExamenCurso extends Model
     {
         try {
 
-            $resultado = ExamenCursoResultado::where('examen_curso_id', $this->id)->where('pregunta_id',85)->first();
+            $resultado = ExamenCursoResultado::where('examen_curso_id', $this->id)->where('pregunta_id', 85)->where('audio_actual', 1)->first();
 
             // Verificar si se encontró el registro
             if ($resultado) {
                 return $resultado->audio;
+            } else {
+                // Si no se encuentra el resultado, devolver null
+                return null;
+            }
+        } catch (\Exception $e) {
+            // En caso de cualquier excepción, devolver null
+            return null;
+        }
+    }
+
+    public function getSeccion9Id()
+    {
+        try {
+            // Intentar obtener el resultado de la base de datos
+            $resultado = ExamenCursoResultado::where('examen_curso_id', $this->id)
+                ->where('pregunta_id', 85)
+                ->where('audio_actual', 1)
+                ->first();
+
+            // Verificar si se encontró el registro
+            if ($resultado) {
+                return $resultado->id;
             } else {
                 // Si no se encuentra el resultado, devolver null
                 return null;

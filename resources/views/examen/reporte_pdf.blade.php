@@ -369,6 +369,82 @@
         @endforeach
 
 
+            <table>
+                <tr>
+                    <th>
+                        Observacion
+                    </th>
+                    <th>
+                        Puntos
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        {{ $observacion_seccion8 }}
+                    </td>
+                    <td>
+                        {{ $puntos_seccion8 }}
+                    </td>
+                </tr>
+            </table>
+
+
+
+        <div class="page-header">
+            <h5>SECTION 9</h5>
+        </div>
+
+        <!-- Preguntas -->
+        @foreach ($preguntas_seccion9 as $pregunta)
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h5>{{ $pregunta->descripcion }}</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <!-- Respuestas -->
+                    @foreach ($pregunta->respuestas->sortBy('id') as $respuesta)
+                        <div class="radio-container">
+                            <label class="radio-label">
+                                <input type="radio"
+                                {{ $pregunta->getRespuestaAdmin($respuesta->id, $examen->id) == $respuesta->id ? 'checked' : '' }}>
+                                {{ $respuesta->descripcion }} {{$respuesta->id }}
+                            </label>
+                        </div>
+                    @endforeach
+
+                    <!-- Respuesta Textual para Pregunta 80 -->
+
+
+                </div>
+            </div>
+        @endforeach
+
+        <table>
+            <tr>
+                <th>
+                    Observacion
+                </th>
+                <th>
+                    Puntos
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    {{ $observacion_seccion9 }}
+                </td>
+                <td>
+                    {{ $puntos_seccion9 }}
+                </td>
+            </tr>
+        </table>
+
+
+
+
+
     </div>
 </body>
 </html>

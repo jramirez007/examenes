@@ -258,12 +258,25 @@ class ExamenCursoController extends Controller
             $respuesta80 = "";
             if ($resultado80) {
                 $respuesta80 = $resultado80->respuesta_text;
+                $observacion_seccion8 = $resultado80->observacion_seccion8;
+
+                if ($observacion_seccion8 == null) {
+                    $observacion_seccion8 = "";
+                }
+
+                $puntos_seccion8 = $resultado80->puntos_seccion8;
+
+
             }
 
             $respuesta85 = "";
-            $resultado85 = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 85)->first();
-            if ($respuesta85) {
+            $resultado85 = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 85)->where('audio_actual',1)->first();
+
+
+            if ($resultado85) {
                 $respuesta85 = $resultado85->audio;
+                $observacion_seccion9 = $resultado85->observacion_seccion9;
+                $puntos_seccion9 = $resultado85->puntos_seccion9;
             }
 
 
@@ -275,7 +288,7 @@ class ExamenCursoController extends Controller
             $preguntas_seccion6 = Pregunta::whereBetween('id', [71, 76])->get();
             $preguntas_seccion7 = Pregunta::whereBetween('id', [77, 79])->get();
             $preguntas_seccion8 = Pregunta::whereBetween('id', [80, 80])->get();
-            //$preguntas_seccion9 = Pregunta::whereBetween('id', [85, 85])->get();
+            $preguntas_seccion9 = Pregunta::whereBetween('id', [85, 85])->get();
 
 
             $exportar = 0;
@@ -300,7 +313,11 @@ class ExamenCursoController extends Controller
                         'examen' => $examen,
                         'preguntas' => $preguntas,
                         'respuesta80' => $respuesta80,
+                        'observacion_seccion8' => $observacion_seccion8,
+                        'puntos_seccion8' => $puntos_seccion8,
                         'respuesta85' => $respuesta85,
+                        'observacion_seccion9' => $observacion_seccion9,
+                        'puntos_seccion9' => $puntos_seccion9,
                         'exportar' => $exportar,
                         'preguntas_seccion1' => $preguntas_seccion1,
                         'preguntas_seccion2' => $preguntas_seccion2,
@@ -309,7 +326,8 @@ class ExamenCursoController extends Controller
                         'preguntas_seccion5' => $preguntas_seccion5,
                         'preguntas_seccion6' => $preguntas_seccion6,
                         'preguntas_seccion7' => $preguntas_seccion7,
-                        'preguntas_seccion8' => $preguntas_seccion8
+                        'preguntas_seccion8' => $preguntas_seccion8,
+                        'preguntas_seccion9' => $preguntas_seccion9
                     ]
                 );
                 return $pdf->download('invoice.pdf');
@@ -416,6 +434,28 @@ class ExamenCursoController extends Controller
 
     public function evaluate_section89(Request $request)
     {
-        dd("calificar seccion 89");
+        $seccion8_id = $request->get('seccion8_id');
+        $observations_section8 = $request->get('observations_section8');
+        $points80 = $request->get('points80');
+
+
+        $exam_res8 = ExamenCursoResultado::findOrFail($seccion8_id);
+        $exam_res8->observacion_seccion8 = $observations_section8;
+        $exam_res8->puntos_seccion8 = $points80;
+        $exam_res8->update();
+
+        $seccion9_id = $request->get('seccion9_id');
+        $observations_section9 = $request->get('observations_section9');
+        $points85 = $request->get('points85');
+
+        $exam_res9 = ExamenCursoResultado::findOrFail($seccion9_id);
+        $exam_res9->observacion_seccion9 = $observations_section9;
+        $exam_res9->puntos_seccion9 = $points85;
+        $exam_res9->update();
+
+        alert()->success("Seccion 8 y 9 calificada correctamente");
+        return Redirect('curso/examen/admin');
+
+
     }
 }

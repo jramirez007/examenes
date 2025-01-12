@@ -72,7 +72,7 @@
                                         </td>
                                         <td>
 
-                                             <a href="{{url('curso/reporte')}}/{{$obj->id}}?exportar=0" data-bs-toggle="modal" data-bs-target="#modal-calificar-{{$obj->id}}"
+                                             <a  data-bs-toggle="modal" data-bs-target="#modal-calificar-{{$obj->id}}"
                                                  class="btn btn-primary shadow btn sharp me-1">
                                                 <i class="bi bi-pencil"></i>
 
@@ -124,54 +124,6 @@
     <!-- Internal Datatables JS -->
     <script src="{{ asset('assets/js/datatables.js') }}"></script>
 
-    <script>
-        function load_sections89(id) {
-            //alert(id);
-            $('#modalSetScore').modal('show');
-
-            // alert(id);
-            // alert(control);
-
-            if (id > 0) {
-                //var selector = "#" + control;
-                //console.log(selector);
-                $.get("{{ url('https://cursos.coopweb.info/public/curso/examen/get_sections_89') }}" + '/' + id, function(
-                    data) {
-                    console.log('====================================');
-                    console.log(data);
-                    console.log('====================================');
-
-                    document.getElementById('pregunta_seccion8').innerHTML = data.pregunta_seccion8;
-                    document.getElementById('number_words').innerHTML = data.number_words;
-                    document.getElementById('respuesta_text').innerHTML = data.respuesta_text;
-
-                    document.getElementById('pregunta_seccion9').innerHTML = data.pregunta_seccion9;
-
-
-
-
-                    var audioUrl = data.audio_actual; // Laravel Blade syntax to pass the value to JS
-
-                    // Get the source element by its ID
-                    var audioSource = document.getElementById('audioSource');
-
-                    // Set the src attribute to the dynamically generated audio URL
-                    audioSource.src = audioUrl;
-
-                    // If the audio is already loaded, you can also play it directly
-                    var audioElement = document.querySelector('audio');
-                    audioElement.load(); // Reloads the audio with the new source
-                    //audioElement.play(); // Plays the audio
-
-
-
-
-
-                    //$(selector).html(_table);
-                });
-            }
-        }
-    </script>
 
 
 
