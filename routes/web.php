@@ -61,6 +61,7 @@ Route::resource('catalogo/curso', CursoControler::class);
 
 Route::get('curso/examen/admin', [ExamenCursoController::class, 'index_admin']);
 Route::get('curso/examen/get_sections_89/{id}', [ExamenCursoController::class, 'get_sections_89']);
+Route::post('curso/examen/evaluate_section89', [ExamenCursoController::class,'evaluate_section89'])->name('evaluate_section89');
 
 
 Route::post('curso/examen/section', [ExamenCursoController::class, 'store_section']);

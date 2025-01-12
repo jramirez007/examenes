@@ -28,11 +28,11 @@ class ExamenCursoController extends Controller
             // $respuesta85 = $resultado85->audio;
 
             $fecha_examen_fin = ExamenCurso::where('user_id', auth()->user()->id)
-                    ->where('finalizado', 1)
-                    ->pluck('fecha');
+                ->where('finalizado', 1)
+                ->pluck('fecha');
 
-                    $fecha = $fecha_examen_fin[0]; // Fecha original
-                    $fecha_formateada = date("d/m/Y H:i:s", strtotime($fecha));
+            $fecha = $fecha_examen_fin[0]; // Fecha original
+            $fecha_formateada = date("d/m/Y H:i:s", strtotime($fecha));
 
 
 
@@ -389,9 +389,11 @@ class ExamenCursoController extends Controller
     {
         $examen = ExamenCurso::where('user_id', $id)->where('finalizado', 1)->first();
 
+        $section8_id = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 80)->value('id');
         $number_words = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 80)->value('number_words');
         $respuesta_text = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 80)->value('respuesta_text');
 
+        $section9_id = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 85)->where('audio_actual', 1)->value('id');
         $audio_actual = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 85)->where('audio_actual', 1)->value('audio');
 
         // $examen_curso_seccion8 = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 80)->get();
@@ -402,13 +404,18 @@ class ExamenCursoController extends Controller
         $pregunta_seccion9 = Pregunta::where('id', 85)->value('descripcion');
 
         return response()->json([
-
+            'section8_id' => $section8_id,
             'pregunta_seccion8' => $pregunta_seccion8,
             'number_words' => $number_words,
             'respuesta_text' => $respuesta_text,
+            'section9_id' => $section9_id,
             'pregunta_seccion9' => $pregunta_seccion9,
             'audio_actual' => $audio_actual,
         ]);
+    }
 
+    public function evaluate_section89(Request $request)
+    {
+        dd("calificar seccion 89");
     }
 }
