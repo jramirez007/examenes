@@ -406,7 +406,7 @@
             if (id > 0) {
                 //var selector = "#" + control;
                 //console.log(selector);
-                $.get("{{ url('http://localhost/cursos/public/curso/examen/get_sections_89') }}" + '/' + id, function(
+                $.get("{{ url('https://cursos.coopweb.info/public/curso/examen/get_sections_89') }}" + '/' + id, function(
                     data) {
                     console.log('====================================');
                     console.log(data);
