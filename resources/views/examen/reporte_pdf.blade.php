@@ -35,19 +35,20 @@
         }
 
         .card {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
         }
 
         .card-header {
-            background-color: #f8f9fa;
+            background-color: #12498F;
             padding: 10px;
             border-bottom: 1px solid #ddd;
+            color: white ;
         }
 
         .card-body {
-            padding: 15px;
+            padding: 10px;
         }
 
         .card-title h5 {
@@ -57,7 +58,7 @@
         }
 
         .radio-container {
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .radio-label {
@@ -79,11 +80,14 @@
 <body>
     <div class="container">
         <div class="page-header">
-            <h5>{{ $examen->usuario->name ?? 'Nombre del Usuario' }}</h5>
+            <h5>{{ $examen->usuario->name ?? '' }} <br> {{ $examen->usuario->email ?? '' }}</h5>
+        </div>
+        <div >
+            <h3>SECTION 1</h5>
         </div>
 
         <!-- Preguntas -->
-        @foreach ($preguntas as $pregunta)
+        @foreach ($preguntas_seccion1 as $pregunta)
             <div class="card">
                 <div class="card-header">
                     <div class="card-title">
@@ -96,9 +100,9 @@
                     @foreach ($pregunta->respuestas->sortBy('id') as $respuesta)
                         <div class="radio-container">
                             <label class="radio-label">
-                                <input type="radio" name="respuesta_{{ $pregunta->id }}" value="{{ $respuesta->id }}"
-                                {{ $pregunta->getRespuestaAdmin($respuesta->id, $examen->id) == $respuesta->id ? 'checked' : '' }} disabled>
-                                {{ $respuesta->descripcion }}
+                                <input type="radio"
+                                {{ $pregunta->getRespuestaAdmin($respuesta->id, $examen->id) == $respuesta->id ? 'checked' : '' }}>
+                                {{ $respuesta->descripcion }} {{$respuesta->id }}
                             </label>
                         </div>
                     @endforeach
@@ -111,6 +115,260 @@
                 </div>
             </div>
         @endforeach
+
+
+        <div class="page-header">
+            <h5>SECTION 2</h5>
+        </div>
+
+        <!-- Preguntas -->
+        @foreach ($preguntas_seccion2 as $pregunta)
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h5>{{ $pregunta->descripcion }}</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <!-- Respuestas -->
+                    @foreach ($pregunta->respuestas->sortBy('id') as $respuesta)
+                        <div class="radio-container">
+                            <label class="radio-label">
+                                <input type="radio"
+                                {{ $pregunta->getRespuestaAdmin($respuesta->id, $examen->id) == $respuesta->id ? 'checked' : '' }}>
+                                {{ $respuesta->descripcion }} {{$respuesta->id }}
+                            </label>
+                        </div>
+                    @endforeach
+
+                    <!-- Respuesta Textual para Pregunta 80 -->
+                    @if ($pregunta->id == 80)
+                        <div class="answer-text">{{ $respuesta80 }}</div>
+                    @endif
+
+                </div>
+            </div>
+        @endforeach
+
+
+
+
+        <div class="page-header">
+            <h5>SECTION 3</h5>
+        </div>
+
+        <!-- Preguntas -->
+        @foreach ($preguntas_seccion3 as $pregunta)
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h5>{{ $pregunta->descripcion }}</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <!-- Respuestas -->
+                    @foreach ($pregunta->respuestas->sortBy('id') as $respuesta)
+                        <div class="radio-container">
+                            <label class="radio-label">
+                                <input type="radio"
+                                {{ $pregunta->getRespuestaAdmin($respuesta->id, $examen->id) == $respuesta->id ? 'checked' : '' }}>
+                                {{ $respuesta->descripcion }} {{$respuesta->id }}
+                            </label>
+                        </div>
+                    @endforeach
+
+                    <!-- Respuesta Textual para Pregunta 80 -->
+                    @if ($pregunta->id == 80)
+                        <div class="answer-text">{{ $respuesta80 }}</div>
+                    @endif
+
+                </div>
+            </div>
+        @endforeach
+
+
+
+        <div class="page-header">
+            <h5>SECTION 4</h5>
+        </div>
+
+        <!-- Preguntas -->
+        @foreach ($preguntas_seccion4 as $pregunta)
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h5>{{ $pregunta->descripcion }}</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <!-- Respuestas -->
+                    @foreach ($pregunta->respuestas->sortBy('id') as $respuesta)
+                        <div class="radio-container">
+                            <label class="radio-label">
+                                <input type="radio"
+                                {{ $pregunta->getRespuestaAdmin($respuesta->id, $examen->id) == $respuesta->id ? 'checked' : '' }}>
+                                {{ $respuesta->descripcion }} {{$respuesta->id }}
+                            </label>
+                        </div>
+                    @endforeach
+
+                    <!-- Respuesta Textual para Pregunta 80 -->
+                    @if ($pregunta->id == 80)
+                        <div class="answer-text">{{ $respuesta80 }}</div>
+                    @endif
+
+                </div>
+            </div>
+        @endforeach
+
+
+        <div class="page-header">
+            <h5>SECTION 5</h5>
+        </div>
+
+        <!-- Preguntas -->
+        @foreach ($preguntas_seccion5 as $pregunta)
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h5>{{ $pregunta->descripcion }}</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <!-- Respuestas -->
+                    @foreach ($pregunta->respuestas->sortBy('id') as $respuesta)
+                        <div class="radio-container">
+                            <label class="radio-label">
+                                <input type="radio"
+                                {{ $pregunta->getRespuestaAdmin($respuesta->id, $examen->id) == $respuesta->id ? 'checked' : '' }}>
+                                {{ $respuesta->descripcion }} {{$respuesta->id }}
+                            </label>
+                        </div>
+                    @endforeach
+
+                    <!-- Respuesta Textual para Pregunta 80 -->
+                    @if ($pregunta->id == 80)
+                        <div class="answer-text">{{ $respuesta80 }}</div>
+                    @endif
+
+                </div>
+            </div>
+        @endforeach
+
+
+        <div class="page-header">
+            <h5>SECTION 6</h5>
+        </div>
+
+        <!-- Preguntas -->
+        @foreach ($preguntas_seccion6 as $pregunta)
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h5>{{ $pregunta->descripcion }}</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <!-- Respuestas -->
+                    @foreach ($pregunta->respuestas->sortBy('id') as $respuesta)
+                        <div class="radio-container">
+                            <label class="radio-label">
+                                <input type="radio"
+                                {{ $pregunta->getRespuestaAdmin($respuesta->id, $examen->id) == $respuesta->id ? 'checked' : '' }}>
+                                {{ $respuesta->descripcion }} {{$respuesta->id }}
+                            </label>
+                        </div>
+                    @endforeach
+
+                    <!-- Respuesta Textual para Pregunta 80 -->
+                    @if ($pregunta->id == 80)
+                        <div class="answer-text">{{ $respuesta80 }}</div>
+                    @endif
+
+                </div>
+            </div>
+        @endforeach
+
+
+
+        <div class="page-header">
+            <h5>SECTION 7</h5>
+        </div>
+
+        <!-- Preguntas -->
+        @foreach ($preguntas_seccion7 as $pregunta)
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h5>{{ $pregunta->descripcion }}</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <!-- Respuestas -->
+                    @foreach ($pregunta->respuestas->sortBy('id') as $respuesta)
+                        <div class="radio-container">
+                            <label class="radio-label">
+                                <input type="radio"
+                                {{ $pregunta->getRespuestaAdmin($respuesta->id, $examen->id) == $respuesta->id ? 'checked' : '' }}>
+                                {{ $respuesta->descripcion }} {{$respuesta->id }}
+                            </label>
+                        </div>
+                    @endforeach
+
+                    <!-- Respuesta Textual para Pregunta 80 -->
+                    @if ($pregunta->id == 80)
+                        <div class="answer-text">{{ $respuesta80 }}</div>
+                    @endif
+
+                </div>
+            </div>
+        @endforeach
+
+
+
+
+
+        <div class="page-header">
+            <h5>SECTION 8</h5>
+        </div>
+
+        <!-- Preguntas -->
+        @foreach ($preguntas_seccion8 as $pregunta)
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h5>{{ $pregunta->descripcion }}</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <!-- Respuestas -->
+                    @foreach ($pregunta->respuestas->sortBy('id') as $respuesta)
+                        <div class="radio-container">
+                            <label class="radio-label">
+                                <input type="radio"
+                                {{ $pregunta->getRespuestaAdmin($respuesta->id, $examen->id) == $respuesta->id ? 'checked' : '' }}>
+                                {{ $respuesta->descripcion }} {{$respuesta->id }}
+                            </label>
+                        </div>
+                    @endforeach
+
+                    <!-- Respuesta Textual para Pregunta 80 -->
+                    @if ($pregunta->id == 80)
+                        <div class="answer-text">{{ $respuesta80 }}</div>
+                    @endif
+
+                </div>
+            </div>
+        @endforeach
+
+
     </div>
 </body>
 </html>
