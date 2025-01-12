@@ -1,168 +1,95 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte de Examen</title>
+@extends('menu_student')
+@section('contenido')
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
 
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .page-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .page-header h5 {
-            font-size: 20px;
-            margin: 0;
-            color: #333;
-        }
-
-        .header {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .header p {
-            font-size: 10px;
-            margin: 0;
-            text-transform: capitalize;
-        }
-
-        .header .btn {
-            font-size: 12px;
-            margin-left: 15px;
-        }
-
-        .card {
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .card-header {
-            background-color: #f8f9fa;
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .card-body {
-            padding: 15px;
-        }
-
-        .card-title h5 {
-            font-size: 16px;
-            margin: 0;
-            font-weight: normal;
-        }
-
-        .radio-container {
-            margin-bottom: 10px;
-        }
-
-        .radio-label {
-            display: flex;
-            align-items: center;
-        }
-
-        .radio-label input[type="radio"] {
-            margin-right: 10px;
-        }
-
-        .answer-text {
-            font-size: 14px;
-            color: #555;
-            margin-top: 10px;
-        }
     </style>
-</head>
-
-<body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <div class="d-flex align-items-center">
-                <div class="me-2 d-flex flex-column justify-content-center">
-                    <p>
-                        <strong>{{ auth()->user()->name }}</strong> <br>
-                    </p>
-                </div>
-                <div>
-                    <i class="bi bi-person-circle" style="font-size: 24px;"></i>
-                </div>
-                <a class="ms-3 btn btn-primary" href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    Cerrar sesión
-                </a>
+    <br>
+    <div class="container-fluid d-flex align-items-center justify-content-center card">
+        <br>
+        <div class="row w-100">
+            <div class="d-none d-md-block col-md-3 text-center">
+                &nbsp;
             </div>
-        </div>
+            <div class="col-12 col-md-6 text-center d-flex justify-content-center"
+                style="min-height: 50vh; padding-top: 10vh; padding-bottom: 10vh;">
+                <div class="w-70">
 
-        <!-- Logout form -->
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none"
+                        stroke="#00A6BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-circle-dashed-check">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M8.56 3.69a9 9 0 0 0 -2.92 1.95" />
+                        <path d="M3.69 8.56a9 9 0 0 0 -.69 3.44" />
+                        <path d="M3.69 15.44a9 9 0 0 0 1.95 2.92" />
+                        <path d="M8.56 20.31a9 9 0 0 0 3.44 .69" />
+                        <path d="M15.44 20.31a9 9 0 0 0 2.92 -1.95" />
+                        <path d="M20.31 15.44a9 9 0 0 0 .69 -3.44" />
+                        <path d="M20.31 8.56a9 9 0 0 0 -1.95 -2.92" />
+                        <path d="M15.44 3.69a9 9 0 0 0 -3.44 -.69" />
+                        <path d="M9 12l2 2l4 -4" />
+                    </svg>
+                    <br><br>
 
-        <!-- Usuario -->
-        <div class="page-header">
-            <h5>{{ $examen->usuario->name ?? 'Nombre del Usuario' }}</h5>
-        </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-center gap-2">
+                        <p class="fs-2 fw-bold m-0" style="color: rgb(0, 186, 208);">Congratulations</p>
+                    </div>
 
-        <!-- Preguntas -->
-        @foreach ($preguntas as $pregunta)
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">
-                        <h5>{{ $pregunta->descripcion }}</h5>
+
+
+
+                    <p class="fs-2 fw-bold m-0">Your exam has been <b>sent</b> successfully.
+
+<br>
+
+                        <span class="fs-2 fw-bold m-0"> </span> <br>
+
+                    <div class="d-flex flex-column flex-md-row justify-content-center gap-2">
+                        <p class="fs-2 fw-bold m-0" style="color: rgb(0, 186, 208);"> Exam completed on</p>
+                    </div>
+
+
+
+                    <p class="fs-2 fw-bold m-0">{{ $fecha_formateada }} </b>.
+
+
+                    <p class="fs-3">
+                        <br> We will give you your result soon.
+                        <br>
+                        <br>
+                        Thank you.
+                    </p>
+
+
+
+
+                    <br><br>
+
+                    <div class="justify-content-center align-items-center">
+                        <form action="{{ url('logout') }}" method="POST">
+                            @csrf
+
+                            <button aria-label="Iniciar" class="btn btn-outline-info text-white text-xl btn-sm"
+                                data-bs-toggle="modal" data-bs-target="#exampleModalXl"
+                                style="border-radius: 1.5rem; background-color: #1A365E; padding-left: 2rem !important; padding-right: 2rem !important;  font-size: 1rem; border:0"><strong>
+                                    Finish
+                                </strong>
+
+                            </button>
+                        </form>
                     </div>
                 </div>
-                <div class="card-body">
 
-                    <!-- Respuestas -->
-                    @foreach ($pregunta->respuestas->sortBy('id') as $respuesta)
-                        <div class="radio-container">
-                            <label class="radio-label">
-                                <input type="radio" name="respuesta_{{ $pregunta->id }}" value="{{ $respuesta->id }}"
-                                    {{ $pregunta->getRespuestaAdmin($respuesta->id, $examen->id) == $respuesta->id ? 'checked' : '' }}>
-                                {{ $respuesta->descripcion }}
-                            </label>
-                        </div>
-                    @endforeach
-
-                    <!-- Respuesta Textual para Pregunta 80 -->
-                    @if ($pregunta->id == 80)
-                        <div class="answer-text">{{ $respuesta80 }}</div>
-                    @elseif($pregunta->id == 85)
-                        <div id="audio-container">
-                            <audio controls>
-                                <source src="{{ $respuesta85 }}" type="audio/mp3">
-                                Tu navegador no soporta el elemento de audio.
-                            </audio>
-                        </div>
-                    @endif
-
-                </div>
             </div>
-        @endforeach
-    </div>
-</body>
+            {{-- <p class="fs-6 text-center"><small><b>v18.9d</b></small> </p> --}}
+        </div>
 
-</html>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            window.history.pushState(null, null, window.location.href);
+            window.onpopstate = function() {
+                window.history.go(1);
+            };
+        });
+    </script>
+@endsection

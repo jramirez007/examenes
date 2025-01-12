@@ -4,6 +4,7 @@ use App\Http\Controllers\catalogo\CategoriaController;
 use App\Http\Controllers\catalogo\CursoControler;
 use App\Http\Controllers\cursos\ExamenCursoController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\seguridad\PermissionController;
 use App\Http\Controllers\seguridad\RolController;
 use App\Http\Controllers\seguridad\UserController;
@@ -59,6 +60,9 @@ Route::post('catalogo/curso/upload', [CursoControler::class,'upload']);
 Route::resource('catalogo/curso', CursoControler::class);
 
 Route::get('curso/examen/admin', [ExamenCursoController::class, 'index_admin']);
+Route::get('curso/examen/get_sections_89/{id}', [ExamenCursoController::class, 'get_sections_89']);
+
+
 Route::post('curso/examen/section', [ExamenCursoController::class, 'store_section']);
 Route::post('curso/examen/section8', [ExamenCursoController::class, 'store_section8']);
 Route::post('curso/examen/section_final', [ExamenCursoController::class, 'store_section_final']);
@@ -73,3 +77,5 @@ Route::get('catalogo/curso/show_examen_student/{id}', [CursoControler::class,'sh
 Route::post('catalogo/curso/show_examen_evaluar', [CursoControler::class,'show_examen_evaluar']);
 Route::get('get_correcta/{codigo}', [CursoControler::class, 'get_correcta']);
 Route::get('get_examenes/{curso_id}', [CursoControler::class, 'get_examenes']);
+
+Route::get('curso/reporte/{id}', [ReporteController::class,'index']);

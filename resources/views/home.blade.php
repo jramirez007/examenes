@@ -1396,7 +1396,7 @@
 
 
                                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                        <label for="text-area" class="form-label">Textarea</label>
+                                                        <label for="text-area" class="form-label">Text area</label>
                                                         <textarea class="form-control" name="miTextarea" id="miTextarea" rows="5"></textarea>
                                                     </div>
 
