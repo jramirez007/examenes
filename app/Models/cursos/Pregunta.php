@@ -63,7 +63,6 @@ class Pregunta extends Model
             $respuesta_id = $registro->respuesta_id;
         }
 
-
         // Si no se encuentra el registro, puede devolver null, o un valor predeterminado
         return  $respuesta_id;
     }

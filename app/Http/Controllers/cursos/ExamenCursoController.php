@@ -245,10 +245,28 @@ class ExamenCursoController extends Controller
         if ($examen) {
             $preguntas = Pregunta::get();
             $resultado80 = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 80)->first();
-            $respuesta80 = $resultado80->respuesta_text;
+            $respuesta80 = "";
+            if ($resultado80) {
+                $respuesta80 = $resultado80->respuesta_text;
+            }
 
+            $respuesta85 = "";
             $resultado85 = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 85)->first();
-            $respuesta85 = $resultado85->audio;
+            if ($respuesta85) {
+                $respuesta85 = $resultado85->audio;
+            }
+
+
+            $preguntas_seccion1 = Pregunta::whereBetween('id', [1, 20])->get();
+            $preguntas_seccion2 = Pregunta::whereBetween('id', [21, 25])->get();
+            $preguntas_seccion3 = Pregunta::whereBetween('id', [26, 45])->get();
+            $preguntas_seccion4 = Pregunta::whereBetween('id', [46, 50])->get();
+            $preguntas_seccion5 = Pregunta::whereBetween('id', [51, 70])->get();
+            $preguntas_seccion6 = Pregunta::whereBetween('id', [71, 76])->get();
+            $preguntas_seccion7 = Pregunta::whereBetween('id', [77, 79])->get();
+            $preguntas_seccion8 = Pregunta::whereBetween('id', [80, 80])->get();
+            //$preguntas_seccion9 = Pregunta::whereBetween('id', [85, 85])->get();
+
 
             $exportar = 0;
 
@@ -257,7 +275,14 @@ class ExamenCursoController extends Controller
                 $exportar = 1;
 
 
-                //return view('examen.reporte_pdf', compact('examen', 'preguntas', 'respuesta80', 'respuesta85','exportar'));
+                /*   return view('examen.reporte_pdf', compact('examen', 'preguntas', 'respuesta80', 'respuesta85', 'exportar', 'preguntas_seccion1',
+            'preguntas_seccion2',
+            'preguntas_seccion3',
+            'preguntas_seccion4',
+            'preguntas_seccion5',
+            'preguntas_seccion6',
+            'preguntas_seccion7',
+            'preguntas_seccion8'));*/
 
                 $pdf = Pdf::loadView(
                     'examen.reporte_pdf',
@@ -266,11 +291,21 @@ class ExamenCursoController extends Controller
                         'preguntas' => $preguntas,
                         'respuesta80' => $respuesta80,
                         'respuesta85' => $respuesta85,
-                        'exportar' => $exportar
+                        'exportar' => $exportar,
+                        'preguntas_seccion1' => $preguntas_seccion1,
+                        'preguntas_seccion2' => $preguntas_seccion2,
+                        'preguntas_seccion3' => $preguntas_seccion3,
+                        'preguntas_seccion4' => $preguntas_seccion4,
+                        'preguntas_seccion5' => $preguntas_seccion5,
+                        'preguntas_seccion6' => $preguntas_seccion6,
+                        'preguntas_seccion7' => $preguntas_seccion7,
+                        'preguntas_seccion8' => $preguntas_seccion8
                     ]
                 );
                 return $pdf->download('invoice.pdf');
             }
+
+
 
             return view('examen.index', compact('examen', 'preguntas', 'respuesta80', 'respuesta85', 'exportar'));
         }
