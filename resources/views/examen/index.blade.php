@@ -1,4 +1,4 @@
-@extends('menu_student')
+@extends('menu_examen')
 @section('contenido')
     <style>
 

@@ -605,7 +605,7 @@
             const countdownInterval = setInterval(function() {
                 if (timeRemaining <= 0) {
                     clearInterval(countdownInterval); // Detiene el contador cuando llega a 0
-                    alert('Tiempo agotado');
+                    //alert('Tiempo agotado');
                     const formulario = document.getElementById('formFinalizado');
                     if (formulario) {
                         formulario.submit();
