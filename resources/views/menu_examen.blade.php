@@ -75,7 +75,16 @@
     <style>
         .radio-container {
             margin: 10px 0;
+            background-color: #ececec;
+            /* Fondo gris suave */
+            padding: 10px;
+            /* Espaciado interno para mejor apariencia */
+            border-radius: 5px;
+            /* Bordes redondeados para un diseño más agradable */
         }
+
+
+
 
         .radio-label {
             display: flex;
@@ -633,6 +642,49 @@
             startCountdown(); // Inicia el contador cuando se carga la página
         };
 
+
+
+
+
+        function handleRadioClick(idArray, radioElement) {
+            // Mostrar el arreglo recibido
+            console.log(idArray);
+
+            // Obtener el valor del radio seleccionado
+            const selectedValue = radioElement.value;
+            console.log('Valor seleccionado:', selectedValue);
+
+            // Restaurar el estilo original de todos los contenedores
+            idArray.forEach(id => {
+                const container = document.getElementById(id);
+                const label = container ? container.querySelector('label') : null;
+
+                if (container) {
+                    container.style.backgroundColor = "#ececec"; // Fondo original
+                }
+
+                // Restaurar el estilo original del texto
+                if (label) {
+                    label.style.color = "#000"; // Texto negro
+                    label.style.fontWeight = "normal"; // Texto no en negrita
+                }
+            });
+
+            // Cambiar el color del contenedor del radio seleccionado
+            const containerId = `container-${selectedValue}`;
+            const selectedContainer = document.getElementById(containerId);
+            const selectedLabel = selectedContainer ? selectedContainer.querySelector('label') : null;
+
+            if (selectedContainer) {
+                selectedContainer.style.backgroundColor = "#3E8ED0"; // Fondo azul
+            }
+
+            // Cambiar el color del texto a blanco y ponerlo en negrita
+            if (selectedLabel) {
+                selectedLabel.style.color = "#fff"; // Texto blanco
+                selectedLabel.style.fontWeight = "bold"; // Texto en negrita
+            }
+        }
     </script>
 
 

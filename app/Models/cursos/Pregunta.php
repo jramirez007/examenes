@@ -27,6 +27,20 @@ class Pregunta extends Model
         return $this->hasMany(Respuesta::class);
     }
 
+    public function respuestasArray()
+    {
+        // Obtener las respuestas asociadas con la pregunta
+        $repuestas = Respuesta::where('pregunta_id', $this->id)->get();
+
+        // Crear el arreglo de IDs con el prefijo 'container-'
+        $idArray = $repuestas->pluck('id')->map(function ($id) {
+            return 'container-' . $id;
+        })->toArray();
+
+        return $idArray; // Regresar el arreglo de IDs con el prefijo
+    }
+
+
 
     public function getRespuesta($respuesta_id)
     {
@@ -49,7 +63,7 @@ class Pregunta extends Model
         return  $respuesta_id;
     }
 
-    public function getRespuestaAdmin($respuesta_id,$examen_curso_id)
+    public function getRespuestaAdmin($respuesta_id, $examen_curso_id)
     {
         // Buscar el primer registro que coincida con 'respuesta_id' y 'pregunta_id'
         $registro = ExamenCursoResultado::where('respuesta_id', $respuesta_id)
