@@ -85,8 +85,8 @@
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <a href="{{ url('curso/examen/section/8') }}"> <button type="button"
                         class="btn btn-primary btn-lg btn-wave">&nbsp;&nbsp;Preview&nbsp;&nbsp;</button></a>
-                <button type="button" class="btn btn-primary btn-lg btn-wave"
-                    onclick="validarFormulario()">&nbsp;&nbsp;Next&nbsp;&nbsp;</button>
+                <button type="button" class="btn btn-success btn-lg btn-wave"
+                    onclick="validarFormulario()">&nbsp;&nbsp;Submit&nbsp;&nbsp;</button>
             </div>
 
             <br>
