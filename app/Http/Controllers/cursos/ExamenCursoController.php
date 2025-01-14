@@ -270,7 +270,7 @@ class ExamenCursoController extends Controller
             }
 
             $respuesta85 = "";
-            $resultado85 = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 85)->where('audio_actual',1)->first();
+            $resultado85 = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 85)->first();
 
 
             if ($resultado85) {
@@ -411,8 +411,8 @@ class ExamenCursoController extends Controller
         $number_words = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 80)->value('number_words');
         $respuesta_text = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 80)->value('respuesta_text');
 
-        $section9_id = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 85)->where('audio_actual', 1)->value('id');
-        $audio_actual = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 85)->where('audio_actual', 1)->value('audio');
+        $section9_id = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 85)->value('id');
+        $audio_actual = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 85)->value('audio');
 
         // $examen_curso_seccion8 = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 80)->get();
 
