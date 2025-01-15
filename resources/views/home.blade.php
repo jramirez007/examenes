@@ -1168,7 +1168,7 @@
                                     <div class="card-body">
 
                                         <h5 class="card-text">
-                                            <b>Listening part.</b>
+                                            <b>Listening section.</b>
                                             <br><br>
                                             For each question, you will hear a short sentence. The sentence will be spoken
                                             just one time. The sentences you hear will not be written out for you. After you
@@ -1348,6 +1348,8 @@
                                             </b>
                                             <br>
                                             <br>
+                                            <b>Writing section.</b>
+                                            <br><br>
                                             Global warming has become a serious threat to our planet.
                                             Explain what we can do as citizens to reduce the effects of global warming. You
                                             may want to consider factors, such as:

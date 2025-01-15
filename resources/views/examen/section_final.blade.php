@@ -26,6 +26,8 @@
                     <div class="card-body">
                         <div class="d-flex flex-column gap-2 mb-4 align-items-center justify-content-center text-center">
                             <h6 class="fw-medium mb-0">
+                                <b>Speaking section.</b>
+                                <br><br>
                                 You have 30 seconds to prepare and 45 seconds to answer.<br>
                                 Read the following question and record your answer.
                             </h6>

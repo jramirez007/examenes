@@ -27,6 +27,8 @@
                     </div>
                     <div class="card-body">
                         <h6 class="fw-medium mb-0">
+                            <b>Writing section.</b>
+                            <br><br>
                             Global warming has become a serious threat to our planet. Explain what we can do as citizens
                             to reduce the effects of global warming. You may want to consider factors, such as:
                             <li>Recycling</li>
