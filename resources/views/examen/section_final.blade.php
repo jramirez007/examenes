@@ -8,12 +8,15 @@
             <div class="col-xl-12">
 
                 <div class="card custom-card">
-                    <div class="card-header justify-content-between align-items-center">
-                        <div class="card-title">Speaking</div>
-                        <div class="btn-list">
-
+                    <div class="card-header justify-content-between"
+                        style="background-color:  #12498F !important; color: white  !important;">
+                        <div class="card-title">
+                            <h5 class="mb-3" style="color: inherit !important;">
+                                Speaking
+                            </h5>
                         </div>
                     </div>
+
                     <div class="card-body">
                         <div class="d-flex flex-column gap-2 mb-4 align-items-center justify-content-center text-center">
                             <h6 class="fw-medium mb-0">
@@ -21,75 +24,87 @@
                                 Read the following question and record your answer.
                             </h6>
                         </div>
-                    </div>
 
-                    <div class="card-header justify-content-between align-items-center">
-                        <div class="card-title">{{ $pregunta->descripcion }}</div>
 
-                    </div>
-                    <div class="card-body">
-                        <div class="d-flex flex-column gap-2 mb-4 align-items-center justify-content-center text-center">
-                            <h6 class="fw-medium mb-0">
-                                When you press this button a microphone will be enabled so you can talk for 45 seconds
-                            </h6>
-                            <input type="hidden" name="audioData" id="audioData">
-                            <br>
-                            <button type="button" id="startButton" class="btn btn-info">&nbsp;&nbsp;Start speaking
-                                test&nbsp;&nbsp;
-                            </button>
 
-                            <button type="button" id="stopButton" style="display: none"
-                                class="btn btn-danger">&nbsp;&nbsp;Stop speaking
-                                test&nbsp;&nbsp;
-                            </button>
-                            <br>
-                            <div id="div_speaking_animate"
-                            class="d-flex justify-content-center mb-3">
-                            <center>
-                                <div id="chronometer2">
-                                    <table width="100%">
-                                        <tr>
-                                            <td align="center">Remaining time</td>
-                                        </tr>
-                                        <tr>
-                                            <td align="center">45</td>
-                                        </tr>
-                                    </table>
-                                </div>
+                        <div class="d-flex align-items-center">
+                            <!-- Círculo azul con el id a la izquierda -->
+                            <div class="circle-container">
+                                <span class="circle-text">
+                                    {{ $pregunta->id }}
+                                </span>
+                            </div>
 
-                                <br />
-                                <div id="microphone" style="display: none">
-                                    <img src="{{ asset('assets/audio/speaking_animate.gif') }}"
-                                        alt="">
-
-                                </div>
-                            </center>
+                            <!-- Título de la pregunta, centrado verticalmente con el círculo -->
+                            <div class="card-title ml-2">
+                                <h5 class="mb-0">
+                                    {{ $pregunta->descripcion }}
+                                </h5>
+                            </div>
                         </div>
-
                         <br>
-                            <div id="divPreview" style="display: none">
-                                <audio id="audioPreview" controls></audio>
-                            </div>
+                        <div class="card-body">
+                            <div
+                                class="d-flex flex-column gap-2 mb-4 align-items-center justify-content-center text-center">
+                                <h6 class="fw-medium mb-0">
+                                    When you press this button a microphone will be enabled so you can talk for 45 seconds
+                                </h6>
+                                <input type="hidden" name="audioData" id="audioData">
+                                <br>
+                                <button type="button" id="startButton" class="btn btn-info">&nbsp;&nbsp;Start speaking
+                                    test&nbsp;&nbsp;
+                                </button>
 
-                            <div id="alertDanger" class="alert alert-danger" style="display: none;">
-                                Por favor, grabe el audio antes de continuar.
+                                <button type="button" id="stopButton" style="display: none"
+                                    class="btn btn-danger">&nbsp;&nbsp;Stop speaking
+                                    test&nbsp;&nbsp;
+                                </button>
+                                <br>
+                                <div id="div_speaking_animate" class="d-flex justify-content-center mb-3">
+                                    <center>
+                                        <div id="chronometer2">
+                                            <table width="100%">
+                                                <tr>
+                                                    <td align="center">Remaining time</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center">45</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                        <br />
+                                        <div id="microphone" style="display: none">
+                                            <img src="{{ asset('assets/audio/speaking_animate.gif') }}" alt="">
+
+                                        </div>
+                                    </center>
+                                </div>
+
+                                <br>
+                                <div id="divPreview" style="display: none">
+                                    <audio id="audioPreview" controls></audio>
+                                </div>
+
+                                <div id="alertDanger" class="alert alert-danger" style="display: none;">
+                                    Por favor, grabe el audio antes de continuar.
+                                </div>
                             </div>
                         </div>
                     </div>
+
+
                 </div>
 
 
-            </div>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <a href="{{ url('curso/examen/section/8') }}"> <button type="button"
+                            class="btn btn-primary btn-lg btn-wave">&nbsp;&nbsp;Preview&nbsp;&nbsp;</button></a>
+                    <button type="button" class="btn btn-success btn-lg btn-wave"
+                        onclick="validarFormulario()">&nbsp;&nbsp;Submit&nbsp;&nbsp;</button>
+                </div>
 
-
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <a href="{{ url('curso/examen/section/8') }}"> <button type="button"
-                        class="btn btn-primary btn-lg btn-wave">&nbsp;&nbsp;Preview&nbsp;&nbsp;</button></a>
-                <button type="button" class="btn btn-success btn-lg btn-wave"
-                    onclick="validarFormulario()">&nbsp;&nbsp;Submit&nbsp;&nbsp;</button>
-            </div>
-
-            <br>
+                <br>
         </form>
 
     </div>
@@ -197,8 +212,8 @@
         });
 
 
-                // Function to start/stop the timer
-                function startStopTimer2() {
+        // Function to start/stop the timer
+        function startStopTimer2() {
             // console.log('isRunning2='+isRunning2);
             // console.log('seconds2='+seconds2);
 

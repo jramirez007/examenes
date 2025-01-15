@@ -1,5 +1,14 @@
 @extends('menu_examen')
 @section('contenido')
+    <div class="d-flex align-items-center justify-content-between page-header-breadcrumb flex-wrap gap-2">
+
+        <h1 class="page-title fw-medium fs-18 mb-0">SECTION 8
+        </h1>
+
+    </div>
+
+
+
 
     <div class="row">
         <form method="POST" id="formExamen" action="{{ url('curso/examen/section8') }}">
@@ -8,23 +17,41 @@
             <div class="col-xl-12">
 
                 <div class="card custom-card">
-                    <div class="card-header justify-content-between align-items-center">
-                        <div class="card-title">Writing</div>
-                        <div class="btn-list">
-
+                    <div class="card-header justify-content-between"
+                        style="background-color:  #12498F !important; color: white  !important;">
+                        <div class="card-title">
+                            <h5 class="mb-3" style="color: inherit !important;">
+                                Writing
+                            </h5>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="d-flex gap-2 mb-4 align-items-center">
-                            <h6 class="fw-medium mb-0">
-                                Global warming has become a serious threat to our planet. Explain what we can do as citizens
-                                to reduce the effects of global warming. You may want to consider factors, such as:
-                                <li>Recycling</li>
-                                <li>The impact of fossil fuels (oil, gas and coal)</li>
-                                <li>The impact of consumerism (buying things).</li>
-                            </h6>
+                        <h6 class="fw-medium mb-0">
+                            Global warming has become a serious threat to our planet. Explain what we can do as citizens
+                            to reduce the effects of global warming. You may want to consider factors, such as:
+                            <li>Recycling</li>
+                            <li>The impact of fossil fuels (oil, gas and coal)</li>
+                            <li>The impact of consumerism (buying things).</li>
+                        </h6>
+                        <br>
+
+
+                        <div class="d-flex align-items-center">
+                            <!-- Círculo azul con el id a la izquierda -->
+                            <div class="circle-container">
+                                <span class="circle-text">
+                                    {{ $pregunta->id }}
+                                </span>
+                            </div>
+
+                            <!-- Título de la pregunta, centrado verticalmente con el círculo -->
+                            <div class="card-title ml-2">
+                                <h5 class="mb-0">
+                                    {{ $pregunta->descripcion }}
+                                </h5>
+                            </div>
                         </div>
-                        <div class="fs-15 fw-medium mb-2">{{ $pregunta->descripcion }}</div>
+                        <br>
                         <div id="contador">Words: 0 of 125</div><br>
                         <textarea class="form-control" rows="5" name="respuesta_80" id="miTextarea" placeholder="Write here...">
                             {{ $resultado ? $resultado->respuesta_text : '' }}
