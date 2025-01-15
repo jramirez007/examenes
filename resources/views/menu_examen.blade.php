@@ -156,6 +156,50 @@
             font-weight: 600;
             /* Peso de la fuente */
         }
+
+
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            /* Alineación vertical centrada */
+        }
+
+        .circle-container {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            /* Ajusta el tamaño del círculo */
+            height: 40px;
+            /* Ajusta el tamaño del círculo */
+            border-radius: 50%;
+            background-color: #12498f;
+            /* Nuevo color azul */
+            color: white;
+            /* Color del texto dentro del círculo */
+            font-weight: bold;
+            /* Texto en negrita */
+            font-size: 16px;
+            /* Ajusta el tamaño de la fuente */
+            text-align: center;
+        }
+
+        .circle-text {
+            line-height: 40px;
+            /* Centra el texto verticalmente */
+        }
+
+        /* Ajuste de margen entre el círculo y el título */
+        .ml-2 {
+            margin-left: 10px;
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            /* Alineación vertical centrada */
+        }
     </style>
 
 </head>

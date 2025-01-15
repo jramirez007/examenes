@@ -40,13 +40,24 @@
             @foreach ($preguntas->sortBy('id') as $pregunta)
                 <div class="col-xl-12">
                     <div class="card custom-card">
-                        <div class="card-header justify-content-between">
-                            <div class="card-title">
-                                <h5 class="mb-3">
+                        <div class="card-header d-flex align-items-center">
+                            <!-- Círculo azul con el id a la izquierda -->
+                            <div class="circle-container">
+                                <span class="circle-text">
+                                    {{ $pregunta->id }}
+                                </span>
+                            </div>
+
+                            <!-- Título de la pregunta, centrado verticalmente con el círculo -->
+                            <div class="card-title ml-2">
+                                <h5 class="mb-0">
                                     {{ $pregunta->descripcion }}
                                 </h5>
                             </div>
                         </div>
+
+
+
                         <div class="card-body">
                             @foreach ($pregunta->respuestas->sortBy('id') as $respuesta)
                                 <div class="radio-container" id="container-{{ $respuesta->id }}">
