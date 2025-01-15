@@ -1,6 +1,12 @@
 @extends('menu_examen')
 @section('contenido')
     <!-- Start:: row-1 -->
+    <div class="d-flex align-items-center justify-content-between page-header-breadcrumb flex-wrap gap-2">
+
+        <h1 class="page-title fw-medium fs-18 mb-0">SECTION 9
+        </h1>
+
+    </div>
     <div class="row">
         <form method="POST" id="formExamen" action="{{ url('curso/examen/section_final') }}">
             @csrf
