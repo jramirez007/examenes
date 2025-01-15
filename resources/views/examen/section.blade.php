@@ -1,7 +1,17 @@
 @extends('menu_examen')
 @section('contenido')
-    <!-- Page Header -->
 
+<style>
+.linea {
+    display: inline-block;
+    width: 100px; /* Ajusta el ancho de la línea según sea necesario */
+    border-bottom: 2px solid #000; /* Crea una línea continua */
+    margin-left: 5px; /* Espacio a la izquierda si lo necesitas */
+}
+
+
+</style>
+    <!-- Page Header -->
     <div class="d-flex align-items-center justify-content-between page-header-breadcrumb flex-wrap gap-2">
 
         <h1 class="page-title fw-medium fs-18 mb-0">SECTION {{ $section }}
@@ -51,7 +61,7 @@
                             <!-- Título de la pregunta, centrado verticalmente con el círculo -->
                             <div class="card-title ml-2">
                                 <h5 class="mb-0">
-                                    {{ $pregunta->descripcion }}
+                                    {!! preg_replace('/_+/', '<span class="linea"></span>', $pregunta->descripcion) !!}
                                 </h5>
                             </div>
                         </div>
