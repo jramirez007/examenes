@@ -1168,7 +1168,7 @@
                                     <div class="card-body">
 
                                         <h5 class="card-text">
-                                            <b>Listening part.</b>
+                                            <b>Listening section.</b>
                                             <br><br>
                                             For each question, you will hear a short sentence. The sentence will be spoken
                                             just one time. The sentences you hear will not be written out for you. After you
