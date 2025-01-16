@@ -153,7 +153,7 @@
                                     <div class="card-body">
 
                                         <h5 class="card-text">
-                                            Click on the best word or phrase (a, b, c or d) to fill each blank.
+                                            Choose the right answer to fill each blank.
                                         </h5>
                                     </div>
                                 </div>
@@ -304,8 +304,7 @@
                                                 <div class="card-body">
 
                                                     <h5 class="card-text">
-                                                        Read the text below. For questions 21 to 25, choose the best answer
-                                                        (a, b, c or d).
+                                                        Read the text below. For questions 21 to 25, choose the the right answer.
                                                         In 1895, the well-known scientist Lord Kelvin said, "Heavier than
                                                         air flying machines are impossible." Kelvin was wrong. In 1943,
                                                         Thomas Watson, the chairman of International Business Machines (IBM)
@@ -486,7 +485,7 @@
                                     <div class="card-body">
 
                                         <h5 class="card-text">
-                                            Click on the best word or phrase (a, b, c or d) to fill each blank.
+                                            Choose the right answer to fill each blank.
                                         </h5>
                                     </div>
                                 </div>
@@ -820,7 +819,7 @@
                                     <div class="card-body">
 
                                         <h5 class="card-text">
-                                            Click on the best word or phrase (a, b, c or d) to fill each blank.
+                                            Choose the right answer to fill each blank.
                                         </h5>
                                     </div>
                                 </div>

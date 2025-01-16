@@ -153,7 +153,7 @@
                                     <div class="card-body">
 
                                         <h5 class="card-text">
-                                            Click on the best word or phrase (a, b, c or d) to fill each blank.
+                                        Choose the right answer to fill each blank.
                                         </h5>
                                     </div>
                                 </div>
