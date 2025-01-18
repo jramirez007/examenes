@@ -140,7 +140,7 @@ class ExamenCursoController extends Controller
 
             return view('examen.section_8', compact('pregunta', 'resultado', 'progress', 'title', 'description'));
         } else if ($section == 9) {
-            $pregunta = Pregunta::where('id', [85])->first();
+            $pregunta = Pregunta::where('id', [81])->first();
             return view('examen.section_final', compact('pregunta', 'section', 'progress', 'title', 'description'));
         }
 
@@ -160,7 +160,7 @@ class ExamenCursoController extends Controller
             [71, 76],  // Sección 6
             [77, 79],  // Sección 7
             [80, 80],  // Sección 8
-            [85, 85]   // Sección 9
+            [81, 81]   // Sección 9
         ];
 
 
@@ -270,7 +270,7 @@ class ExamenCursoController extends Controller
             }
 
             $respuesta85 = "";
-            $resultado85 = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 85)->first();
+            $resultado85 = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 81)->first();
 
 
             if ($resultado85) {
@@ -288,7 +288,7 @@ class ExamenCursoController extends Controller
             $preguntas_seccion6 = Pregunta::whereBetween('id', [71, 76])->get();
             $preguntas_seccion7 = Pregunta::whereBetween('id', [77, 79])->get();
             $preguntas_seccion8 = Pregunta::whereBetween('id', [80, 80])->get();
-            $preguntas_seccion9 = Pregunta::whereBetween('id', [85, 85])->get();
+            $preguntas_seccion9 = Pregunta::whereBetween('id', [81, 81])->get();
 
 
             $exportar = 0;
@@ -411,15 +411,15 @@ class ExamenCursoController extends Controller
         $number_words = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 80)->value('number_words');
         $respuesta_text = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 80)->value('respuesta_text');
 
-        $section9_id = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 85)->value('id');
-        $audio_actual = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 85)->value('audio');
+        $section9_id = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 81)->value('id');
+        $audio_actual = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 81)->value('audio');
 
         // $examen_curso_seccion8 = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 80)->get();
 
         // $examen_curso_seccion9 = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 85)->where('audio_actual', 1)->get();
 
         $pregunta_seccion8 = Pregunta::where('id', 80)->value('descripcion');
-        $pregunta_seccion9 = Pregunta::where('id', 85)->value('descripcion');
+        $pregunta_seccion9 = Pregunta::where('id', 81)->value('descripcion');
 
         return response()->json([
             'section8_id' => $section8_id,
