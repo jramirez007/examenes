@@ -238,7 +238,7 @@ class ExamenCursoController extends Controller
 
         $resultado = new ExamenCursoResultado();
         $resultado->examen_curso_id = $examen->id;
-        $resultado->pregunta_id = 85;
+        $resultado->pregunta_id = 81;
         $resultado->audio = $request->audioData;
         $resultado->save();
 
