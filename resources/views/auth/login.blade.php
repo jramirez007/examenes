@@ -5,12 +5,19 @@
         <div class="row justify-content-center align-items-center authentication authentication-basic h-100">
             <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-6 col-sm-8 col-12">
                 <div class="card custom-card my-4 mt-1">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('process_login') }}">
                         @csrf
                         <div class="card-body p-5">
 
                             <div class="mb-3 d-flex justify-content-center">
+                                @if ($id == 1)
                                 <p class="h5 mb-2 text-center">Placement test</p>
+                                @else
+                                <p class="h5 mb-2 text-center">Vocacional test</p>
+                                @endif
+
+                                <input type="hidden" value="{{ $id }}" name="id" readonly />
+
                             </div>
                             <div class="mb-3 d-flex justify-content-center">
                                 <div id="1" style="display: flex; justify-content: center; align-items: center;">
@@ -87,12 +94,12 @@
             // Comprobar si ya existe un valor en el localStorage
             let timeRemaining = localStorage.getItem('timeRemaining');
 
-            // Si no existe, asignar un valor predeterminado (46 minutos = 2760 segundos)
+            // Si no existe, asignar un valor predeterminado (45 minutos = 2700 segundos)
             if (!timeRemaining) {
-                timeRemaining = 2760; // Valor predeterminado: 46 minutos (2760 segundos)
+                timeRemaining = 2700; // Valor predeterminado: 45 minutos (2700 segundos)
                 localStorage.setItem('timeRemaining', timeRemaining); // Guardar el valor en el localStorage
             } else {
-                localStorage.setItem('timeRemaining', 2760); // Actualizar el valor en el localStorage
+                localStorage.setItem('timeRemaining', 2700); // Actualizar el valor en el localStorage
             }
 
             // Obtener el valor actualizado de localStorage

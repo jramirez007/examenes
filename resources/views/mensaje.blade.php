@@ -31,7 +31,7 @@
                     <p class="fs-2 fw-bold m-0" style="color: rgb(0, 186, 208);">ENGLISH ONLINE</p>
 
 
-                    
+
 
 
                 </div>
@@ -46,7 +46,7 @@
 
                 <p class="fs-3">Your current level is</p>
 
-                <?php 
+                <?php
 if (isset($count_ok) && $count_ok >= 0 && $count_ok <= 50) {
     echo '<img src="http://154.12.255.170/cursos/public/images/cursos/starter.png" alt="Level Image">';
 }
@@ -73,15 +73,13 @@ if (isset($count_ok) && $count_ok >= 77 && $count_ok <= 85) {
 
 
 <br><br>
-
                 <div class="justify-content-center align-items-center">
-                    <form action="{{ url('/')}}" method="GET">
+                    <form action="{{ route('cerrar_sesion')}}" method="POST">
                         @csrf
 
-                        <button aria-label="Iniciar" class="btn btn-outline-info text-white text-xl btn-sm"
-                            data-bs-toggle="modal" data-bs-target="#exampleModalXl"
+                        <button aria-label="Iniciar" class="btn btn-outline-info text-white text-xl btn-sm" type="submit"
                             style="border-radius: 1.5rem; background-color: #1A365E; padding-left: 2rem !important; padding-right: 2rem !important;  font-size: 1rem; border:0"><strong>
-                                Finalizar
+                                Finalizar test
                             </strong>
 
                         </button>

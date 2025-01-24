@@ -109,7 +109,7 @@
                 <div>
                     <i class="bi bi-person-circle" style="font-size: 24px;"></i>
                 </div>
-                <a class="ms-3 btn btn-primary" href="{{ route('logout') }}"
+                <a class="ms-3 btn btn-primary" href="#"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     Cerrar sesión
                 </a>
@@ -117,7 +117,7 @@
         </div>
 
         <!-- Logout form -->
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        <form id="logout-form" action="{{ route('cerrar_sesion') }}" method="POST" style="display: none;">
             @csrf
         </form>
 

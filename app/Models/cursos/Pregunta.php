@@ -48,7 +48,7 @@ class Pregunta extends Model
         $registro = ExamenCursoResultado::where('respuesta_id', $respuesta_id)
             ->where('pregunta_id', $this->id)
             ->whereHas('examenCurso', function ($query) {
-                $query->where('user_id', auth()->user()->id);
+                $query->where('user_id', session('user_id'));
             })
             ->first();
 

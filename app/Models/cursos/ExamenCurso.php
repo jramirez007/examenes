@@ -16,6 +16,7 @@ class ExamenCurso extends Model
 
     protected $fillable = [
         'user_id',
+        'clase_pregunta_id',
         'fecha',
         'finalizado',
     ];

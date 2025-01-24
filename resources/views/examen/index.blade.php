@@ -65,7 +65,7 @@
                     <br><br>
 
                     <div class="justify-content-center align-items-center">
-                        <form action="{{ url('logout') }}" method="POST">
+                        <form action="{{ route('cerrar_sesion') }}" method="POST">
                             @csrf
 
                             <button aria-label="Iniciar" class="btn btn-outline-info text-white text-xl btn-sm"

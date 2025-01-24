@@ -18,27 +18,51 @@ class ExamenCursoController extends Controller
 
     public function index()
     {
-        $examen = ExamenCurso::where('user_id', auth()->user()->id)->where('finalizado', 1)->first();
-        if ($examen) {
-            // $preguntas = Pregunta::get();
-            // $resultado80 = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 80)->first();
-            // $respuesta80 = $resultado80->respuesta_text;
 
-            // $resultado85 = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 85)->first();
-            // $respuesta85 = $resultado85->audio;
+        if (session('id') == '1') {
+            $examen = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id',1)->where('finalizado', 1)->first();
 
-            $fecha_examen_fin = ExamenCurso::where('user_id', auth()->user()->id)
-                ->where('finalizado', 1)
-                ->pluck('fecha');
+            if ($examen) {
 
-            $fecha = $fecha_examen_fin[0]; // Fecha original
-            $fecha_formateada = date("d/m/Y H:i:s", strtotime($fecha));
+                $fecha_examen_fin = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id',1)
+                    ->where('finalizado', 1)
+                    ->pluck('fecha');
+
+                $fecha = $fecha_examen_fin[0]; // Fecha original
+                $fecha_formateada = date("d/m/Y H:i:s", strtotime($fecha));
 
 
 
 
-            return view('examen.index', compact('fecha_formateada'));
+                return view('examen.index', compact('fecha_formateada'));
+            }
+
+        } else {
+            $examen = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id',2)->where('finalizado', 1)->first();
+
+            if ($examen) {
+
+                $fecha_examen_fin = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id',2)
+                    ->where('finalizado', 1)
+                    ->pluck('fecha');
+
+                $fecha = $fecha_examen_fin[0]; // Fecha original
+                $fecha_formateada = date("d/m/Y H:i:s", strtotime($fecha));
+
+
+
+
+                return view('examen.index', compact('fecha_formateada'));
+            }
         }
+
+
+
+
+
+
+
+
         return redirect()->route('curso.examen.section', ['number' => 1]);
     }
 
@@ -99,50 +123,97 @@ class ExamenCursoController extends Controller
     public function show_section($section)
     {
 
-        $titleArray = ['', 'Structure', 'Reading', 'Structure', 'Reading', 'Structure', 'Reading', 'Listening', '', ''];
-        $descriptionArray = [
-            '',
-            'Choose the right answer to fill each blank.',
-            'Read the text below. For questions 21 to 25, choose the right answer. <br><br>In 1895, the well-known scientist Lord Kelvin said, "Heavier than air flying machines are impossible." Kelvin was wrong. In 1943, Thomas Watson, the chairman of International Business Machines (IBM) was also wrong when he said that he thought there would be a world market for only five or so computers. Predictions can be wrong, and it is very difficult to predict what the world will be like in 100, 50, or even 20 years. But this is something that scientists and politicians often do. <br>They do so because they invent things and make decisions that shape the future of the world that we live in. In the past they didn’t have to think too much about the impact that their decisions had on the natural world. But that is now changing. More and more people believe that we should live within the rules set by nature. In other words, they think that in a world of fixed and limited resources, what is used up today will no longer be available for our children. We need to look at each human activity and try to change it or create alternatives if it is not sustainable. The rules for this are set by nature, not by man.',
-            'Choose the right answer to fill each blank.',
-            'Read the text below. For questions 46 to 50, choose the right answer. <br><br>Many hotel chains and tour operators say that they take their environmental commitments seriously, but often they do not respect their social and economic responsibilities to the local community. So is it possible for travelers to help improve the lives of locals and still have a good holiday? The charity, Tourism Concern, thinks so. It has pioneered the concept of the fair-trade holiday. <br>The philosophy behind fair-trade travel is to make sure that local people get a fair share of the income from tourism. The objectives are simple: employing local people wherever possible; offering fair wages and treatment; showing cultural respect; involving communities in deciding how tourism is developed; and making sure that visitors have minimal environmental impact. Although there is currently no official fair-trade accreditation for holidays, the Association of Independent Tour Operators has worked hard to produce responsible tourism guidelines for its members. Some new companies, operated as much by principles as profits, offer a fantastic range of holidays for responsible and adventurous travelers.',
-            'Choose the right answer to fill each blank.',
-            'Read the text below. For questions 71 to 76, choose the right answer. <br><br>Standards of spelling and grammar among an entire generation of English-speaking university students are now so poor that there is ‘a degree of crises in their written use of the language, the publisher of a new dictionary has warned. Its research revealed that students have only a limited grasp of the most basic rules of spelling, punctuation and meaning, blamed in part on an increasing dependence on ‘automatic tools’ such as computer spellcheckers and unprecedented access to rapid communication using e-mail and the Internet. <br>The problem is not confined to the US, but applies also to students in Australia, Canada and Britain. Students were regularly found to be producing incomplete or rambling, poorly connected sentences, mixing metaphors ‘with gusto’ and overusing dull, devalued words such as ‘interesting’ and ‘good’. Overall they were unclear about appropriate punctuation, especially the use of commas, and failed to understand the basic rules of subject/verb agreement and the difference between ‘there’, ‘their’ and ‘they’re’. Kathy Rooney, editor-in-chief of the dictionary, said, ‘We need to be very concerned at the extent of the problems with basic spelling and usage that our research has revealed. This has significant implications for the future, especially for young people. <br>We thought it would be useful to get in touch with teachers and academics to find out what problems their students were having with their writing and what extra help they might need from a dictionary. The results were quite shocking. We are sure that the use of computers has played a part. People rely increasingly on automatic tools such as spellcheckers that are much more passive than going to a dictionary and looking something up. That can lull them into a false sense of security.’ Beth Marshall, an English professor, said, ‘The type of student we’re getting now is very different from what we were seeing 10 years ago and it is often worrying to find out how little students know. There are as many as 800 commonly misspelled words, particularly pairs of words that are pronounced similarly but spelled differently and that have different meanings – for example, “faze” and “phase”, and “pray” and “prey”.’',
-            '<strong>Listening section.</strong><br> For each question, you will hear a short sentence. The sentence will be spoken just one time. The sentences you hear will not be written out for you. <br>After you hear each sentence, read the 4 choices on the screen and decide which one is closest in meaning to the sentence you heard. Then select the best answer by clicking on it.',
-            '',
-            ''
-        ];
+        if (session('id') == 1) { //examen de ingles
+            $titleArray = ['', 'Structure', 'Reading', 'Structure', 'Reading', 'Structure', 'Reading', 'Listening', '', ''];
+            $descriptionArray = [
+                '',
+                'Choose the right answer to fill each blank.',
+                'Read the text below. For questions 21 to 25, choose the right answer. <br><br>In 1895, the well-known scientist Lord Kelvin said, "Heavier than air flying machines are impossible." Kelvin was wrong. In 1943, Thomas Watson, the chairman of International Business Machines (IBM) was also wrong when he said that he thought there would be a world market for only five or so computers. Predictions can be wrong, and it is very difficult to predict what the world will be like in 100, 50, or even 20 years. But this is something that scientists and politicians often do. <br>They do so because they invent things and make decisions that shape the future of the world that we live in. In the past they didn’t have to think too much about the impact that their decisions had on the natural world. But that is now changing. More and more people believe that we should live within the rules set by nature. In other words, they think that in a world of fixed and limited resources, what is used up today will no longer be available for our children. We need to look at each human activity and try to change it or create alternatives if it is not sustainable. The rules for this are set by nature, not by man.',
+                'Choose the right answer to fill each blank.',
+                'Read the text below. For questions 46 to 50, choose the right answer. <br><br>Many hotel chains and tour operators say that they take their environmental commitments seriously, but often they do not respect their social and economic responsibilities to the local community. So is it possible for travelers to help improve the lives of locals and still have a good holiday? The charity, Tourism Concern, thinks so. It has pioneered the concept of the fair-trade holiday. <br>The philosophy behind fair-trade travel is to make sure that local people get a fair share of the income from tourism. The objectives are simple: employing local people wherever possible; offering fair wages and treatment; showing cultural respect; involving communities in deciding how tourism is developed; and making sure that visitors have minimal environmental impact. Although there is currently no official fair-trade accreditation for holidays, the Association of Independent Tour Operators has worked hard to produce responsible tourism guidelines for its members. Some new companies, operated as much by principles as profits, offer a fantastic range of holidays for responsible and adventurous travelers.',
+                'Choose the right answer to fill each blank.',
+                'Read the text below. For questions 71 to 76, choose the right answer. <br><br>Standards of spelling and grammar among an entire generation of English-speaking university students are now so poor that there is ‘a degree of crises in their written use of the language, the publisher of a new dictionary has warned. Its research revealed that students have only a limited grasp of the most basic rules of spelling, punctuation and meaning, blamed in part on an increasing dependence on ‘automatic tools’ such as computer spellcheckers and unprecedented access to rapid communication using e-mail and the Internet. <br>The problem is not confined to the US, but applies also to students in Australia, Canada and Britain. Students were regularly found to be producing incomplete or rambling, poorly connected sentences, mixing metaphors ‘with gusto’ and overusing dull, devalued words such as ‘interesting’ and ‘good’. Overall they were unclear about appropriate punctuation, especially the use of commas, and failed to understand the basic rules of subject/verb agreement and the difference between ‘there’, ‘their’ and ‘they’re’. Kathy Rooney, editor-in-chief of the dictionary, said, ‘We need to be very concerned at the extent of the problems with basic spelling and usage that our research has revealed. This has significant implications for the future, especially for young people. <br>We thought it would be useful to get in touch with teachers and academics to find out what problems their students were having with their writing and what extra help they might need from a dictionary. The results were quite shocking. We are sure that the use of computers has played a part. People rely increasingly on automatic tools such as spellcheckers that are much more passive than going to a dictionary and looking something up. That can lull them into a false sense of security.’ Beth Marshall, an English professor, said, ‘The type of student we’re getting now is very different from what we were seeing 10 years ago and it is often worrying to find out how little students know. There are as many as 800 commonly misspelled words, particularly pairs of words that are pronounced similarly but spelled differently and that have different meanings – for example, “faze” and “phase”, and “pray” and “prey”.’',
+                '<strong>Listening section.</strong><br> For each question, you will hear a short sentence. The sentence will be spoken just one time. The sentences you hear will not be written out for you. <br>After you hear each sentence, read the 4 choices on the screen and decide which one is closest in meaning to the sentence you heard. Then select the best answer by clicking on it.',
+                '',
+                ''
+            ];
+        } else { //examen vocacional
+            $titleArray = ['', 'TABLA 1 C', 'TABLA 2 H', 'TABLA 3 A', 'TABLA 4 S', 'TABLA 5 I', 'TABLA 6 D', 'TABLA 7 E', '', ''];
+            $descriptionArray = [
+                '',
+                'Indicaciones: <br> Por favor lea las preguntas con atención y luego marque solamente si su respuesta es afirmativa.',
+                'Indicaciones: <br> Por favor lea las declaraciones con atención y luego marque solamente las que reflejen su personalidad.',
+                'Indicaciones: <br> Por favor lea las declaraciones con atención y luego marque solamente las que reflejen su personalidad.',
+                'Indicaciones: <br> Por favor lea las declaraciones con atención y luego marque solamente las que reflejen su personalidad.',
+                'Indicaciones: <br> Por favor lea las declaraciones con atención y luego marque solamente las que reflejen su personalidad.',
+                'Indicaciones: <br> Por favor lea las declaraciones con atención y luego marque solamente las que reflejen su personalidad.',
+                'Indicaciones: <br> Por favor lea las declaraciones con atención y luego marque solamente las que reflejen su personalidad.',
+                '',
+                ''
+            ];
+        }
+
+
+
         $progressArray = [0, 5, 24, 29, 53, 59, 82, 89, 94, 97];
         $progress = $progressArray[$section];
         $title = $titleArray[$section];
         $description = $descriptionArray[$section];
-        if ($section == 1) {
-            $preguntas = Pregunta::whereBetween('id', [1, 20])->get();
-        } else if ($section == 2) {
-            $preguntas = Pregunta::whereBetween('id', [21, 25])->get();
-        } else if ($section == 3) {
-            $preguntas = Pregunta::whereBetween('id', [26, 45])->get();
-        } else if ($section == 4) {
-            $preguntas = Pregunta::whereBetween('id', [46, 50])->get();
-        } else if ($section == 5) {
-            $preguntas = Pregunta::whereBetween('id', [51, 70])->get();
-        } else if ($section == 6) {
-            $preguntas = Pregunta::whereBetween('id', [71, 76])->get();
-        } else if ($section == 7) {
-            $audios_array = ["audio77.mp3", "audio77.mp3", "audio77.mp3",];
-            $preguntas = Pregunta::whereBetween('id', [77, 79])->get();
-            return view('examen.section', compact('preguntas', 'section', 'progress', 'audios_array', 'title', 'description'));
-        } else if ($section == 8) {
-            $pregunta = Pregunta::where('id', [80])->first();
 
-            $examen = ExamenCurso::where('user_id', auth()->user()->id)->first();
-            $resultado = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 80)->first();
 
-            return view('examen.section_8', compact('pregunta', 'resultado', 'progress', 'title', 'description'));
-        } else if ($section == 9) {
-            $pregunta = Pregunta::where('id', [81])->first();
-            return view('examen.section_final', compact('pregunta', 'section', 'progress', 'title', 'description'));
+        if (session('id') == 1) { // examen ingles
+
+
+            if ($section == 1) {
+                $preguntas = Pregunta::whereBetween('id', [1, 20])->where('clase_pregunta_id', 1)->get();
+            } else if ($section == 2) {
+                $preguntas = Pregunta::whereBetween('id', [21, 25])->where('clase_pregunta_id', 1)->get();
+            } else if ($section == 3) {
+                $preguntas = Pregunta::whereBetween('id', [26, 45])->where('clase_pregunta_id', 1)->get();
+            } else if ($section == 4) {
+                $preguntas = Pregunta::whereBetween('id', [46, 50])->where('clase_pregunta_id', 1)->get();
+            } else if ($section == 5) {
+                $preguntas = Pregunta::whereBetween('id', [51, 70])->where('clase_pregunta_id', 1)->get();
+            } else if ($section == 6) {
+                $preguntas = Pregunta::whereBetween('id', [71, 76])->where('clase_pregunta_id', 1)->get();
+            } else if ($section == 7) {
+                $audios_array = ["audio77.mp3", "audio77.mp3", "audio77.mp3",];
+                $preguntas = Pregunta::whereBetween('id', [77, 79])->where('clase_pregunta_id', 1)->get();
+                return view('examen.section', compact('preguntas', 'section', 'progress', 'audios_array', 'title', 'description'));
+            } else if ($section == 8) {
+                $pregunta = Pregunta::where('id', [80])->where('clase_pregunta_id', 1)->first();
+
+                $examen = ExamenCurso::where('user_id', session('user_id'))->first();
+                $resultado = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', 80)->first();
+
+                return view('examen.section_8', compact('pregunta', 'resultado', 'progress', 'title', 'description'));
+            } else if ($section == 9) {
+                $pregunta = Pregunta::where('id', [81])->where('clase_pregunta_id', 1)->first();
+                return view('examen.section_final', compact('pregunta', 'section', 'progress', 'title', 'description'));
+            }
+        } else {    //examen vocacional
+
+
+            if ($section == 1) {
+                $preguntas = Pregunta::whereBetween('id', [82, 95])->where('clase_pregunta_id', 2)->get();
+            } else if ($section == 2) {
+                $preguntas = Pregunta::whereBetween('id', [96, 109])->where('clase_pregunta_id', 2)->get();
+            } else if ($section == 3) {
+                $preguntas = Pregunta::whereBetween('id', [110, 123])->where('clase_pregunta_id', 2)->get();
+            } else if ($section == 4) {
+                $preguntas = Pregunta::whereBetween('id', [124, 137])->where('clase_pregunta_id', 2)->get();
+            } else if ($section == 5) {
+                $preguntas = Pregunta::whereBetween('id', [138, 151])->where('clase_pregunta_id', 2)->get();
+            } else if ($section == 6) {
+                $preguntas = Pregunta::whereBetween('id', [152, 165])->where('clase_pregunta_id', 2)->get();
+            } else if ($section == 7) {
+                $preguntas = Pregunta::whereBetween('id', [166, 179])->where('clase_pregunta_id', 2)->get();
+
+                return view('examen.section', compact('preguntas', 'section', 'progress', 'title', 'description'));
+            }
         }
+
+
 
         return view('examen.section', compact('preguntas', 'section', 'progress', 'title', 'description'));
     }
@@ -163,15 +234,20 @@ class ExamenCursoController extends Controller
             [81, 81]   // Sección 9
         ];
 
-
         //aca se crear o se busca el registro segun el caso
+        // Determinar el valor de clase_pregunta_id según la condición
+        $clasePreguntaId = session('id') == '1' ? 1 : 2;
+
+        // Crear o buscar el registro con firstOrCreate
         $examen = ExamenCurso::firstOrCreate(
-            ['user_id' => auth()->user()->id], // Condición de búsqueda
+            ['user_id' => session('user_id')], // Condición de búsqueda
             [
-                // Datos a insertar si no existe
-                'user_id' => auth()->user()->id
+                'user_id' => session('user_id'),
+                'clase_pregunta_id' => $clasePreguntaId,
             ]
         );
+
+
 
         $indices = $preguntasSeccionArray[$request->section];
 
@@ -218,7 +294,7 @@ class ExamenCursoController extends Controller
     public function store_section8(Request $request)
     {
 
-        $examen = ExamenCurso::where('user_id', auth()->user()->id)->first();
+        $examen = ExamenCurso::where('user_id', session('user_id'))->first();
 
         $resultado = ExamenCursoResultado::firstOrNew(
             ['examen_curso_id' => $examen->id, 'pregunta_id' => 80]
@@ -234,7 +310,7 @@ class ExamenCursoController extends Controller
     {
 
         //dd($request->audioData);
-        $examen = ExamenCurso::where('user_id', auth()->user()->id)->first();
+        $examen = ExamenCurso::where('user_id', session('user_id'))->first();
 
         $resultado = new ExamenCursoResultado();
         $resultado->examen_curso_id = $examen->id;
@@ -265,8 +341,6 @@ class ExamenCursoController extends Controller
                 }
 
                 $puntos_seccion8 = $resultado80->puntos_seccion8;
-
-
             }
 
             $respuesta85 = "";
@@ -455,7 +529,5 @@ class ExamenCursoController extends Controller
 
         alert()->success("Seccion 8 y 9 calificada correctamente");
         return Redirect('curso/examen/admin');
-
-
     }
 }

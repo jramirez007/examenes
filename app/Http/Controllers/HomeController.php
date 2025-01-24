@@ -32,7 +32,13 @@ class HomeController extends Controller
 
      public function redirectToLogin()
      {
-         return redirect('login');
+        if (session('id') == '1') {
+            return redirect('http://localhost/cursos/public/login/1');
+        } else {
+            return redirect('http://localhost/cursos/public/login/2');
+        }
+
+
      }
 
     public function index()

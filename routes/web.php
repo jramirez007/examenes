@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\catalogo\CategoriaController;
 use App\Http\Controllers\catalogo\CursoControler;
 use App\Http\Controllers\cursos\ExamenCursoController;
@@ -25,6 +26,10 @@ use Illuminate\Support\Facades\Route;
 
 //Route::get('/', [WelcomeController::class, 'index']);
 Route::get('/', [HomeController::class, 'redirectToLogin']);
+
+Route::get('login/{id}', [LoginController::class,'login']);
+Route::post('process_login', [LoginController::class,'process_login'])->name('process_login');
+Route::post('cerrar_sesion', [LoginController::class,'cerrar_sesion'])->name('cerrar_sesion');
 
 //Route::get('/public/index', 'WelcomeController@index');
 

@@ -341,9 +341,17 @@
                             <div class="d-flex align-items-center">
                                 <div class="me-2 d-flex flex-column justify-content-center">
                                     <p style="font-size: 10px; margin: 0; text-transform: capitalize;">
-                                        <strong>{{ auth()->user()->name }}</strong> <br>
-                                        {{ auth()->user()->getRoleNames()->first() }} <br>
-                                        {{ date('H:i d/m/Y') }}
+                                        <strong>{{ session('user_name') }}</strong> <br>
+                                        {{ session('user_rol') }} <br>
+                                        <?php
+                                        // Set the timezone to El Salvador
+                                        date_default_timezone_set('America/El_Salvador');
+
+                                        // Get the current date and time in the desired format
+                                        $formattedDate = date('H:i d/m/Y');
+
+                                        echo $formattedDate;
+                                        ?>
                                     </p>
                                 </div>
                                 <div>
@@ -360,8 +368,8 @@
                             <li>
                                 <div class="dropdown-item text-center border-bottom">
                                     <p style="font-size: 10px; margin: 0; text-transform: capitalize;">
-                                        <strong>{{ auth()->user()->name }}</strong> <br>
-                                        {{ auth()->user()->getRoleNames()->first() }} <br>
+                                        <strong>{{ session('user_name') }}</strong> <br>
+                                        {{ session('user_rol') }} <br>
                                         {{ date('H:i d/m/Y') }}
                                     </p>
 
@@ -384,7 +392,7 @@
                                     href="chat.html"><i
                                         class="fe fe-help-circle p-1 rounded-circle bg-primary-transparent set me-2 fs-16"></i>Help</a>
                             </li> --}}
-                            <li><a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
+                            <li><a class="dropdown-item d-flex align-items-center" href="#"
                                     onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();"><i
                                         class="fe fe-lock p-1 rounded-circle bg-primary-transparent ut me-2 fs-16"></i>Log
@@ -392,7 +400,7 @@
 
 
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                            <form id="logout-form" action="{{ route('cerrar_sesion') }}" method="POST"
                                 style="display: none;">
                                 @csrf
                             </form>
@@ -455,7 +463,7 @@
                         </li>
 
                         <li>
-                            {{ auth()->user()->email }}
+                            {{ session('user_email') }}
                         </li>
 
                         <br>
@@ -465,7 +473,7 @@
                         </li>
 
                         <li>
-                            {{ auth()->user()->name }}
+                            {{ session('user_name') }}
                         </li>
 
                         <br>
@@ -511,10 +519,10 @@
                         <br>
                         1. Answer all questions: There are 81 questions in total. <br>
                         2. Be conscious of time: You have 45 minutes, try not to overthink each answer. This will help
-                        you get a more precise result <br>
+                        you get a more precise result. <br>
                         3. Read questions carefully: Don’t rush when you read the questions and make sure you understand
                         them before answering. <br>
-                        This test is Just Part of Your Master Plan. Good Luck. <br>
+                        This test is just part of Your Master Plan. Good Luck. <br>
                         <br>
 
                         <div class="progress progress-xl mb-3 progress-animate custom-progress-4 success"
@@ -641,16 +649,16 @@
     <script>
         // Verifica si ya existe un tiempo en el localStorage
         let timeRemaining = localStorage.getItem('timeRemaining') ? parseInt(localStorage.getItem('timeRemaining')) :
-            2760; // 2760 segundos = 46 minutos
+            2700; // 2700 segundos = 45 minutos
 
         console.log(timeRemaining);
 
         function startCountdown() {
             const countdownElement = document.getElementById('countdown');
 
-            // Si el tiempo restante es menor o igual a 0, reiniciamos el contador a 46 minutos (2760 segundos)
+            // Si el tiempo restante es menor o igual a 0, reiniciamos el contador a 45 minutos (2700 segundos)
             if (timeRemaining <= 0) {
-                timeRemaining = 2760; // Reinicia el tiempo a 46 minutos
+                timeRemaining = 2700; // Reinicia el tiempo a 46 minutos
                 localStorage.setItem('timeRemaining', timeRemaining); // Guarda el nuevo tiempo en el localStorage
             }
 
@@ -680,7 +688,7 @@
         window.onload = function() {
             // Inicializa el tiempo desde el localStorage al cargar la página
             if (timeRemaining <= 0) {
-                timeRemaining = 2760; // Reinicia el tiempo si está en 0
+                timeRemaining = 2700; // Reinicia el tiempo si está en 0
                 localStorage.setItem('timeRemaining', timeRemaining); // Guarda el nuevo tiempo en el localStorage
             }
             startCountdown(); // Inicia el contador cuando se carga la página

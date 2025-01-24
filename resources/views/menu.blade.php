@@ -237,7 +237,7 @@
                                 </div>
                             </li>
 
-                            <li><a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
+                            <li><a class="dropdown-item d-flex align-items-center" href="#"
                                     onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();"><i
                                         class="fe fe-lock p-1 rounded-circle bg-primary-transparent ut me-2 fs-16"></i>Cerrar
@@ -245,7 +245,7 @@
 
 
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                            <form id="logout-form" action="{{ route('cerrar_session') }}" method="POST"
                                 style="display: none;">
                                 @csrf
                             </form>

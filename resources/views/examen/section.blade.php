@@ -53,9 +53,17 @@
                         <div class="card-header d-flex align-items-center">
                             <!-- Círculo azul con el id a la izquierda -->
                             <div class="circle-container">
+                                @if (session('id') == 1)
                                 <span class="circle-text">
-                                    {{ $pregunta->id }}
+                                    {{ $pregunta->id}}
                                 </span>
+
+                                @else
+                                <span class="circle-text">
+                                    {{ $pregunta->id - 81}}
+                                </span>
+                                @endif
+
                             </div>
 
                             <!-- Título de la pregunta, centrado verticalmente con el círculo -->

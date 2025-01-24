@@ -60,12 +60,12 @@
                                 <input type="hidden" name="audioData" id="audioData">
                                 <br>
                                 <button type="button" id="startButton" class="btn btn-info">&nbsp;&nbsp;Start speaking
-                                    test&nbsp;&nbsp;
+                                    &nbsp;&nbsp;
                                 </button>
 
                                 <button type="button" id="stopButton" style="display: none"
                                     class="btn btn-danger">&nbsp;&nbsp;Stop speaking
-                                    test&nbsp;&nbsp;
+                                    &nbsp;&nbsp;
                                 </button>
                                 <br>
                                 <div id="div_speaking_animate" class="d-flex justify-content-center mb-3">
@@ -95,13 +95,20 @@
                                 </div>
 
                                 <div id="alertDanger" class="alert alert-danger" style="display: none;">
-                                    Por favor, grabe el audio antes de continuar.
+                                    Please record the audio before continuing.
                                 </div>
                             </div>
                         </div>
                     </div>
 
 
+                </div>
+
+                <div align='center' id="div_instrucctions" style="display: none">
+                    <button type="button" id="stopButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                    class="btn btn-danger">&nbsp;&nbsp;If you denied microphone permission by error, click here
+                    &nbsp;&nbsp;
+                </button>
                 </div>
 
 
@@ -116,6 +123,62 @@
         </form>
 
     </div>
+
+
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="staticBackdropLabel">
+                        </h6>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <h4>
+
+                            <b>
+                                Instructions to enable the microphone again
+                            </b>
+                        </h4>
+
+                        <br>
+                        <br>
+
+                        <p>
+                            <h5><b>Step 1</b></h5>
+                            <br>
+                            Click on the figure of the microphone enclosed in the red box as shown below.
+
+                        </p>
+
+                        <img src="{{ asset('assets/audio/instructions0.png') }}" alt="">
+
+                        <p>
+                            <h5><b>Step 2</b></h5>
+                            <br>
+                            Then click on reset permission as shown below.
+
+
+                        </p>
+
+
+                        <img src="{{ asset('assets/audio/instructions.png') }}" alt="">
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info" data-bs-dismiss="modal">Aceptar</button>
+
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
     <script src="{{ asset('assets/js/jquery-3.6.1.min.js') }}" crossorigin="anonymous"></script>
 
 
@@ -133,64 +196,97 @@
         const audioPreview = document.getElementById('audioPreview');
         const divPreview = document.getElementById('divPreview'); // Seleccionar el div
         const audioDataInput = document.getElementById('audioData');
+        const instructions = document.getElementById('div_instrucctions');
         // const submitButton = document.getElementById('submitButton');
 
         startButton.addEventListener('click', async () => {
-            if (startButton) {
-                //startButton.style.display = 'none';
-                startButton.style.display = 'none';
-                microphone.style.display = 'block';
+            // if (startButton) {
+            //     //startButton.style.display = 'none';
+            //     startButton.style.display = 'none';
+            //     microphone.style.display = 'block';
 
-                seconds2 = 45;
-                startStopTimer2();
-            }
+            //     seconds2 = 45;
+            //     startStopTimer2();
+            // }
 
-            if (stopButton) {
-                stopButton.style.display = 'block';
-            }
+            // if (stopButton) {
+            //     stopButton.style.display = 'block';
+            // }
 
             // Solicitar permiso para usar el micrófono
-            const stream = await navigator.mediaDevices.getUserMedia({
-                audio: true
-            });
+            // const stream = await navigator.mediaDevices.getUserMedia({
+            //     audio: true
+            // });
 
-            // Crear el MediaRecorder
-            mediaRecorder = new MediaRecorder(stream);
 
-            // Manejar los datos de audio grabados
-            mediaRecorder.ondataavailable = (event) => {
-                audioChunks.push(event.data);
-            };
 
-            // Manejar el fin de la grabación
-            mediaRecorder.onstop = () => {
-                const audioBlob = new Blob(audioChunks, {
-                    type: 'audio/webm'
+
+            navigator.mediaDevices.getUserMedia({
+                    audio: true
+                })
+                .then(stream => {
+                    console.log('Acceso al micrófono concedido');
+                    // Aquí puedes enviar datos al servidor con fetch() o WebSockets
+
+                    //startButton.style.display = 'none';
+                    startButton.style.display = 'none';
+                    stopButton.style.display = 'block';
+                    microphone.style.display = 'block';
+
+                    seconds2 = 45;
+                    startStopTimer2();
+
+                    // Crear el MediaRecorder
+                    mediaRecorder = new MediaRecorder(stream);
+
+                    // Manejar los datos de audio grabados
+                    mediaRecorder.ondataavailable = (event) => {
+                        audioChunks.push(event.data);
+                    };
+
+                    // Manejar el fin de la grabación
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(audioChunks, {
+                            type: 'audio/webm'
+                        });
+                        audioChunks = [];
+
+                        // Crear una URL para previsualizar el audio grabado
+                        const audioURL = URL.createObjectURL(audioBlob);
+                        audioPreview.src = audioURL;
+
+                        // Hacer visible el div solo si hay audio para reproducir
+                        if (audioURL) {
+                            divPreview.style.display = 'block';
+                        }
+
+                        // Convertir el Blob a Base64 para enviarlo en el formulario
+                        const reader = new FileReader();
+                        reader.onloadend = () => {
+                            audioDataInput.value = reader
+                                .result; // Guardar Base64 en el campo oculto
+                            // submitButton.disabled = false; // Habilitar el botón de envío
+                        };
+                        reader.readAsDataURL(audioBlob);
+                    };
+
+                    // Iniciar la grabación
+                    mediaRecorder.start();
+                    startButton.disabled = true;
+                    stopButton.disabled = false;
+
+
+                })
+                .catch(error => {
+                    //console.error('Acceso al micrófono denegado o error:', error);
+                    //alert('Acceso al micrófono denegado o error:' + error);
+                    instructions.style.display = 'block';
                 });
-                audioChunks = [];
 
-                // Crear una URL para previsualizar el audio grabado
-                const audioURL = URL.createObjectURL(audioBlob);
-                audioPreview.src = audioURL;
 
-                // Hacer visible el div solo si hay audio para reproducir
-                if (audioURL) {
-                    divPreview.style.display = 'block';
-                }
 
-                // Convertir el Blob a Base64 para enviarlo en el formulario
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    audioDataInput.value = reader.result; // Guardar Base64 en el campo oculto
-                    // submitButton.disabled = false; // Habilitar el botón de envío
-                };
-                reader.readAsDataURL(audioBlob);
-            };
 
-            // Iniciar la grabación
-            mediaRecorder.start();
-            startButton.disabled = true;
-            stopButton.disabled = false;
+
         });
 
         stopButton.addEventListener('click', () => {
