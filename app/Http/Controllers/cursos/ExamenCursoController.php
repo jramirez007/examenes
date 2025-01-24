@@ -20,11 +20,11 @@ class ExamenCursoController extends Controller
     {
 
         if (session('id') == '1') {
-            $examen = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id',1)->where('finalizado', 1)->first();
+            $examen = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id', 1)->where('finalizado', 1)->first();
 
             if ($examen) {
 
-                $fecha_examen_fin = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id',1)
+                $fecha_examen_fin = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id', 1)
                     ->where('finalizado', 1)
                     ->pluck('fecha');
 
@@ -36,13 +36,12 @@ class ExamenCursoController extends Controller
 
                 return view('examen.index', compact('fecha_formateada'));
             }
-
         } else {
-            $examen = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id',2)->where('finalizado', 1)->first();
+            $examen = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id', 2)->where('finalizado', 1)->first();
 
             if ($examen) {
 
-                $fecha_examen_fin = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id',2)
+                $fecha_examen_fin = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id', 2)
                     ->where('finalizado', 1)
                     ->pluck('fecha');
 
@@ -219,74 +218,158 @@ class ExamenCursoController extends Controller
     }
     public function store_section(Request $request)
     {
-        $section = $request->section;
-
-        $preguntasSeccionArray = [
-            [0, 0],    // Sección inicial (opcional)
-            [1, 20],   // Sección 1
-            [21, 25],  // Sección 2
-            [26, 45],  // Sección 3
-            [46, 50],  // Sección 4
-            [51, 70],  // Sección 5
-            [71, 76],  // Sección 6
-            [77, 79],  // Sección 7
-            [80, 80],  // Sección 8
-            [81, 81]   // Sección 9
-        ];
-
-        //aca se crear o se busca el registro segun el caso
-        // Determinar el valor de clase_pregunta_id según la condición
-        $clasePreguntaId = session('id') == '1' ? 1 : 2;
-
-        // Crear o buscar el registro con firstOrCreate
-        $examen = ExamenCurso::firstOrCreate(
-            ['user_id' => session('user_id')], // Condición de búsqueda
-            [
-                'user_id' => session('user_id'),
-                'clase_pregunta_id' => $clasePreguntaId,
-            ]
-        );
 
 
+            //aca se crear o se busca el registro segun el caso
+            // Determinar el valor de clase_pregunta_id según la condición
+            $clasePreguntaId = session('id') == '1' ? 1 : 2;
 
-        $indices = $preguntasSeccionArray[$request->section];
+            // Crear o buscar el registro con firstOrCreate
+            $examen = ExamenCurso::firstOrCreate(
+                ['user_id' => session('user_id')], // Condición de búsqueda
+                [
+                    'user_id' => session('user_id'),
+                    'clase_pregunta_id' => $clasePreguntaId,
+                ]
+            );
+
+
+        if ($clasePreguntaId == 1) { //EXAMEN INGLES
+
+            $section = $request->section;
+
+            $preguntasSeccionArray = [
+                [0, 0],    // Sección inicial (opcional)
+                [1, 20],   // Sección 1
+                [21, 25],  // Sección 2
+                [26, 45],  // Sección 3
+                [46, 50],  // Sección 4
+                [51, 70],  // Sección 5
+                [71, 76],  // Sección 6
+                [77, 79],  // Sección 7
+                [80, 80],  // Sección 8
+                [81, 81]   // Sección 9
+            ];
+
+            //aca se crear o se busca el registro segun el caso
+            // Determinar el valor de clase_pregunta_id según la condición
+            $clasePreguntaId = session('id') == '1' ? 1 : 2;
+
+            // Crear o buscar el registro con firstOrCreate
+            $examen = ExamenCurso::firstOrCreate(
+                ['user_id' => session('user_id')], // Condición de búsqueda
+                [
+                    'user_id' => session('user_id'),
+                    'clase_pregunta_id' => $clasePreguntaId,
+                ]
+            );
 
 
 
-        for ($i = $indices[0]; $i <= $indices[1]; $i++) {
-            $respuestaPost = "respuesta_" . $i;
+            $indices = $preguntasSeccionArray[$request->section];
 
-            if ($request->$respuestaPost) {
-                $respuesta = Respuesta::find($request->$respuestaPost);
 
-                $resultado = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', $i)->first();
-                if (!$resultado) {
-                    $resultado = new ExamenCursoResultado();
+
+            for ($i = $indices[0]; $i <= $indices[1]; $i++) {
+                $respuestaPost = "respuesta_" . $i;
+
+                if ($request->$respuestaPost) {
+                    $respuesta = Respuesta::find($request->$respuestaPost);
+
+                    $resultado = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', $i)->first();
+                    if (!$resultado) {
+                        $resultado = new ExamenCursoResultado();
+                    }
+
+                    $resultado->examen_curso_id = $examen->id;
+                    $resultado->pregunta_id = $i;
+
+                    if ($respuesta) {
+                        $resultado->respuesta_id = $request->$respuestaPost;
+                        $resultado->correcta = $respuesta->correcta;
+                    }
+                    $resultado->save();
+                } else {
+                    $respuesta = Respuesta::find($request->$respuestaPost);
+
+                    $resultado = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', $i)->first();
+                    if (!$resultado) {
+                        $resultado = new ExamenCursoResultado();
+                    }
+
+                    $resultado->examen_curso_id = $examen->id;
+                    $resultado->pregunta_id = $i;
+                    $resultado->save();
                 }
-
-                $resultado->examen_curso_id = $examen->id;
-                $resultado->pregunta_id = $i;
-
-                if ($respuesta) {
-                    $resultado->respuesta_id = $request->$respuestaPost;
-                    $resultado->correcta = $respuesta->correcta;
-                }
-                $resultado->save();
-            } else {
-                $respuesta = Respuesta::find($request->$respuestaPost);
-
-                $resultado = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', $i)->first();
-                if (!$resultado) {
-                    $resultado = new ExamenCursoResultado();
-                }
-
-                $resultado->examen_curso_id = $examen->id;
-                $resultado->pregunta_id = $i;
-                $resultado->save();
             }
+
+            $section++;
+        } else { //EXAMEN VOCACIONAL
+
+
+            $section = $request->section;
+
+
+
+            $preguntasSeccionArray = [
+                [0, 0],    // Sección inicial (opcional)
+                [82, 95],    // Sección 1
+                [96, 109],   // Sección 2
+                [110, 123],  // Sección 3
+                [124, 137],  // Sección 4
+                [138, 151],  // Sección 5
+                [152, 165],  // Sección 6
+                [166, 179],  // Sección 7
+
+            ];
+
+
+
+
+
+            $indices = $preguntasSeccionArray[$request->section];
+
+            //dd($section, $indices, $indices[0], $indices[1]);
+
+            for ($i = $indices[0]; $i <= $indices[1]; $i++) {
+                $respuestaPost = "respuesta_" . $i;
+
+                //dd($respuestaPost);
+
+                if ($request->$respuestaPost) {
+                    $respuesta = Respuesta::find($request->$respuestaPost);
+
+                    $resultado = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', $i)->first();
+                    if (!$resultado) {
+                        $resultado = new ExamenCursoResultado();
+                    }
+
+                    $resultado->examen_curso_id = $examen->id;
+                    $resultado->pregunta_id = $i;
+
+                    if ($respuesta) {
+                        $resultado->respuesta_id = $request->$respuestaPost;
+                        $resultado->correcta = $respuesta->correcta;
+                    }
+                    $resultado->save();
+                } else {
+                    $respuesta = Respuesta::find($request->$respuestaPost);
+
+                    $resultado = ExamenCursoResultado::where('examen_curso_id', $examen->id)->where('pregunta_id', $i)->first();
+                    if (!$resultado) {
+                        $resultado = new ExamenCursoResultado();
+                    }
+
+                    $resultado->examen_curso_id = $examen->id;
+                    $resultado->pregunta_id = $i;
+                    $resultado->save();
+                }
+            }
+
+            $section++;
         }
 
-        $section++;
+
 
         return redirect()->route('curso.examen.section', ['number' => $section]);
     }
