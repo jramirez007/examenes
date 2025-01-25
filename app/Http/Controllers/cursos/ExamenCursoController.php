@@ -18,7 +18,7 @@ class ExamenCursoController extends Controller
 
     public function index()
     {
-
+        //dd(session('id'));
         if (session('id') == '1') {
             $examen = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id', 1)->where('finalizado', 1)->first();
 
@@ -209,6 +209,24 @@ class ExamenCursoController extends Controller
                 $preguntas = Pregunta::whereBetween('id', [166, 179])->where('clase_pregunta_id', 2)->get();
 
                 return view('examen.section', compact('preguntas', 'section', 'progress', 'title', 'description'));
+            } else if ($section == 8) {
+                //dd("finalizar examen vocacional");
+
+
+
+                //dd($request->audioData);
+                $examen = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id',2)->first();
+
+                // $resultado = new ExamenCursoResultado();
+                // $resultado->examen_curso_id = $examen->id;
+                // $resultado->pregunta_id = 81;
+                // $resultado->audio = $request->audioData;
+                // $resultado->save();
+
+                $examen->finalizado = 1;
+                $examen->save();
+
+                return Redirect::to('curso/examen');
             }
         }
 
@@ -218,20 +236,20 @@ class ExamenCursoController extends Controller
     }
     public function store_section(Request $request)
     {
+        //dd(session('id'));
 
+        //aca se crear o se busca el registro segun el caso
+        // Determinar el valor de clase_pregunta_id según la condición
+        $clasePreguntaId = session('id') == '1' ? 1 : 2;
 
-            //aca se crear o se busca el registro segun el caso
-            // Determinar el valor de clase_pregunta_id según la condición
-            $clasePreguntaId = session('id') == '1' ? 1 : 2;
-
-            // Crear o buscar el registro con firstOrCreate
-            $examen = ExamenCurso::firstOrCreate(
-                ['user_id' => session('user_id')], // Condición de búsqueda
-                [
-                    'user_id' => session('user_id'),
-                    'clase_pregunta_id' => $clasePreguntaId,
-                ]
-            );
+        // Crear o buscar el registro con firstOrCreate
+        $examen = ExamenCurso::firstOrCreate(
+            ['user_id' => session('user_id')], // Condición de búsqueda
+            [
+                'user_id' => session('user_id'),
+                'clase_pregunta_id' => $clasePreguntaId,
+            ]
+        );
 
 
         if ($clasePreguntaId == 1) { //EXAMEN INGLES
@@ -393,7 +411,8 @@ class ExamenCursoController extends Controller
     {
 
         //dd($request->audioData);
-        $examen = ExamenCurso::where('user_id', session('user_id'))->first();
+        //$examen = ExamenCurso::where('user_id', session('user_id'))->first();
+        $examen = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id',1)->first();
 
         $resultado = new ExamenCursoResultado();
         $resultado->examen_curso_id = $examen->id;

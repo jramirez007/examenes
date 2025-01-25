@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\catalogo\CategoriaController;
 use App\Http\Controllers\catalogo\CursoControler;
 use App\Http\Controllers\cursos\ExamenCursoController;

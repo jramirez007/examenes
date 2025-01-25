@@ -31,33 +31,58 @@
                     <br><br>
 
                     <div class="d-flex flex-column flex-md-row justify-content-center gap-2">
-                        <p class="fs-2 fw-bold m-0" style="color: rgb(0, 186, 208);">Congratulations</p>
+                        @if (session('id') == '1')
+                            <p class="fs-2 fw-bold m-0" style="color: rgb(0, 186, 208);">Congratulations</p>
+                        @else
+                            <p class="fs-2 fw-bold m-0" style="color: rgb(0, 186, 208);">Felicidades</p>
+                        @endif
+
                     </div>
 
 
 
-
+                    @if (session('id') == '1')
                     <p class="fs-2 fw-bold m-0">Your exam has been <b>sent</b> successfully.
 
-<br>
+                        <br>
+                    @else
+                    <p class="fs-2 fw-bold m-0">Tu examen ha sido <b>enviado</b> satisfactoriamente.
+
+                        <br>
+                    @endif
+
 
                         <span class="fs-2 fw-bold m-0"> </span> <br>
 
                     <div class="d-flex flex-column flex-md-row justify-content-center gap-2">
+                        @if (session('id') == '1')
                         <p class="fs-2 fw-bold m-0" style="color: rgb(0, 186, 208);"> Exam completed on</p>
+                        @else
+                        <p class="fs-2 fw-bold m-0" style="color: rgb(0, 186, 208);"> Examen completado en</p>
+                        @endif
+
                     </div>
 
 
 
                     <p class="fs-2 fw-bold m-0">{{ $fecha_formateada }} </b>.
 
+                        @if (session('id') == '1')
+                        <p class="fs-3">
+                            <br> We will give you your result.
+                            <br>
+                            <br>
+                            Thank you.
+                        </p>
+                        @else
+                        <p class="fs-3">
+                            <br> Nosotros te enviaremos tu resultado.
+                            <br>
+                            <br>
+                            Gracias.
+                        </p>
+                        @endif
 
-                    <p class="fs-3">
-                        <br> We will give you your result soon.
-                        <br>
-                        <br>
-                        Thank you.
-                    </p>
 
 
 
@@ -68,13 +93,25 @@
                         <form action="{{ route('cerrar_sesion') }}" method="POST">
                             @csrf
 
+                            @if (session('id') == '1')
                             <button aria-label="Iniciar" class="btn btn-outline-info text-white text-xl btn-sm"
-                                data-bs-toggle="modal" data-bs-target="#exampleModalXl"
-                                style="border-radius: 1.5rem; background-color: #1A365E; padding-left: 2rem !important; padding-right: 2rem !important;  font-size: 1rem; border:0"><strong>
-                                    Finish
-                                </strong>
+                            data-bs-toggle="modal" data-bs-target="#exampleModalXl"
+                            style="border-radius: 1.5rem; background-color: #1A365E; padding-left: 2rem !important; padding-right: 2rem !important;  font-size: 1rem; border:0"><strong>
+                                Finish
+                            </strong>
 
-                            </button>
+                        </button>
+                            @else
+                            <button aria-label="Iniciar" class="btn btn-outline-info text-white text-xl btn-sm"
+                            data-bs-toggle="modal" data-bs-target="#exampleModalXl"
+                            style="border-radius: 1.5rem; background-color: #1A365E; padding-left: 2rem !important; padding-right: 2rem !important;  font-size: 1rem; border:0"><strong>
+                                Finalizar
+                            </strong>
+
+                        </button>
+                            @endif
+
+
                         </form>
                     </div>
                 </div>

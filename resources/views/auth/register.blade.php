@@ -14,6 +14,8 @@
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
+                            <input type="hidden" name="id" id="id" readonly />
+
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
@@ -76,5 +78,16 @@
             </div>
         </div>
     </div>
+
+
+    <script src="{{ asset('assets/js/jquery-3.6.1.min.js') }}" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function() {
+            //alert("ready!");
+            document.getElementById('id').value = localStorage.getItem('id');
+            //startStopTimer();
+        });
+    </script>
 </div>
 @endsection

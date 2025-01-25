@@ -16,7 +16,7 @@
                                 <p class="h5 mb-2 text-center">Vocacional test</p>
                                 @endif
 
-                                <input type="hidden" value="{{ $id }}" name="id" readonly />
+                                <input type="hidden" value="{{ $id }}" name="id" id="id" readonly />
 
                             </div>
                             <div class="mb-3 d-flex justify-content-center">
@@ -71,10 +71,12 @@
                                 <br>
 
                                 <a href="{{ route('register') }}">
-                                    <button type="button" class="btn btn-primary w-100">
+                                    <button type="button" class="btn btn-primary w-100" onclick="setearExamen()">
                                         Register
                                     </button>
                                 </a>
+
+
                             </div>
 
                         </div>
@@ -105,6 +107,10 @@
             // Obtener el valor actualizado de localStorage
             timeRemaining = localStorage.getItem('timeRemaining');
             console.log(timeRemaining); // Mostrar el valor actualizado
+        }
+
+        function setearExamen(){
+            localStorage.setItem('id', document.getElementById('id').value);
         }
     </script>
 @endsection

@@ -66,8 +66,6 @@ class LoginController extends Controller
             session(['user_email' => $user->email]);
 
 
-
-
             //$user = User::find(auth()->user()->id);
             if ($user->hasRole('administrador')) {
                 return redirect('curso/examen/admin');

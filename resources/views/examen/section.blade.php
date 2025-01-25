@@ -1,16 +1,16 @@
 @extends('menu_examen')
 @section('contenido')
-
-<style>
-.linea {
-    display: inline-block;
-    width: 100px; /* Ajusta el ancho de la línea según sea necesario */
-    border-bottom: 2px solid #000; /* Crea una línea continua */
-    margin-left: 5px; /* Espacio a la izquierda si lo necesitas */
-}
-
-
-</style>
+    <style>
+        .linea {
+            display: inline-block;
+            width: 100px;
+            /* Ajusta el ancho de la línea según sea necesario */
+            border-bottom: 2px solid #000;
+            /* Crea una línea continua */
+            margin-left: 5px;
+            /* Espacio a la izquierda si lo necesitas */
+        }
+    </style>
     <!-- Page Header -->
     <div class="d-flex align-items-center justify-content-between page-header-breadcrumb flex-wrap gap-2">
 
@@ -54,14 +54,13 @@
                             <!-- Círculo azul con el id a la izquierda -->
                             <div class="circle-container">
                                 @if (session('id') == 1)
-                                <span class="circle-text">
-                                    {{ $pregunta->id}}
-                                </span>
-
+                                    <span class="circle-text">
+                                        {{ $pregunta->id }}
+                                    </span>
                                 @else
-                                <span class="circle-text">
-                                    {{ $pregunta->id - 81}}
-                                </span>
+                                    <span class="circle-text">
+                                        {{ $pregunta->id - 81 }}
+                                    </span>
                                 @endif
 
                             </div>
@@ -118,12 +117,17 @@
                 <div class="col-xl-6">
                     @if ($section > 1)
                         <a href="{{ url('curso/examen/section') }}/{{ $section - 1 }}">
-                            <button type="button"
-                                class="btn btn-primary btn-lg btn-wave">&nbsp;&nbsp;Preview&nbsp;&nbsp;</button></a>
+                            <button type="button" class="btn btn-primary btn-lg btn-wave">&nbsp;&nbsp;Preview
+                                &nbsp;&nbsp;</button></a>
                     @endif
                 </div>
                 <div class="col-xl-6 text-end">
-                    <button type="submit" class="btn btn-primary btn-lg btn-wave">&nbsp;&nbsp;Next&nbsp;&nbsp;</button>
+                    @if ($section == 7)
+                        <button type="submit" class="btn btn-success btn-lg btn-wave">&nbsp;&nbsp;Submit&nbsp;&nbsp;</button>
+                    @else
+                        <button type="submit" class="btn btn-primary btn-lg btn-wave">&nbsp;&nbsp;Next&nbsp;&nbsp;</button>
+                    @endif
+
                 </div>
             </div>
             <br>
