@@ -93,26 +93,17 @@
                         <form action="{{ route('cerrar_sesion') }}" method="POST">
                             @csrf
 
-                            @if (session('id') == '1')
-                            <button aria-label="Iniciar" class="btn btn-outline-info text-white text-xl btn-sm"
-                            data-bs-toggle="modal" data-bs-target="#exampleModalXl"
-                            style="border-radius: 1.5rem; background-color: #1A365E; padding-left: 2rem !important; padding-right: 2rem !important;  font-size: 1rem; border:0"><strong>
-                                Finish
-                            </strong>
-
-                        </button>
-                            @else
-                            <button aria-label="Iniciar" class="btn btn-outline-info text-white text-xl btn-sm"
-                            data-bs-toggle="modal" data-bs-target="#exampleModalXl"
-                            style="border-radius: 1.5rem; background-color: #1A365E; padding-left: 2rem !important; padding-right: 2rem !important;  font-size: 1rem; border:0"><strong>
-                                Finalizar
-                            </strong>
-
-                        </button>
-                            @endif
-
-
+                            <button
+                                aria-label="Iniciar"
+                                class="btn btn-outline-info text-white text-xl btn-sm"
+                                type="submit"
+                                style="border-radius: 1.5rem; background-color: #1A365E; padding: 0.5rem 2rem; font-size: 1rem; border: 0;">
+                                <strong>
+                                    {{ session('id') == '1' ? 'Finish' : 'Finalizar' }}
+                                </strong>
+                            </button>
                         </form>
+
                     </div>
                 </div>
 
@@ -121,12 +112,12 @@
         </div>
 
     </div>
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             window.history.pushState(null, null, window.location.href);
             window.onpopstate = function() {
                 window.history.go(1);
             };
         });
-    </script>
+    </script> --}}
 @endsection

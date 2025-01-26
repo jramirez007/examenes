@@ -110,10 +110,10 @@
             const numPalabras = palabras.length;
 
             // Validar que no esté vacío
-            if (texto === "") {
-                mostrarAlerta("Ingresar una respuesta");
-                return false;
-            }
+            // if (texto === "") {
+            //     mostrarAlerta("Ingresar una respuesta");
+            //     return false;
+            // }
 
             // Validar que no tenga más de 125 palabras
             if (numPalabras > 125) {

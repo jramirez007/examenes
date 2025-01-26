@@ -64,11 +64,11 @@
                             </div>
                             <div class="d-grid mt-4">
                                 <!-- <a href="index.html" class="btn btn-primary">Inicio de Sesión</a> -->
-                                <button type="submit" class="btn btn-primary btn-lg">
+                                {{-- <button type="submit" class="btn btn-primary btn-lg">
                                     Login
                                 </button>
 
-                                <br>
+                                <br> --}}
 
                                 <a href="{{ route('register') }}">
                                     <button type="button" class="btn btn-primary w-100" onclick="setearExamen()">

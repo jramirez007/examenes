@@ -106,9 +106,9 @@
 
                 <div align='center' id="div_instrucctions" style="display: none">
                     <button type="button" id="stopButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                    class="btn btn-danger">&nbsp;&nbsp;If you denied microphone permission by error, click here
-                    &nbsp;&nbsp;
-                </button>
+                        class="btn btn-danger">&nbsp;&nbsp;If you denied microphone permission by error, click here
+                        &nbsp;&nbsp;
+                    </button>
                 </div>
 
 
@@ -130,51 +130,51 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
 
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h6 class="modal-title" id="staticBackdropLabel">
-                        </h6>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-
-                        <h4>
-
-                            <b>
-                                Instructions to enable the microphone again
-                            </b>
-                        </h4>
-
-                        <br>
-                        <br>
-
-                        <p>
-                            <h5><b>Step 1</b></h5>
-                            <br>
-                            Click on the figure of the microphone enclosed in the red box as shown below.
-
-                        </p>
-
-                        <img src="{{ asset('assets/audio/instructions0.png') }}" alt="">
-
-                        <p>
-                            <h5><b>Step 2</b></h5>
-                            <br>
-                            Then click on reset permission as shown below.
-
-
-                        </p>
-
-
-                        <img src="{{ asset('assets/audio/instructions.png') }}" alt="">
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-info" data-bs-dismiss="modal">Aceptar</button>
-
-                    </div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="staticBackdropLabel">
+                    </h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body">
+
+                    <h4>
+
+                        <b>
+                            Instructions to enable the microphone again
+                        </b>
+                    </h4>
+
+                    <br>
+                    <br>
+
+                    <p>
+                    <h5><b>Step 1</b></h5>
+                    <br>
+                    Click on the figure of the microphone enclosed in the red box as shown below.
+
+                    </p>
+
+                    <img src="{{ asset('assets/audio/instructions0.png') }}" alt="">
+
+                    <p>
+                    <h5><b>Step 2</b></h5>
+                    <br>
+                    Then click on reset permission as shown below.
+
+
+                    </p>
+
+
+                    <img src="{{ asset('assets/audio/instructions.png') }}" alt="">
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-bs-dismiss="modal">Aceptar</button>
+
+                </div>
+            </div>
 
         </div>
     </div>
@@ -298,6 +298,11 @@
             document.getElementById("microphone").style.display =
                 "none";
 
+            document.getElementById("chronometer2").style.display =
+                "none";
+
+
+
             document.getElementById(
                     "chronometer2"
                 ).innerHTML =
@@ -306,9 +311,9 @@
             seconds2 = 1;
 
 
-            if (startButton) {
-                startButton.style.display = 'block';
-            }
+            // if (startButton) {
+            //     startButton.style.display = 'block';
+            // }
 
             if (stopButton) {
                 stopButton.style.display = 'none';

@@ -80,7 +80,7 @@ class LoginController extends Controller
 
     public function cerrar_sesion()
     {
-
+        //dd("cerrar sesion");
 
         if (session('id') == '1') {
             session()->flush();
