@@ -122,7 +122,7 @@
                     @endif
                 </div>
                 <div class="col-xl-6 text-end">
-                    @if ($section == 7)
+                    @if ($section == 7 && session('id') == 2)
                         <button type="submit" class="btn btn-success btn-lg btn-wave">&nbsp;&nbsp;Submit&nbsp;&nbsp;</button>
                     @else
                         <button type="submit" class="btn btn-primary btn-lg btn-wave">&nbsp;&nbsp;Next&nbsp;&nbsp;</button>
