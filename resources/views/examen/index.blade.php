@@ -42,23 +42,23 @@
 
 
                     @if (session('id') == '1')
-                    <p class="fs-2 fw-bold m-0">Your exam has been <b>sent</b> successfully.
+                        <p class="fs-2 fw-bold m-0">Your exam has been <b>sent</b> successfully.
 
-                        <br>
-                    @else
-                    <p class="fs-2 fw-bold m-0">Tu examen ha sido <b>enviado</b> satisfactoriamente.
+                            <br>
+                        @else
+                        <p class="fs-2 fw-bold m-0">Tu examen ha sido <b>enviado</b> satisfactoriamente.
 
-                        <br>
+                            <br>
                     @endif
 
 
-                        <span class="fs-2 fw-bold m-0"> </span> <br>
+                    <span class="fs-2 fw-bold m-0"> </span> <br>
 
                     <div class="d-flex flex-column flex-md-row justify-content-center gap-2">
                         @if (session('id') == '1')
-                        <p class="fs-2 fw-bold m-0" style="color: rgb(0, 186, 208);"> Exam completed on</p>
+                            <p class="fs-2 fw-bold m-0" style="color: rgb(0, 186, 208);"> Exam completed on</p>
                         @else
-                        <p class="fs-2 fw-bold m-0" style="color: rgb(0, 186, 208);"> Examen completado en</p>
+                            <p class="fs-2 fw-bold m-0" style="color: rgb(0, 186, 208);"> Examen completado en</p>
                         @endif
 
                     </div>
@@ -68,40 +68,45 @@
                     <p class="fs-2 fw-bold m-0">{{ $fecha_formateada }} </b>.
 
                         @if (session('id') == '1')
-                        <p class="fs-3">
-                            <br> We will give you your result.
-                            <br>
-                            <br>
-                            Thank you.
-                        </p>
+                            <p class="fs-3">
+                                <br> We will give you your result.
+                                <br>
+                                <br>
+                                Thank you.
+                            </p>
                         @else
-                        <p class="fs-3">
-                            <br> Nosotros te enviaremos tu resultado.
-                            <br>
-                            <br>
-                            Gracias.
-                        </p>
+                            <p class="fs-3">
+                                <br> Nosotros te enviaremos tu resultado.
+                                <br>
+                                <br>
+                                Gracias.
+                            </p>
                         @endif
 
 
 
 
 
-                    <br><br>
+                        <br><br>
 
                     <div class="justify-content-center align-items-center">
-                        <form action="{{ route('cerrar_sesion') }}" method="POST">
+                        <form action="{{ url('curso/examen') }}" method="GET">
                             @csrf
 
-                            <button
-                                aria-label="Iniciar"
-                                class="btn btn-outline-info text-white text-xl btn-sm"
+                            <input type="hidden" name="mensaje" value="fin" readonly />
+
+                            <button aria-label="Iniciar" class="btn btn-outline-info text-white text-xl btn-sm"
                                 type="submit"
                                 style="border-radius: 1.5rem; background-color: #1A365E; padding: 0.5rem 2rem; font-size: 1rem; border: 0;">
                                 <strong>
                                     {{ session('id') == '1' ? 'Finish' : 'Finalizar' }}
                                 </strong>
                             </button>
+
+                            {{-- <a href="#" data-bs-toggle="modal" data-bs-target="#modal-test"
+                                class="btn btn-info shadow btn sharp me-1">
+                                <i class="bi bi-arrow-left-right"></i>test
+                            </a> --}}
                         </form>
 
                     </div>
@@ -120,4 +125,30 @@
             };
         });
     </script> --}}
+
+    <div class="modal fade" id="modal-test">
+        <div class="modal-dialog" role="document">
+            <form method="POST" action="{{ route('cerrar_sesion') }}">
+                @method('post')
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Eliminar registro</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h6 class="text-base text-slate-900 dark:text-white leading-6">
+                            Confirme si desea dehabilitar al Usuario
+                        </h6>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 @endsection

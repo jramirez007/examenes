@@ -55,11 +55,7 @@
                                             <td>{{ $obj->email }}</td>
                                             <td>{{ $obj->number_questions_ok }}</td>
                                             <td>{{ $obj->number_questions_bad }}</td>
-<<<<<<< HEAD
-                                            {{-- <td>
-=======
                                             <td>
->>>>>>> 823cd6853ec766480b90da50900ad33bbb97e958
                                                 <div class="d-flex">
                                                     <audio controls>
                                                         <source src="{{ $obj->audio_section9 }}" type="audio/mp3">

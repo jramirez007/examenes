@@ -16,53 +16,57 @@ use Illuminate\Support\Facades\Redirect;
 class ExamenCursoController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        //dd(session('id'));
-        if (session('id') == '1') {
-            $examen = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id', 1)->where('finalizado', 1)->first();
-
-            if ($examen) {
-
-                $fecha_examen_fin = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id', 1)
-                    ->where('finalizado', 1)
-                    ->pluck('fecha');
-
-                $fecha = $fecha_examen_fin[0]; // Fecha original
-                $fecha_formateada = date("d/m/Y H:i:s", strtotime($fecha));
-
-
-
-
-                return view('examen.index', compact('fecha_formateada'));
+        //dd(session('id'), $request->mensaje);
+        if ($request->mensaje == "fin") {
+            if (session('id') == '1') {
+                session()->flush();
+                return Redirect::to('login/1');
+            } else {
+                session()->flush();
+                return Redirect::to('login/2');
             }
         } else {
-            $examen = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id', 2)->where('finalizado', 1)->first();
 
-            if ($examen) {
+            if (session('id') == '1') {
+                $examen = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id', 1)->where('finalizado', 1)->first();
 
-                $fecha_examen_fin = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id', 2)
-                    ->where('finalizado', 1)
-                    ->pluck('fecha');
+                if ($examen) {
 
-                $fecha = $fecha_examen_fin[0]; // Fecha original
-                $fecha_formateada = date("d/m/Y H:i:s", strtotime($fecha));
+                    $fecha_examen_fin = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id', 1)
+                        ->where('finalizado', 1)
+                        ->pluck('fecha');
+
+                    $fecha = $fecha_examen_fin[0]; // Fecha original
+                    $fecha_formateada = date("d/m/Y H:i:s", strtotime($fecha));
 
 
 
 
-                return view('examen.index', compact('fecha_formateada'));
+                    return view('examen.index', compact('fecha_formateada'));
+                }
+            } else {
+                $examen = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id', 2)->where('finalizado', 1)->first();
+
+                if ($examen) {
+
+                    $fecha_examen_fin = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id', 2)
+                        ->where('finalizado', 1)
+                        ->pluck('fecha');
+
+                    $fecha = $fecha_examen_fin[0]; // Fecha original
+                    $fecha_formateada = date("d/m/Y H:i:s", strtotime($fecha));
+
+
+
+
+                    return view('examen.index', compact('fecha_formateada'));
+                }
             }
+
+            return redirect()->route('curso.examen.section', ['number' => 1]);
         }
-
-
-
-
-
-
-
-
-        return redirect()->route('curso.examen.section', ['number' => 1]);
     }
 
     public function index_admin()
@@ -225,7 +229,7 @@ class ExamenCursoController extends Controller
 
 
                 //dd($request->audioData);
-                $examen = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id',2)->first();
+                $examen = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id', 2)->first();
 
                 // $resultado = new ExamenCursoResultado();
                 // $resultado->examen_curso_id = $examen->id;
@@ -422,7 +426,7 @@ class ExamenCursoController extends Controller
 
         //dd($request->audioData);
         //$examen = ExamenCurso::where('user_id', session('user_id'))->first();
-        $examen = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id',1)->first();
+        $examen = ExamenCurso::where('user_id', session('user_id'))->where('clase_pregunta_id', 1)->first();
 
         $resultado = new ExamenCursoResultado();
         $resultado->examen_curso_id = $examen->id;
@@ -432,6 +436,8 @@ class ExamenCursoController extends Controller
 
         $examen->finalizado = 1;
         $examen->save();
+
+        session(['final' => '1']); //finalize el examen
 
         return Redirect::to('curso/examen');
     }
