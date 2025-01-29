@@ -364,7 +364,7 @@
 
                         </a>
                         <!-- End::header-link|dropdown-toggle -->
-                        <ul class="main-header-dropdown dropdown-menu pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end"
+                        {{-- <ul class="main-header-dropdown dropdown-menu pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end"
                             aria-labelledby="mainHeaderProfile">
                             <li>
                                 <div class="dropdown-item text-center border-bottom">
@@ -376,23 +376,7 @@
 
                                 </div>
                             </li>
-                            {{-- <li><a class="dropdown-item d-flex align-items-center" href="profile.html"><i
-                                        class="fe fe-user p-1 rounded-circle bg-primary-transparent me-2 fs-16"></i>Profile</a>
-                            </li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="mail.html"><i
-                                        class="fe fe-mail p-1 rounded-circle bg-primary-transparent me-2 fs-16"></i>Mail
-                                    Inbox</a></li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="file-manager.html"><i
-                                        class="fe fe-database p-1 rounded-circle bg-primary-transparent klist me-2 fs-16"></i>File
-                                    Manger<span class="badge bg-primary1 text-fixed-white ms-auto fs-9">2</span></a>
-                            </li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="mail-settings.html"><i
-                                        class="fe fe-settings p-1 rounded-circle bg-primary-transparent ings me-2 fs-16"></i>Settings</a>
-                            </li>
-                            <li class="border-top bg-light"><a class="dropdown-item d-flex align-items-center"
-                                    href="chat.html"><i
-                                        class="fe fe-help-circle p-1 rounded-circle bg-primary-transparent set me-2 fs-16"></i>Help</a>
-                            </li> --}}
+
                             <li><a class="dropdown-item d-flex align-items-center" href="#"
                                     onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();"><i
@@ -405,7 +389,7 @@
                                 style="display: none;">
                                 @csrf
                             </form>
-                        </ul>
+                        </ul> --}}
                     </li>
                     <!-- End::header-element -->
 
