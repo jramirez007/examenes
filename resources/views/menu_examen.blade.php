@@ -341,8 +341,9 @@
                             <div class="d-flex align-items-center">
                                 <div class="me-2 d-flex flex-column justify-content-center">
                                     <p style="font-size: 10px; margin: 0; text-transform: capitalize;">
-                                        <strong>{{ session('user_name') }}</strong> <br>
-                                        {{ session('user_rol') }} <br>
+                                        <strong>  {{ auth()->user()->name }}</strong> <br>
+                                        @php($roles = auth()->user()->getRoleNames())
+                                        Student <br>
                                         <?php
                                         // Set the timezone to El Salvador
                                         date_default_timezone_set('America/El_Salvador');
@@ -463,7 +464,8 @@
                         </li>
 
                         <li>
-                            {{ session('user_email') }}
+                            {{ auth()->user()->email }}
+
                         </li>
 
                         <br>
@@ -473,7 +475,7 @@
                         </li>
 
                         <li>
-                            {{ session('user_name') }}
+                            {{ auth()->user()->name }}
                         </li>
 
                         <br>
