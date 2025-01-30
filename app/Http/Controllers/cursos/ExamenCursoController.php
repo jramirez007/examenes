@@ -133,7 +133,7 @@ class ExamenCursoController extends Controller
                 'Choose the right answer to fill each blank.',
                 'Read the text below. For questions 21 to 25, choose the right answer. <br><br>
  <div class="table-responsive">
-                <table class="table"><tr><td><img class="responsive" src="http://localhost/cursos/public/assets/audio/test_reading_section2.png" /></td></tr></table>
+                <table class="table"><tr><td><img class="responsive" src="https://cursos.coopweb.info/public/assets/audio/test_reading_section2.PNG" /></td></tr></table>
                 </div>
 
 
@@ -143,7 +143,7 @@ class ExamenCursoController extends Controller
                 'Choose the right answer to fill each blank.',
                 'Read the text below. For questions 71 to 76, choose the right answer. <br><br>
                  <div class="table-responsive">
-                <table class="table"><tr><td><img class="responsive" src="http://localhost/cursos/public/assets/audio/test_reading_section6.png" /></td></tr></table>
+                <table class="table"><tr><td><img class="responsive" src="https://cursos.coopweb.info/public/assets/audio/test_reading_section6.PNG" /></td></tr></table>
                 </div>
                 ',
                 '<strong>Listening section.</strong><br> For each question, you will hear a short sentence. The sentence will be spoken just one time. The sentences you hear will not be written out for you. <br>After you hear each sentence, read the 4 choices on the screen and decide which one is closest in meaning to the sentence you heard. Then select the best answer by clicking on it.',
