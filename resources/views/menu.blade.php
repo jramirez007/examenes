@@ -201,7 +201,6 @@
                     <!-- End::header-element -->
 
 
-
                     <!-- Start::header-element -->
                     <li class="header-element dropdown">
                         <!-- Start::header-link|dropdown-toggle -->
@@ -210,8 +209,8 @@
                             <div class="d-flex align-items-center">
                                 <div class="me-2 d-flex flex-column justify-content-center">
                                     <p style="font-size: 10px; margin: 0; text-transform: capitalize;">
-                                        <strong>{{ auth()->user()->name }}</strong> <br>
-                                        {{ auth()->user()->getRoleNames()->first() }} <br>
+                                        <strong>{{ session('user_name') }}</strong> <br>
+                                        {{ session('user_rol') }} <br>
                                         {{ date('H:i d/m/Y') }}
                                     </p>
                                 </div>
@@ -226,29 +225,30 @@
                         <!-- End::header-link|dropdown-toggle -->
                         <ul class="main-header-dropdown dropdown-menu pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end"
                             aria-labelledby="mainHeaderProfile">
+
+
+
                             <li>
-                                <div class="dropdown-item text-center border-bottom">
-                                    <p style="font-size: 10px; margin: 0; text-transform: capitalize;">
-                                        <strong>{{ auth()->user()->name }}</strong> <br>
-                                        {{ auth()->user()->getRoleNames()->first() }} <br>
-                                        {{ date('H:i d/m/Y') }}
-                                    </p>
 
-                                </div>
+                                <form action="{{ url('curso/examen') }}" method="GET">
+                                    @csrf
+
+                                    <input type="hidden" name="mensaje" value="fin" readonly />
+
+                                    <button aria-label="Iniciar"
+                                        class="btn btn-outline-info text-white text-xl btn-sm" type="submit"
+                                        style="border-radius: 1.5rem; background-color: #1A365E; padding: 0.5rem 2rem; font-size: 1rem; border: 0;">
+                                        <strong>
+                                            {{ 'Log out' }}
+                                        </strong>
+                                    </button>
+
+                                    {{-- <a href="#" data-bs-toggle="modal" data-bs-target="#modal-test"
+                                    class="btn btn-info shadow btn sharp me-1">
+                                    <i class="bi bi-arrow-left-right"></i>test
+                                </a> --}}
+                                </form>
                             </li>
-
-                            <li><a class="dropdown-item d-flex align-items-center" href="#"
-                                    onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();"><i
-                                        class="fe fe-lock p-1 rounded-circle bg-primary-transparent ut me-2 fs-16"></i>Cerrar
-                                    sesión</a></li>
-
-
-
-                            <form id="logout-form" action="{{ route('cerrar_session') }}" method="POST"
-                                style="display: none;">
-                                @csrf
-                            </form>
                         </ul>
                     </li>
                     <!-- End::header-element -->
@@ -297,9 +297,7 @@
                     </div>
                     <ul class="main-menu">
 
-<<<<<<< HEAD
-                        @can('seguridad')
-                        {{-- <li class="slide has-sub" id="seguridadMenu">
+                        <<<<<<< HEAD @can('seguridad') {{-- <li class="slide has-sub" id="seguridadMenu">
                             <a href="javascript:void(0);" class="side-menu__item">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon"
                                     fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -337,11 +335,8 @@
 
 
                             </ul>
-                        </li> --}}
-                        @endcan
-
-                        @can('encargado direccion')
-                        <li class="slide has-sub" id="seguridadMenu">
+                        </li> --}} @endcan @can('encargado direccion') <li
+                            class="slide has-sub" id="seguridadMenu">
                             <a href="javascript:void(0);" class="side-menu__item">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon"
                                     fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -361,42 +356,41 @@
                                         class="side-menu__item">Usuario</a>
                                 </li>
                             </ul>
-                        </li>
+                            </li>
                         @endcan
 
                         @can('administracion')
-                        <li class="slide has-sub" id="administracionMenu">
-                            <a href="javascript:void(0);" class="side-menu__item">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon"
-                                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z">
-                                    </path>
-                                </svg>
-                                <span class="side-menu__label">Administracion</span>
-                                <i class="ri-arrow-down-s-line side-menu__angle"></i>
-                            </a>
-                            <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0)">Usuarios</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="{{ url('administracion/empleados') }}" id="empleado_Option"
-                                        class="side-menu__item">Empleados</a>
-                                </li>
+                            <li class="slide has-sub" id="administracionMenu">
+                                <a href="javascript:void(0);" class="side-menu__item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon"
+                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z">
+                                        </path>
+                                    </svg>
+                                    <span class="side-menu__label">Administracion</span>
+                                    <i class="ri-arrow-down-s-line side-menu__angle"></i>
+                                </a>
+                                <ul class="slide-menu child1">
+                                    <li class="slide side-menu__label1">
+                                        <a href="javascript:void(0)">Usuarios</a>
+                                    </li>
+                                    <li class="slide">
+                                        <a href="{{ url('administracion/empleados') }}" id="empleado_Option"
+                                            class="side-menu__item">Empleados</a>
+                                    </li>
 
 
 
 
-                            </ul>
-                        </li>
-
+                                </ul>
+                            </li>
                         @endcan
 
 
                         @can('catalogos')
-                        <!-- Start::slide -->
-                        {{-- <li class="slide has-sub" id="catalogoMenu">
+                            <!-- Start::slide -->
+                            {{-- <li class="slide has-sub" id="catalogoMenu">
                             <a href="javascript:void(0);" class="side-menu__item">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon"
                                     fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -436,164 +430,164 @@
 
 
                         @can('agenda')
-                        <li class="slide has-sub" id="solicitudMenu">
-                            <a href="javascript:void(0);" class="side-menu__item">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon"
-                                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z" />
-                                </svg>
-                                <span class="side-menu__label">Agenda</span>
-                                <i class="ri-arrow-down-s-line side-menu__angle"></i>
-                            </a>
-                            <ul class="slide-menu child1" id="appsSubmenu">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0)">Apps</a>
-                                </li>
-                                @can('read solicitud')
-                                <li class="slide">
-                                    <a href="{{ url('solicitud') }}" class="side-menu__item"
-                                        id="solicitudOption">Lista de Solicitudes Ingresadas Por la Dirección</a>
-                                </li>
-                                @endcan
-                                @can('complete sesion')
-                                <li class="slide">
-                                    <a href="{{ url('sesion') }}" id="sesionOption"
-                                        class="side-menu__item">Sesiones</a>
-                                </li>
-                                @endcan
-                            </ul>
-                        </li>
+                            <li class="slide has-sub" id="solicitudMenu">
+                                <a href="javascript:void(0);" class="side-menu__item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon"
+                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z" />
+                                    </svg>
+                                    <span class="side-menu__label">Agenda</span>
+                                    <i class="ri-arrow-down-s-line side-menu__angle"></i>
+                                </a>
+                                <ul class="slide-menu child1" id="appsSubmenu">
+                                    <li class="slide side-menu__label1">
+                                        <a href="javascript:void(0)">Apps</a>
+                                    </li>
+                                    @can('read solicitud')
+                                        <li class="slide">
+                                            <a href="{{ url('solicitud') }}" class="side-menu__item"
+                                                id="solicitudOption">Lista de Solicitudes Ingresadas Por la Dirección</a>
+                                        </li>
+                                    @endcan
+                                    @can('complete sesion')
+                                        <li class="slide">
+                                            <a href="{{ url('sesion') }}" id="sesionOption"
+                                                class="side-menu__item">Sesiones</a>
+                                        </li>
+                                    @endcan
+                                </ul>
+                            </li>
                         @endcan
-=======
+                        =======
                         </li>
 
->>>>>>> 823cd6853ec766480b90da50900ad33bbb97e958
+                        >>>>>>> 823cd6853ec766480b90da50900ad33bbb97e958
 
 
 
 
-                    </ul>
-                    <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"
-                            width="24" height="24" viewBox="0 0 24 24">
-                            <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
-                        </svg>
-                    </div>
-                </nav>
-                <!-- End::nav -->
-
-            </div>
-            <!-- End::main-sidebar -->
-
-        </aside>
-        <!-- End::app-sidebar -->
-
-        <!-- Start::app-content -->
-        <div class="main-content app-content">
-            <div class="container-fluid">
-                <div class="page-header-breadcrumb flex-wrap gap-2">
+                </ul>
+                <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"
+                        width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
+                    </svg>
                 </div>
-                @yield('contenido')
+            </nav>
+            <!-- End::nav -->
+
+        </div>
+        <!-- End::main-sidebar -->
+
+    </aside>
+    <!-- End::app-sidebar -->
+
+    <!-- Start::app-content -->
+    <div class="main-content app-content">
+        <div class="container-fluid">
+            <div class="page-header-breadcrumb flex-wrap gap-2">
+            </div>
+            @yield('contenido')
+        </div>
+    </div>
+    <!-- End::app-content -->
+
+
+    <!-- Footer Start -->
+    <footer class="footer mt-auto py-3 bg-white text-center">
+        <div class="container">
+            <span class="text-muted" style="display: none"> Copyright © <span id="year"></span> <a
+                    href="javascript:void(0);" class="text-dark fw-medium">Xintra</a>.
+                Designed with <span class="bi bi-heart-fill text-danger"></span> by <a href="javascript:void(0);">
+                    <span class="fw-medium text-primary">Spruko</span>
+                </a> All
+                rights
+                reserved
+            </span>
+        </div>
+    </footer>
+    <!-- Footer End -->
+    <div class="modal fade" id="header-responsive-search" tabindex="-1"
+        aria-labelledby="header-responsive-search" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="input-group">
+                        <input type="text" class="form-control border-end-0" placeholder="Search Anything ..."
+                            aria-label="Search Anything ..." aria-describedby="button-addon2">
+                        <button class="btn btn-primary" type="button" id="button-addon2"><i
+                                class="bi bi-search"></i></button>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- End::app-content -->
-
-
-        <!-- Footer Start -->
-        <footer class="footer mt-auto py-3 bg-white text-center">
-            <div class="container">
-                <span class="text-muted" style="display: none"> Copyright © <span id="year"></span> <a
-                        href="javascript:void(0);" class="text-dark fw-medium">Xintra</a>.
-                    Designed with <span class="bi bi-heart-fill text-danger"></span> by <a href="javascript:void(0);">
-                        <span class="fw-medium text-primary">Spruko</span>
-                    </a> All
-                    rights
-                    reserved
-                </span>
-            </div>
-        </footer>
-        <!-- Footer End -->
-        <div class="modal fade" id="header-responsive-search" tabindex="-1"
-            aria-labelledby="header-responsive-search" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="input-group">
-                            <input type="text" class="form-control border-end-0" placeholder="Search Anything ..."
-                                aria-label="Search Anything ..." aria-describedby="button-addon2">
-                            <button class="btn btn-primary" type="button" id="button-addon2"><i
-                                    class="bi bi-search"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 
-
-    <!-- Scroll To Top -->
-    <div class="scrollToTop">
-        <span class="arrow"><i class="ti ti-arrow-narrow-up fs-20"></i></span>
-    </div>
-    <div id="responsive-overlay"></div>
-    <!-- Scroll To Top -->
-
-    <!-- Popper JS -->
-    <script src="{{ asset('assets/libs/@popperjs/core/umd/popper.min.js') }}"></script>
-
-    <!-- Bootstrap JS -->
-    <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-    <!-- Defaultmenu JS -->
-    <script src="{{ asset('assets/js/defaultmenu.min.js') }}"></script>
-
-    <!-- Node Waves JS-->
-    <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
-
-    <!-- Sticky JS -->
-    <script src="{{ asset('assets/js/sticky.js') }}"></script>
-
-    <!-- Simplebar JS -->
-    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
-    <script src="{{ asset('assets/js/simplebar.js') }}"></script>
-
-    <!-- Auto Complete JS -->
-    <script src="{{ asset('assets/libs/@tarekraafat/autocomplete.js/autoComplete.min.js') }}"></script>
-
-    <!-- Color Picker JS -->
-    <script src="{{ asset('assets/libs/@simonwep/pickr/pickr.es5.min.js') }}"></script>
-
-    <!-- Date & Time Picker JS -->
-    <script src="{{ asset('assets/libs/flatpickr/flatpickr.min.js') }}"></script>
+</div>
 
 
+<!-- Scroll To Top -->
+<div class="scrollToTop">
+    <span class="arrow"><i class="ti ti-arrow-narrow-up fs-20"></i></span>
+</div>
+<div id="responsive-overlay"></div>
+<!-- Scroll To Top -->
 
+<!-- Popper JS -->
+<script src="{{ asset('assets/libs/@popperjs/core/umd/popper.min.js') }}"></script>
 
-    <!-- Gallery JS -->
-    <script src="{{ asset('assets/libs/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('assets/js/gallery.js') }}"></script>
+<!-- Bootstrap JS -->
+<script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- Defaultmenu JS -->
+<script src="{{ asset('assets/js/defaultmenu.min.js') }}"></script>
+
+<!-- Node Waves JS-->
+<script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
+
+<!-- Sticky JS -->
+<script src="{{ asset('assets/js/sticky.js') }}"></script>
+
+<!-- Simplebar JS -->
+<script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
+<script src="{{ asset('assets/js/simplebar.js') }}"></script>
+
+<!-- Auto Complete JS -->
+<script src="{{ asset('assets/libs/@tarekraafat/autocomplete.js/autoComplete.min.js') }}"></script>
+
+<!-- Color Picker JS -->
+<script src="{{ asset('assets/libs/@simonwep/pickr/pickr.es5.min.js') }}"></script>
+
+<!-- Date & Time Picker JS -->
+<script src="{{ asset('assets/libs/flatpickr/flatpickr.min.js') }}"></script>
 
 
 
-    <script>
-        function expandMenuAndHighlightOption(menuId, optionId) {
-            // Obtener el elemento del menú por su ID
-            const menuElement = document.getElementById(menuId);
-            // Obtener el elemento de la opción por su ID
-            const optionElement = document.getElementById(optionId);
 
-            // Desplegar el submenú
-            if (menuElement) {
-                menuElement.classList.add('is-expanded');
-            }
+<!-- Gallery JS -->
+<script src="{{ asset('assets/libs/glightbox/js/glightbox.min.js') }}"></script>
+<script src="{{ asset('assets/js/gallery.js') }}"></script>
 
-            // Resaltar la opción seleccionada
-            if (optionElement) {
-                optionElement.classList.add('active');
-            }
+
+
+<script>
+    function expandMenuAndHighlightOption(menuId, optionId) {
+        // Obtener el elemento del menú por su ID
+        const menuElement = document.getElementById(menuId);
+        // Obtener el elemento de la opción por su ID
+        const optionElement = document.getElementById(optionId);
+
+        // Desplegar el submenú
+        if (menuElement) {
+            menuElement.classList.add('is-expanded');
         }
-    </script>
+
+        // Resaltar la opción seleccionada
+        if (optionElement) {
+            optionElement.classList.add('active');
+        }
+    }
+</script>
 
 </body>
 

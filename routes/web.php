@@ -30,6 +30,7 @@ Route::get('/', [HomeController::class, 'redirectToLogin']);
 
 Route::get('login/{id}', [LoginController::class,'login']);
 Route::post('process_login', [LoginController::class,'process_login'])->name('process_login');
+Route::post('process_register', [LoginController::class,'process_register'])->name('process_register');
 Route::post('cerrar_sesion', [LoginController::class,'cerrar_sesion'])->name('cerrar_sesion');
 
 //Route::get('/public/index', 'WelcomeController@index');

@@ -341,8 +341,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="me-2 d-flex flex-column justify-content-center">
                                     <p style="font-size: 10px; margin: 0; text-transform: capitalize;">
-                                        <strong>  {{ auth()->user()->name }}</strong> <br>
-                                        @php($roles = auth()->user()->getRoleNames())
+                                        <strong> {{ session('user_name') }}</strong> <br>
                                         Student <br>
                                         <?php
                                         // Set the timezone to El Salvador
@@ -364,9 +363,9 @@
 
                         </a>
                         <!-- End::header-link|dropdown-toggle -->
-                        {{-- <ul class="main-header-dropdown dropdown-menu pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end"
+                        <ul class="main-header-dropdown dropdown-menu pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end"
                             aria-labelledby="mainHeaderProfile">
-                            <li>
+                            {{-- <li>
                                 <div class="dropdown-item text-center border-bottom">
                                     <p style="font-size: 10px; margin: 0; text-transform: capitalize;">
                                         <strong>{{ session('user_name') }}</strong> <br>
@@ -375,21 +374,38 @@
                                     </p>
 
                                 </div>
+                            </li> --}}
+
+
+
+                            <li>
+                                <form action="{{ url('curso/examen') }}" method="GET">
+                                    @csrf
+
+                                    <input type="hidden" name="mensaje" value="fin" readonly />
+
+                                    <button aria-label="Iniciar"
+                                        class="btn btn-outline-info text-white text-xl btn-sm" type="submit"
+                                        style="border-radius: 1.5rem; background-color: #1A365E; padding: 0.5rem 2rem; font-size: 1rem; border: 0;">
+                                        <strong>
+                                            {{ 'Log out' }}
+                                        </strong>
+                                    </button>
+
+                                    {{-- <a href="#" data-bs-toggle="modal" data-bs-target="#modal-test"
+                                        class="btn btn-info shadow btn sharp me-1">
+                                        <i class="bi bi-arrow-left-right"></i>test
+                                    </a> --}}
+                                </form>
                             </li>
 
-                            <li><a class="dropdown-item d-flex align-items-center" href="#"
-                                    onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();"><i
-                                        class="fe fe-lock p-1 rounded-circle bg-primary-transparent ut me-2 fs-16"></i>Log
-                                    out</a></li>
 
 
 
-                            <form id="logout-form" action="{{ route('cerrar_sesion') }}" method="POST"
-                                style="display: none;">
-                                @csrf
-                            </form>
-                        </ul> --}}
+
+
+
+                        </ul>
                     </li>
                     <!-- End::header-element -->
 
@@ -448,7 +464,7 @@
                         </li>
 
                         <li>
-                            {{ auth()->user()->email }}
+                            {{ session('user_email')}}
 
                         </li>
 
@@ -459,7 +475,7 @@
                         </li>
 
                         <li>
-                            {{ auth()->user()->name }}
+                            {{ session('user_name') }}
                         </li>
 
                         <br>

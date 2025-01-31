@@ -473,7 +473,7 @@
                         </li>
 
                         <li>
-                            {{ auth()->user()->email }}
+                            {{ session('user_email') }}
                         </li>
 
                         <br>
@@ -483,7 +483,7 @@
                         </li>
 
                         <li>
-                        {{ auth()->user()->name }}
+                        {{ session('user_name') }}
                         </li>
 
                         <br>

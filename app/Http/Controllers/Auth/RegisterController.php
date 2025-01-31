@@ -65,13 +65,16 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-
+        dd("register");
         //dd(session('id'), $data['id']);
+
+        $password = "12345678";
 
         $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            //'password' => Hash::make($data['password']),
+            'password' => Hash::make($password),
         ]);
 
         session(['id' => $data['id']]);
