@@ -120,7 +120,7 @@
                                         </div>
                                     </div>
 
-
+<br>
                                        <!-- Botón centrado -->
                                        <div class="button-center">
                                         <button type="submit" class="btn btn-primary btn-lg">
