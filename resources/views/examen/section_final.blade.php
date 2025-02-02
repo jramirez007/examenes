@@ -379,17 +379,17 @@
             const formExamen = document.getElementById('formExamen');
 
             // Validar si el campo oculto está vacío
-            if (!audioData.value.trim()) {
-                // Mostrar alerta de peligro con mensaje en español
-                alertDanger.style.display = 'block';
+            // if (!audioData.value.trim()) {
+            //     // Mostrar alerta de peligro con mensaje en español
+            //     alertDanger.style.display = 'block';
 
-                // Asegurarse de que la alerta desaparezca después de unos segundos (opcional)
-                setTimeout(() => {
-                    alertDanger.style.display = 'none';
-                }, 5000); // Ocultar después de 5 segundos
+            //     // Asegurarse de que la alerta desaparezca después de unos segundos (opcional)
+            //     setTimeout(() => {
+            //         alertDanger.style.display = 'none';
+            //     }, 5000); // Ocultar después de 5 segundos
 
-                return false; // Detener el flujo
-            }
+            //     return false; // Detener el flujo
+            // }
 
             // Si el campo tiene datos, ocultar el mensaje de error y hacer submit
             alertDanger.style.display = 'none';
