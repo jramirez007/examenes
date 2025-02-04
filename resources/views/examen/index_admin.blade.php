@@ -50,7 +50,7 @@
                                     <th>Questions ok</th>
                                     <th>Questions bad</th>
                                     <th>Audio</th>
-                                    <th>Opciones</th>
+                                    <th>Options</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -84,11 +84,11 @@
 
                                             </button> --}}
 
-                                            <a href="{{ url('curso/reporte') }}/{{ $obj->id }}?exportar=0"
+                                            {{-- <a href="{{ url('curso/reporte') }}/{{ $obj->id }}?exportar=0"
                                                 target="_blank" class="btn btn-success shadow btn sharp me-1">
                                                 <i class="bi bi-eye"></i>
 
-                                            </a>
+                                            </a> --}}
 
                                             <a href="{{ url('curso/examen') }}/{{ $obj->id }}?exportar=1"
                                                 target="_blank" class="btn btn-warning shadow btn sharp me-1">

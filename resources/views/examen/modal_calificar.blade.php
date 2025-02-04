@@ -16,7 +16,7 @@
                     <label for="nombre" class="form-check-label">
                         <b>
                             <center>Writing</center>
-                            <input type="text" value="{{ $obj->getSeccion8Id() }}" name="seccion8_id" readonly />
+                            <input type="hidden" value="{{ $obj->getSeccion8Id() }}" name="seccion8_id" readonly />
                         </b>
 
                         Global warming has become a serious threat to our planet.
@@ -33,19 +33,37 @@
                         <label for="message-text" class="col-form-label"><strong>(80) Write a paragraph with no less
                                 than
                                 125 words talking about "Global warming":</strong></label>
-                        <textarea class="form-control" rows="3" name="respuesta_text"> {{ $obj->getResposeText() }}</textarea>
+                        @if ($obj->getResposeText() == null || $obj->getResposeText() == '')
+                            <textarea class="form-control" rows="3" name="respuesta_text" readonly> Text not found </textarea>
+                        @else
+                            <textarea class="form-control" rows="3" name="respuesta_text" readonly> {{ $obj->getResposeText() }}</textarea>
+                        @endif
+
                     </div>
 
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label"><strong>Observations</strong></label>
-                        <textarea class="form-control" name="observations_section8"></textarea>
+                        @if ($obj->getResposeText() == null || $obj->getResposeText() == '')
+                            <textarea class="form-control" name="observations_section8" readonly> Text not found </textarea>
+                        @else
+                            <textarea class="form-control" name="observations_section8"></textarea>
+                        @endif
+
                     </div>
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label"><strong>Points</strong></label>
-                        <select class="form-select" name="points80">
-                            @for ($i = 1; $i <= 5; $i++)
-                                <option value="{{ $i }}">{{ $i }} Points</option>
-                            @endfor
+                        <select class="form-select" name="points80" required>
+                            <option value="">Select</option>
+                            @if ($obj->getResposeText() == null || $obj->getResposeText() == '')
+
+                                    <option value="0" selected>0 Points</option>
+
+                            @else
+                                @for ($i = 0; $i <= 5; $i++)
+                                    <option value="{{ $i }}">{{ $i }} Points</option>
+                                @endfor
+                            @endif
+
                         </select>
                     </div>
 
@@ -59,7 +77,7 @@
                         <label for="nombre" class="form-check-label">
                             <b>
                                 <center>Speaking </center>
-                                <input type="text" value="{{ $obj->getSeccion9Id() }}" name="seccion9_id" readonly />
+                                <input type="hidden" value="{{ $obj->getSeccion9Id() }}" name="seccion9_id" readonly />
                             </b>
 
 
@@ -82,14 +100,26 @@
 
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label"><strong>Observations</strong></label>
+                        @if ($obj->getAudio() == null || $obj->getAudio() == '')
+                        <textarea class="form-control" name="observations_section9" readonly> Audio not found </textarea>
+                        @else
                         <textarea class="form-control" name="observations_section9"></textarea>
+                        @endif
+
                     </div>
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label"><strong>Points</strong></label>
-                        <select class="form-select" name="points85">
-                            @for ($i = 1; $i <= 5; $i++)
-                                <option value="{{ $i }}">{{ $i }} Points</option>
-                            @endfor
+                        <select class="form-select" name="points85" required>
+                            <option value="">Select</option>
+                            @if ($obj->getAudio() == null || $obj->getAudio() == '')
+
+                                    <option value="0" selected>0 Points</option>
+
+                            @else
+                                @for ($i = 0; $i <= 5; $i++)
+                                    <option value="{{ $i }}">{{ $i }} Points</option>
+                                @endfor
+                            @endif
                         </select>
                     </div>
 

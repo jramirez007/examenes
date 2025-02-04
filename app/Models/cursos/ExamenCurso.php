@@ -73,7 +73,7 @@ class ExamenCurso extends Model
     {
         try {
 
-            $resultado = ExamenCursoResultado::where('examen_curso_id', $this->id)->where('pregunta_id', 85)->first();
+            $resultado = ExamenCursoResultado::where('examen_curso_id', $this->id)->where('pregunta_id', 81)->first();
 
             // Verificar si se encontró el registro
             if ($resultado) {
@@ -93,7 +93,7 @@ class ExamenCurso extends Model
         try {
             // Intentar obtener el resultado de la base de datos
             $resultado = ExamenCursoResultado::where('examen_curso_id', $this->id)
-                ->where('pregunta_id', 85)
+                ->where('pregunta_id', 81)
                 ->first();
 
             // Verificar si se encontró el registro

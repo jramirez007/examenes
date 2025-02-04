@@ -535,7 +535,7 @@ class ExamenCursoController extends Controller
                         'preguntas_seccion9' => $preguntas_seccion9
                     ]
                 );
-                return $pdf->download('invoice.pdf');
+                return $pdf->download('examen.pdf');
             }
 
 

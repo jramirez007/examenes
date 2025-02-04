@@ -80,4 +80,40 @@ class Pregunta extends Model
         // Si no se encuentra el registro, puede devolver null, o un valor predeterminado
         return  $respuesta_id;
     }
+
+    public function getRespuestaEvaluarAdmin($respuesta_id, $examen_curso_id)
+    {
+        // Buscar el primer registro que coincida con 'respuesta_id' y 'pregunta_id'
+
+        $registro = ExamenCursoResultado::where('respuesta_id', $respuesta_id)
+            ->where('pregunta_id', $this->id)
+            ->where('examen_curso_id', $examen_curso_id)
+            ->first();
+
+        $respuesta_id = null;
+
+        if ($registro) {
+            $respuesta_id = $registro->respuesta_id;
+        }
+
+        //dd($respuesta_id);
+
+        //$respuesta = Respuesta::findOrFail($respuesta_id);
+        $respuesta = Respuesta::where('id', $respuesta_id)->first();
+
+
+        if (isset($respuesta)) {
+            if (!isset($respuesta->correcta) || $respuesta->correcta == null) {
+                return 0;
+            } else {
+                return  $respuesta->correcta;
+            }
+        } else {
+            return 0;
+        }
+
+
+        // Si no se encuentra el registro, puede devolver null, o un valor predeterminado
+
+    }
 }
