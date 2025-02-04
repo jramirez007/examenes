@@ -297,45 +297,10 @@
                     </div>
                     <ul class="main-menu">
 
-                        <<<<<<< HEAD @can('seguridad') {{-- <li class="slide has-sub" id="seguridadMenu">
-                            <a href="javascript:void(0);" class="side-menu__item">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon"
-                                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-=======
+                         @can('seguridad')
+                         @endcan
 
-                        <li class="slide">
-                            <a href="{{url('curso/examen/admin')}}" class="side-menu__item">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
->>>>>>> 823cd6853ec766480b90da50900ad33bbb97e958
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M6 2.75A2.25 2.25 0 0 0 3.75 5v14A2.25 2.25 0 0 0 6 21.25h12A2.25 2.25 0 0 0 20.25 19V9.5a.75.75 0 0 0-.22-.53l-5.5-5.5a.75.75 0 0 0-.53-.22H6Zm.75 14.5h10.5m-10.5-4h10.5M13.5 2.75v4.25a1 1 0 0 0 1 1h4.25" />
-                                </svg>
-
-                                <span class="side-menu__label">Examenes</span>
-                            </a>
-<<<<<<< HEAD
-                            <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0)">Seguridad</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="{{ url('seguridad/usuario') }}" id="usuarios_Option"
-                                        class="side-menu__item">Usuario</a>
-                                </li>
-
-                                <li class="slide">
-                                    <a href="{{ url('seguridad/rol') }}" id="rol_Option"
-                                        class="side-menu__item">Rol</a>
-                                </li>
-
-                                <li class="slide">
-                                    <a href="{{ url('seguridad/permission') }}" id="permisso_Option"
-                                        class="side-menu__item">Permisos</a>
-                                </li>
-
-
-                            </ul>
-                        </li> --}} @endcan @can('encargado direccion') <li
+                         @can('encargado direccion') <li
                             class="slide has-sub" id="seguridadMenu">
                             <a href="javascript:void(0);" class="side-menu__item">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon"
