@@ -297,30 +297,30 @@
                     </div>
                     <ul class="main-menu">
 
-                         @can('seguridad')
-                         @endcan
+                        @can('seguridad')
+                        @endcan
 
-                         @can('encargado direccion') <li
-                            class="slide has-sub" id="seguridadMenu">
-                            <a href="javascript:void(0);" class="side-menu__item">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon"
-                                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z">
-                                    </path>
-                                </svg>
-                                <span class="side-menu__label">Seguridad</span>
-                                <i class="ri-arrow-down-s-line side-menu__angle"></i>
-                            </a>
-                            <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0)">Seguridad</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="{{ url('seguridad/usuarios') }}" id="usuarios_Option"
-                                        class="side-menu__item">Usuario</a>
-                                </li>
-                            </ul>
+                        @can('encargado direccion')
+                            <li class="slide has-sub" id="seguridadMenu">
+                                <a href="javascript:void(0);" class="side-menu__item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon"
+                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z">
+                                        </path>
+                                    </svg>
+                                    <span class="side-menu__label">Seguridad</span>
+                                    <i class="ri-arrow-down-s-line side-menu__angle"></i>
+                                </a>
+                                <ul class="slide-menu child1">
+                                    <li class="slide side-menu__label1">
+                                        <a href="javascript:void(0)">Seguridad</a>
+                                    </li>
+                                    <li class="slide">
+                                        <a href="{{ url('seguridad/usuarios') }}" id="usuarios_Option"
+                                            class="side-menu__item">Usuario</a>
+                                    </li>
+                                </ul>
                             </li>
                         @endcan
 
@@ -424,135 +424,134 @@
                                 </ul>
                             </li>
                         @endcan
-                        =======
+                        \
                         </li>
-
-                        >>>>>>> 823cd6853ec766480b90da50900ad33bbb97e958
-
+                        \
 
 
 
-                </ul>
-                <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"
-                        width="24" height="24" viewBox="0 0 24 24">
-                        <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
-                    </svg>
-                </div>
-            </nav>
-            <!-- End::nav -->
 
-        </div>
-        <!-- End::main-sidebar -->
+                    </ul>
+                    <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"
+                            width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
+                        </svg>
+                    </div>
+                </nav>
+                <!-- End::nav -->
 
-    </aside>
-    <!-- End::app-sidebar -->
-
-    <!-- Start::app-content -->
-    <div class="main-content app-content">
-        <div class="container-fluid">
-            <div class="page-header-breadcrumb flex-wrap gap-2">
             </div>
-            @yield('contenido')
+            <!-- End::main-sidebar -->
+
+        </aside>
+        <!-- End::app-sidebar -->
+
+        <!-- Start::app-content -->
+        <div class="main-content app-content">
+            <div class="container-fluid">
+                <div class="page-header-breadcrumb flex-wrap gap-2">
+                </div>
+                @yield('contenido')
+            </div>
         </div>
-    </div>
-    <!-- End::app-content -->
+        <!-- End::app-content -->
 
 
-    <!-- Footer Start -->
-    <footer class="footer mt-auto py-3 bg-white text-center">
-        <div class="container">
-            <span class="text-muted" style="display: none"> Copyright © <span id="year"></span> <a
-                    href="javascript:void(0);" class="text-dark fw-medium">Xintra</a>.
-                Designed with <span class="bi bi-heart-fill text-danger"></span> by <a href="javascript:void(0);">
-                    <span class="fw-medium text-primary">Spruko</span>
-                </a> All
-                rights
-                reserved
-            </span>
-        </div>
-    </footer>
-    <!-- Footer End -->
-    <div class="modal fade" id="header-responsive-search" tabindex="-1"
-        aria-labelledby="header-responsive-search" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="input-group">
-                        <input type="text" class="form-control border-end-0" placeholder="Search Anything ..."
-                            aria-label="Search Anything ..." aria-describedby="button-addon2">
-                        <button class="btn btn-primary" type="button" id="button-addon2"><i
-                                class="bi bi-search"></i></button>
+        <!-- Footer Start -->
+        <footer class="footer mt-auto py-3 bg-white text-center">
+            <div class="container">
+                <span class="text-muted" style="display: none"> Copyright © <span id="year"></span> <a
+                        href="javascript:void(0);" class="text-dark fw-medium">Xintra</a>.
+                    Designed with <span class="bi bi-heart-fill text-danger"></span> by <a href="javascript:void(0);">
+                        <span class="fw-medium text-primary">Spruko</span>
+                    </a> All
+                    rights
+                    reserved
+                </span>
+            </div>
+        </footer>
+        <!-- Footer End -->
+        <div class="modal fade" id="header-responsive-search" tabindex="-1"
+            aria-labelledby="header-responsive-search" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <input type="text" class="form-control border-end-0" placeholder="Search Anything ..."
+                                aria-label="Search Anything ..." aria-describedby="button-addon2">
+                            <button class="btn btn-primary" type="button" id="button-addon2"><i
+                                    class="bi bi-search"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 
-</div>
 
+    <!-- Scroll To Top -->
+    <div class="scrollToTop">
+        <span class="arrow"><i class="ti ti-arrow-narrow-up fs-20"></i></span>
+    </div>
+    <div id="responsive-overlay"></div>
+    <!-- Scroll To Top -->
 
-<!-- Scroll To Top -->
-<div class="scrollToTop">
-    <span class="arrow"><i class="ti ti-arrow-narrow-up fs-20"></i></span>
-</div>
-<div id="responsive-overlay"></div>
-<!-- Scroll To Top -->
+    <!-- Popper JS -->
+    <script src="{{ asset('assets/libs/@popperjs/core/umd/popper.min.js') }}"></script>
 
-<!-- Popper JS -->
-<script src="{{ asset('assets/libs/@popperjs/core/umd/popper.min.js') }}"></script>
+    <!-- Bootstrap JS -->
+    <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-<!-- Bootstrap JS -->
-<script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- Defaultmenu JS -->
+    <script src="{{ asset('assets/js/defaultmenu.min.js') }}"></script>
 
-<!-- Defaultmenu JS -->
-<script src="{{ asset('assets/js/defaultmenu.min.js') }}"></script>
+    <!-- Node Waves JS-->
+    <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
 
-<!-- Node Waves JS-->
-<script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
+    <!-- Sticky JS -->
+    <script src="{{ asset('assets/js/sticky.js') }}"></script>
 
-<!-- Sticky JS -->
-<script src="{{ asset('assets/js/sticky.js') }}"></script>
+    <!-- Simplebar JS -->
+    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('assets/js/simplebar.js') }}"></script>
 
-<!-- Simplebar JS -->
-<script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
-<script src="{{ asset('assets/js/simplebar.js') }}"></script>
+    <!-- Auto Complete JS -->
+    <script src="{{ asset('assets/libs/@tarekraafat/autocomplete.js/autoComplete.min.js') }}"></script>
 
-<!-- Auto Complete JS -->
-<script src="{{ asset('assets/libs/@tarekraafat/autocomplete.js/autoComplete.min.js') }}"></script>
+    <!-- Color Picker JS -->
+    <script src="{{ asset('assets/libs/@simonwep/pickr/pickr.es5.min.js') }}"></script>
 
-<!-- Color Picker JS -->
-<script src="{{ asset('assets/libs/@simonwep/pickr/pickr.es5.min.js') }}"></script>
-
-<!-- Date & Time Picker JS -->
-<script src="{{ asset('assets/libs/flatpickr/flatpickr.min.js') }}"></script>
+    <!-- Date & Time Picker JS -->
+    <script src="{{ asset('assets/libs/flatpickr/flatpickr.min.js') }}"></script>
 
 
 
 
-<!-- Gallery JS -->
-<script src="{{ asset('assets/libs/glightbox/js/glightbox.min.js') }}"></script>
-<script src="{{ asset('assets/js/gallery.js') }}"></script>
+    <!-- Gallery JS -->
+    <script src="{{ asset('assets/libs/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('assets/js/gallery.js') }}"></script>
 
 
 
-<script>
-    function expandMenuAndHighlightOption(menuId, optionId) {
-        // Obtener el elemento del menú por su ID
-        const menuElement = document.getElementById(menuId);
-        // Obtener el elemento de la opción por su ID
-        const optionElement = document.getElementById(optionId);
+    <script>
+        function expandMenuAndHighlightOption(menuId, optionId) {
+            // Obtener el elemento del menú por su ID
+            const menuElement = document.getElementById(menuId);
+            // Obtener el elemento de la opción por su ID
+            const optionElement = document.getElementById(optionId);
 
-        // Desplegar el submenú
-        if (menuElement) {
-            menuElement.classList.add('is-expanded');
+            // Desplegar el submenú
+            if (menuElement) {
+                menuElement.classList.add('is-expanded');
+            }
+
+            // Resaltar la opción seleccionada
+            if (optionElement) {
+                optionElement.classList.add('active');
+            }
         }
-
-        // Resaltar la opción seleccionada
-        if (optionElement) {
-            optionElement.classList.add('active');
-        }
-    }
-</script>
+    </script>
 
 </body>
 
