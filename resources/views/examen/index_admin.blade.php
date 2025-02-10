@@ -55,9 +55,9 @@
                             </thead>
                             <tbody>
                                 @foreach ($examenes as $obj)
-                                    @if ($obj->usuario->impreso == 0 || $obj->usuario->calificado == 0)
+                                    {{-- @if ($obj->usuario->impreso == 0 || $obj->usuario->calificado == 0) --}}
                                         <tr>
-                                            <td>{{ $obj->id }}</td>
+                                            <td>{{ $obj->id }} / {{ $obj->usuario->impreso }} / {{ $obj->usuario->calificado }}</td>
                                             <td>{{ $obj->usuario->name ?? '' }}</td>
                                             <td>{{ $obj->usuario->email ?? '' }}</td>
                                             <td>{{ $obj->number_questions_ok }}</td>
@@ -101,7 +101,7 @@
 
                                             </td>
                                         </tr>
-                                    @endif
+                                    {{-- @endif --}}
 
                                     @include('examen.modal_calificar')
                                 @endforeach
