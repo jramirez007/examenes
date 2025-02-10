@@ -512,6 +512,22 @@ class ExamenCursoController extends Controller
             'preguntas_seccion7',
             'preguntas_seccion8'));*/
 
+            if (!isset($observacion_seccion8)) {
+                $observacion_seccion8 = '';
+                $puntos_seccion8 = 0;
+                $respuesta80 = '';
+            }
+
+
+            if (!isset($observacion_seccion9)) {
+                $observacion_seccion9 = '';
+                $puntos_seccion9 = 0;
+                $respuesta85= '';
+            }
+
+
+
+
                 $pdf = Pdf::loadView(
                     'examen.reporte_pdf',
                     [
