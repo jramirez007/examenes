@@ -91,15 +91,13 @@
                                             <i class="bi bi-eye"></i>
 
                                         </a> --}}
-                                                @if (isset($obj->usuario->calificado))
-                                                    @if ($obj->usuario->calificado == 1)
+                                             
                                                         <a href="{{ url('curso/examen') }}/{{ $obj->id }}?exportar=1"
                                                             target="_blank" class="btn btn-warning shadow btn sharp me-1">
                                                             <i class="bi bi-file-earmark-pdf"></i>
 
                                                         </a>
-                                                    @endif
-                                                @endif
+                                         
 
 
                                             </td>
