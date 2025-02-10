@@ -7,6 +7,7 @@ use App\Models\cursos\ExamenCurso;
 use App\Models\cursos\ExamenCursoResultado;
 use App\Models\cursos\Pregunta;
 use App\Models\cursos\Respuesta;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Exception;
 use Illuminate\Http\Request;
@@ -526,6 +527,10 @@ class ExamenCursoController extends Controller
             }
 
 
+                //dd($examen->usuario->id, $examen->usuario->name  );
+                $user = User::findorFail($examen->usuario->id);
+                $user->impreso = 1;
+                $user->update();
 
 
                 $pdf = Pdf::loadView(
@@ -673,6 +678,14 @@ class ExamenCursoController extends Controller
         $exam_res9->observacion_seccion9 = $observations_section9;
         $exam_res9->puntos_seccion9 = $points85;
         $exam_res9->update();
+
+
+
+        $examen = ExamenCurso::find($exam_res8->examen_curso_id);
+
+        $user = User::findorFail($examen->usuario->id);
+        $user->calificado = 1;
+        $user->update();
 
         alert()->success("Seccion 8 y 9 calificada correctamente");
         return Redirect('curso/examen/admin');
