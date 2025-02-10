@@ -230,7 +230,7 @@
             <tr>
                 <td>
 
-                    Correct answers
+                    Good Responses
 
                 </td>
                 <td>
@@ -241,7 +241,7 @@
             </tr>
             <tr>
                 <td>
-                    Bad answers
+                    Bad Responses
                 </td>
                 <td>
                     @php($total_points_bad_section1 = $j - $cuenta_ok)
@@ -251,7 +251,7 @@
             <tr>
                 <td>
 
-                    <b> Total answers</b>
+                    <b> Total Responses</b>
 
                 </td>
                 <td>
@@ -355,7 +355,7 @@
             <tr>
                 <td>
 
-                    Correct answers
+                    Good Responses
 
                 </td>
                 <td>
@@ -366,7 +366,7 @@
             </tr>
             <tr>
                 <td>
-                    Bad answers
+                    Bad Responses
                 </td>
                 <td>
                     @php($total_points_bad_section2 = $j - $cuenta_ok)
@@ -376,7 +376,7 @@
             <tr>
                 <td>
 
-                    <b> Total answers</b>
+                    <b> Total Responses</b>
 
                 </td>
                 <td>
@@ -470,7 +470,7 @@
             <tr>
                 <td>
 
-                    Correct answers
+                    Good Responses
 
                 </td>
                 <td>
@@ -481,7 +481,7 @@
             </tr>
             <tr>
                 <td>
-                    Bad answers
+                    Bad Responses
                 </td>
                 <td>
                     @php($total_points_bad_section3 = $j - $cuenta_ok)
@@ -491,7 +491,7 @@
             <tr>
                 <td>
 
-                    <b> Total answers</b>
+                    <b> Total Responses</b>
 
                 </td>
                 <td>
@@ -589,7 +589,7 @@
             <tr>
                 <td>
 
-                    Correct answers
+                    Good Responses
 
                 </td>
                 <td>
@@ -600,7 +600,7 @@
             </tr>
             <tr>
                 <td>
-                    Bad answers
+                    Bad Responses
                 </td>
                 <td>
                     @php($total_points_bad_section4 = $j - $cuenta_ok)
@@ -610,7 +610,7 @@
             <tr>
                 <td>
 
-                    <b> Total answers</b>
+                    <b> Total Responses</b>
 
                 </td>
                 <td>
@@ -707,7 +707,7 @@
             <tr>
                 <td>
 
-                    Correct answers
+                    Good Responses
 
                 </td>
                 <td>
@@ -718,7 +718,7 @@
             </tr>
             <tr>
                 <td>
-                    Bad answers
+                    Bad Responses
                 </td>
                 <td>
                     @php($total_points_bad_section5 = $j - $cuenta_ok)
@@ -728,7 +728,7 @@
             <tr>
                 <td>
 
-                    <b> Total answers</b>
+                    <b> Total Responses</b>
 
                 </td>
                 <td>
@@ -824,7 +824,7 @@
             <tr>
                 <td>
 
-                    Correct answers
+                    Good Responses
 
                 </td>
                 <td>
@@ -835,7 +835,7 @@
             </tr>
             <tr>
                 <td>
-                    Bad answers
+                    Bad Responses
                 </td>
                 <td>
                     @php($total_points_bad_section6 = $j - $cuenta_ok)
@@ -845,7 +845,7 @@
             <tr>
                 <td>
 
-                    <b> Total answers</b>
+                    <b> Total Responses</b>
 
                 </td>
                 <td>
@@ -953,7 +953,7 @@
             <tr>
                 <td>
 
-                    Correct answers
+                    Good Responses
 
                 </td>
                 <td>
@@ -964,7 +964,7 @@
             </tr>
             <tr>
                 <td>
-                    Bad answers
+                    Bad Responses
                 </td>
                 <td>
                     @php($total_points_bad_section7 = $j - $cuenta_ok)
@@ -974,7 +974,7 @@
             <tr>
                 <td>
 
-                    <b> Total answers</b>
+                    <b> Total Responses</b>
 
                 </td>
                 <td>
@@ -1179,7 +1179,7 @@
 
         <div class="card-header">
             <div class="card-title" style="text-align: center;">
-                <h5>GENERAL SUMMARY</b>
+                <h5>Summary Responses</b>
                 </h5>
             </div>
         </div>
@@ -1194,14 +1194,14 @@
                 <td>
                     <div class="card-header">
                         <div class="card-title">
-                            <h5> SECTION NUMBER </h5>
+                            <h5> Section Number </h5>
                         </div>
                     </div>
                 </td>
                 <td>
                     <div class="card-header">
                         <div class="card-title">
-                            <h5> OK POINTS </h5>
+                            <h5> Good Responses </h5>
                         </div>
                     </div>
                 </td>
@@ -1209,14 +1209,14 @@
                 <td>
                     <div class="card-header">
                         <div class="card-title">
-                            <h5> BAD POINTS </h5>
+                            <h5> Bad Responses </h5>
                         </div>
                     </div>
                 </td>
                 <td>
                     <div class="card-header">
                         <div class="card-title">
-                            <h5> TOTAL POINTS </h5>
+                            <h5> Total Posible Points </h5>
                         </div>
                     </div>
                 </td>
