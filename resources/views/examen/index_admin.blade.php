@@ -20,7 +20,7 @@
             <div class="card custom-card">
                 <div class="card-header justify-content-between">
                     <div class="card-title">
-                        Examenes
+                        Responses
                     </div>
 
                 </div>
@@ -44,11 +44,11 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nombre</th>
+                                    <th>Name</th>
                                     <!-- <th>usuario</th> -->
-                                    <th>correo</th>
-                                    <th>Questions ok</th>
-                                    <th>Questions bad</th>
+                                    <th>Email</th>
+                                    <th>Good Responses</th>
+                                    <th>Bad Responses</th>
                                     <th>Audio</th>
                                     <th>Options</th>
                                 </tr>
