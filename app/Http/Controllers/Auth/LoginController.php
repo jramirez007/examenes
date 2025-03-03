@@ -113,8 +113,7 @@ class LoginController extends Controller
 
 
         //dd($user);
-
-        if ($user->count() < 1) {
+        if (!isset($user)) {
             $user =  User::create([
                 'name' => $request->name,
                 'email' => $request->email,
@@ -122,6 +121,7 @@ class LoginController extends Controller
                 'password' => Hash::make($password),
             ]);
         }
+
 
 
 
