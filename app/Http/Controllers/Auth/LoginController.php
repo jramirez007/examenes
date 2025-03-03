@@ -108,12 +108,22 @@ class LoginController extends Controller
 
         //dd($request->name, $request->email);
 
-        $user =  User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            //'password' => Hash::make($data['password']),
-            'password' => Hash::make($password),
-        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+
+        //dd($user);
+
+        if ($user->count() < 1) {
+            $user =  User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                //'password' => Hash::make($data['password']),
+                'password' => Hash::make($password),
+            ]);
+        }
+
+
 
         session(['id' =>  $request->id]);
         session(['user_id' => $user->id]);
