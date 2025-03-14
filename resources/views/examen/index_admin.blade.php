@@ -72,14 +72,17 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                @if ($obj->usuario->calificado == 0)
-                                                    <a data-bs-toggle="modal"
-                                                        data-bs-target="#modal-calificar-{{ $obj->id }}"
-                                                        class="btn btn-primary shadow btn sharp me-1">
-                                                        <i class="bi bi-pencil"></i>
+                                                @if (isset($obj->usuario->calificado))
+                                                    @if ($obj->usuario->calificado == 0)
+                                                        <a data-bs-toggle="modal"
+                                                            data-bs-target="#modal-calificar-{{ $obj->id }}"
+                                                            class="btn btn-primary shadow btn sharp me-1">
+                                                            <i class="bi bi-pencil"></i>
 
-                                                    </a>
+                                                        </a>
+                                                    @endif
                                                 @endif
+
 
                                                 @if ($obj->usuario->calificado == 1)
                                                     <a href="{{ url('curso/examen') }}/{{ $obj->id }}?exportar=1"
@@ -90,12 +93,12 @@
                                                 @endif
 
                                                 @if ($obj->usuario->impreso == 1)
-                                                <a href="{{ url('curso/examen') }}/{{ $obj->id }}?exportar=2"
-                                                    target="_blank" class="btn btn-warning shadow btn sharp me-1">
-                                                    <i class="bi bi-archive"></i>
+                                                    <a href="{{ url('curso/examen') }}/{{ $obj->id }}?exportar=2"
+                                                        target="_blank" class="btn btn-warning shadow btn sharp me-1">
+                                                        <i class="bi bi-archive"></i>
 
-                                                </a>
-                                            @endif
+                                                    </a>
+                                                @endif
 
 
                                                 {{-- <button onclick="load_sections89({{ $obj->id }})"
