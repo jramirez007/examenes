@@ -65,7 +65,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        dd("register");
+        //dd("register");
         //dd(session('id'), $data['id']);
 
         $password = "12345678";
@@ -75,6 +75,9 @@ class RegisterController extends Controller
             'email' => $data['email'],
             //'password' => Hash::make($data['password']),
             'password' => Hash::make($password),
+            'calificado' => 0,
+            'impreso' => 0,
+            'eliminado' => 0
         ]);
 
         session(['id' => $data['id']]);

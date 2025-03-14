@@ -55,7 +55,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($examenes as $obj)
-                                    @if ($obj->usuario->eliminado != 1)
+                                    @if (isset($obj->usuario->eliminado) && $obj->usuario->eliminado == 0)
                                         @if (!isset($obj->usuario->impreso) || !isset($obj->usuario->calificado))
                                             <tr>
                                                 <td>{{ $obj->id }}</td>
