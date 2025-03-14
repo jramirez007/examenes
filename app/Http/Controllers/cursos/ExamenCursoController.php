@@ -682,7 +682,7 @@ class ExamenCursoController extends Controller
         $exam_res8->observacion_seccion8 = $observations_section8;
         $exam_res8->puntos_seccion8 = $points80;
         $exam_res8->update();
-        dd("tres");
+        //dd("tres");
         $seccion9_id = $request->get('seccion9_id');
         $observations_section9 = $request->get('observations_section9');
         $points85 = $request->get('points85');
