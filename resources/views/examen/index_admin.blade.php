@@ -55,147 +55,115 @@
                             </thead>
                             <tbody>
                                 @foreach ($examenes as $obj)
-                                    @if (!isset($obj->usuario->impreso) || !isset($obj->usuario->calificado))
-                                        <tr>
-                                            <td>{{ $obj->id }}</td>
-                                            <td>{{ $obj->usuario->name ?? '' }}</td>
-                                            <td>{{ $obj->usuario->email ?? '' }}</td>
-                                            <td>{{ $obj->number_questions_ok }}</td>
-                                            <td>{{ $obj->number_questions_bad }}</td>
-                                            <td>
-                                                <div class="d-flex">
-                                                    <audio controls>
-                                                        <source src="{{ $obj->getAudio() }}" type="audio/mp3">
-                                                        Tu navegador no soporta el elemento de audio.
-                                                    </audio>
+                                    @if ($obj->usuario->eliminado != 1)
+                                        @if (!isset($obj->usuario->impreso) || !isset($obj->usuario->calificado))
+                                            <tr>
+                                                <td>{{ $obj->id }}</td>
+                                                <td>{{ $obj->usuario->name ?? '' }}</td>
+                                                <td>{{ $obj->usuario->email ?? '' }}</td>
+                                                <td>{{ $obj->number_questions_ok }}</td>
+                                                <td>{{ $obj->number_questions_bad }}</td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <audio controls>
+                                                            <source src="{{ $obj->getAudio() }}" type="audio/mp3">
+                                                            Tu navegador no soporta el elemento de audio.
+                                                        </audio>
 
-                                                </div>
-                                            </td>
-                                            <td>
-                                                @if (isset($obj->usuario->calificado))
-                                                    @if ($obj->usuario->calificado == 0)
-                                                        <a data-bs-toggle="modal"
-                                                            data-bs-target="#modal-calificar-{{ $obj->id }}"
-                                                            class="btn btn-primary shadow btn sharp me-1">
-                                                            <i class="bi bi-pencil"></i>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    @if (isset($obj->usuario->calificado))
+                                                        @if ($obj->usuario->calificado == 0)
+                                                            <a data-bs-toggle="modal"
+                                                                data-bs-target="#modal-calificar-{{ $obj->id }}"
+                                                                class="btn btn-primary shadow btn sharp me-1">
+                                                                <i class="bi bi-pencil"></i>
 
-                                                        </a>
+                                                            </a>
+                                                        @endif
                                                     @endif
-                                                @endif
 
-                                                @if (isset($obj->usuario->calificado))
-                                                    @if ($obj->usuario->calificado == 1)
-                                                        <a href="{{ url('curso/examen') }}/{{ $obj->id }}?exportar=1"
-                                                            target="_blank" class="btn btn-warning shadow btn sharp me-1">
-                                                            <i class="bi bi-file-earmark-pdf"></i>
+                                                    @if (isset($obj->usuario->calificado))
+                                                        @if ($obj->usuario->calificado == 1)
+                                                            <a href="{{ url('curso/examen') }}/{{ $obj->id }}?exportar=1"
+                                                                target="_blank"
+                                                                class="btn btn-warning shadow btn sharp me-1">
+                                                                <i class="bi bi-file-earmark-pdf"></i>
 
-                                                        </a>
+                                                            </a>
+                                                        @endif
                                                     @endif
-                                                @endif
 
 
-                                                @if (isset($obj->usuario->impreso))
-                                                    @if ($obj->usuario->impreso == 1)
-                                                        <a href="{{ url('curso/examen') }}/{{ $obj->id }}?exportar=2"
-                                                            target="_blank" class="btn btn-warning shadow btn sharp me-1">
-                                                            <i class="bi bi-archive"></i>
+                                                    @if (isset($obj->usuario->impreso))
+                                                        @if ($obj->usuario->impreso == 1)
+                                                            <a href="{{ url('curso/examen') }}/{{ $obj->id }}?exportar=2"
+                                                                target="_blank"
+                                                                class="btn btn-warning shadow btn sharp me-1">
+                                                                <i class="bi bi-archive"></i>
 
-                                                        </a>
+                                                            </a>
+                                                        @endif
                                                     @endif
-                                                @endif
 
+                                                </td>
+                                            </tr>
+                                        @else
+                                            <tr>
+                                                <td>{{ $obj->id }}</td>
+                                                <td>{{ $obj->usuario->name ?? '' }}</td>
+                                                <td>{{ $obj->usuario->email ?? '' }}</td>
+                                                <td>{{ $obj->number_questions_ok }}</td>
+                                                <td>{{ $obj->number_questions_bad }}</td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <audio controls>
+                                                            <source src="{{ $obj->getAudio() }}" type="audio/mp3">
+                                                            Tu navegador no soporta el elemento de audio.
+                                                        </audio>
 
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    @if (isset($obj->usuario->calificado))
+                                                        @if ($obj->usuario->calificado == 0)
+                                                            <a data-bs-toggle="modal"
+                                                                data-bs-target="#modal-calificar-{{ $obj->id }}"
+                                                                class="btn btn-primary shadow btn sharp me-1">
+                                                                <i class="bi bi-pencil"></i>
 
-                                                {{-- <button onclick="load_sections89({{ $obj->id }})"
-                                                            class="btn btn-primary shadow btn sharp me-1">
-                                                            <i class="bi bi-pencil"></i>
-
-                                                        </button> --}}
-
-                                                {{-- <a href="{{ url('curso/reporte') }}/{{ $obj->id }}?exportar=0"
-                                                            target="_blank" class="btn btn-success shadow btn sharp me-1">
-                                                            <i class="bi bi-eye"></i>
-
-                                                        </a> --}}
-
-
-
-
-
-                                            </td>
-                                        </tr>
-                                    @else
-                                        <tr>
-                                            <td>{{ $obj->id }}</td>
-                                            <td>{{ $obj->usuario->name ?? '' }}</td>
-                                            <td>{{ $obj->usuario->email ?? '' }}</td>
-                                            <td>{{ $obj->number_questions_ok }}</td>
-                                            <td>{{ $obj->number_questions_bad }}</td>
-                                            <td>
-                                                <div class="d-flex">
-                                                    <audio controls>
-                                                        <source src="{{ $obj->getAudio() }}" type="audio/mp3">
-                                                        Tu navegador no soporta el elemento de audio.
-                                                    </audio>
-
-                                                </div>
-                                            </td>
-                                            <td>
-                                                @if (isset($obj->usuario->calificado))
-                                                    @if ($obj->usuario->calificado == 0)
-                                                        <a data-bs-toggle="modal"
-                                                            data-bs-target="#modal-calificar-{{ $obj->id }}"
-                                                            class="btn btn-primary shadow btn sharp me-1">
-                                                            <i class="bi bi-pencil"></i>
-
-                                                        </a>
+                                                            </a>
+                                                        @endif
                                                     @endif
-                                                @endif
 
-                                                @if (isset($obj->usuario->calificado))
-                                                    @if ($obj->usuario->calificado == 1)
-                                                        <a href="{{ url('curso/examen') }}/{{ $obj->id }}?exportar=1"
-                                                            target="_blank" class="btn btn-warning shadow btn sharp me-1">
-                                                            <i class="bi bi-file-earmark-pdf"></i>
+                                                    @if (isset($obj->usuario->calificado))
+                                                        @if ($obj->usuario->calificado == 1)
+                                                            <a href="{{ url('curso/examen') }}/{{ $obj->id }}?exportar=1"
+                                                                target="_blank"
+                                                                class="btn btn-warning shadow btn sharp me-1">
+                                                                <i class="bi bi-file-earmark-pdf"></i>
 
-                                                        </a>
+                                                            </a>
+                                                        @endif
                                                     @endif
-                                                @endif
 
 
-                                                @if (isset($obj->usuario->impreso))
-                                                    @if ($obj->usuario->impreso == 1)
-                                                        <a href="{{ url('curso/examen') }}/{{ $obj->id }}?exportar=2"
-                                                            target="_blank" class="btn btn-danger shadow btn sharp me-1">
-                                                            <i class="bi bi-archive"></i>
+                                                    @if (isset($obj->usuario->impreso))
+                                                        @if ($obj->usuario->impreso == 1)
+                                                            <a href="{{ url('curso/examen') }}/{{ $obj->id }}?exportar=2"
+                                                                target="_blank"
+                                                                class="btn btn-danger shadow btn sharp me-1">
+                                                                <i class="bi bi-archive"></i>
 
-                                                        </a>
+                                                            </a>
+                                                        @endif
                                                     @endif
-                                                @endif
 
-
-
-                                                {{-- <button onclick="load_sections89({{ $obj->id }})"
-                                                        class="btn btn-primary shadow btn sharp me-1">
-                                                        <i class="bi bi-pencil"></i>
-
-                                                    </button> --}}
-
-                                                {{-- <a href="{{ url('curso/reporte') }}/{{ $obj->id }}?exportar=0"
-                                                        target="_blank" class="btn btn-success shadow btn sharp me-1">
-                                                        <i class="bi bi-eye"></i>
-
-                                                    </a> --}}
-
-
-
-
-
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
+                                        @endif
                                     @endif
-
-
                                     @include('examen.modal_calificar')
                                 @endforeach
 
