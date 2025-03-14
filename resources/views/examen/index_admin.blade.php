@@ -111,7 +111,7 @@
                                             </tr>
                                         @else
                                             <tr>
-                                                <td>{{ $obj->id }}</td>
+                                                <td>{{ $obj->id }} / {{ $obj->user_id }}</td>
                                                 <td>{{ $obj->usuario->name ?? '' }}</td>
                                                 <td>{{ $obj->usuario->email ?? '' }}</td>
                                                 <td>{{ $obj->number_questions_ok }}</td>
