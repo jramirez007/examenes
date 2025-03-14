@@ -561,7 +561,7 @@ class ExamenCursoController extends Controller
             }
 
             if ($request->has('exportar') && $request->exportar == 2) {
-                dd("eliminar este usuario");
+                //dd("eliminar este usuario");
                 $user = User::findorFail($examen->usuario->id);
                 $user->eliminado = 1;
                 $user->update();
