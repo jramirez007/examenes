@@ -565,6 +565,9 @@ class ExamenCursoController extends Controller
                 $user = User::findorFail($examen->usuario->id);
                 $user->eliminado = 1;
                 $user->update();
+
+                alert()->success("Registro eliminado correctamente");
+                return Redirect('curso/examen/admin');
             }
 
 
