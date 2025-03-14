@@ -16,7 +16,7 @@
                     <label for="nombre" class="form-check-label">
                         <b>
                             <center>Writing</center>
-                            <input type="text" value="{{ $obj->getSeccion8Id() }}" name="seccion8_id" readonly />
+                            <input type="hidden" value="{{ $obj->getSeccion8Id() }}" name="seccion8_id" readonly />
                             {{-- <input type="text" value="{{ $obj->usuario->id }}" name="user_id" readonly /> --}}
                         </b>
 
