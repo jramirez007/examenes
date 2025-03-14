@@ -694,7 +694,7 @@ class ExamenCursoController extends Controller
             $exam_res9->update();
         }
 
-        //$examen = ExamenCurso::find($exam_res8->examen_curso_id);
+        $examen = ExamenCurso::find($exam_res8->examen_curso_id);
 
         $user = User::findorFail($examen->usuario->id);
         $user->calificado = 1;
