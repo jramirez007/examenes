@@ -166,7 +166,7 @@
                                                 @if (isset($obj->usuario->impreso))
                                                     @if ($obj->usuario->impreso == 1)
                                                         <a href="{{ url('curso/examen') }}/{{ $obj->id }}?exportar=2"
-                                                            target="_blank" class="btn btn-warning shadow btn sharp me-1">
+                                                            target="_blank" class="btn btn-error shadow btn sharp me-1">
                                                             <i class="bi bi-archive"></i>
 
                                                         </a>
