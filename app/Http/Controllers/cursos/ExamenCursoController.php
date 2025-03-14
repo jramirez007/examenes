@@ -567,6 +567,7 @@ class ExamenCursoController extends Controller
                 $user->update();
 
                 alert()->success("Registro eliminado correctamente");
+                return back();
                 return Redirect('curso/examen/admin');
             }
 
