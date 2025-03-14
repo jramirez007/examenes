@@ -58,7 +58,7 @@
                                     @if (isset($obj->usuario->eliminado) && $obj->usuario->eliminado == 0)
                                         @if (!isset($obj->usuario->impreso) || !isset($obj->usuario->calificado))
                                             <tr>
-                                                <td>{{ $obj->id }}</td>
+                                                <td>{{ $obj->user_id }}</td>
                                                 <td>{{ $obj->usuario->name ?? '' }}</td>
                                                 <td>{{ $obj->usuario->email ?? '' }}</td>
                                                 <td>{{ $obj->number_questions_ok }}</td>
