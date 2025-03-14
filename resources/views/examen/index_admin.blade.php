@@ -83,22 +83,27 @@
                                                     @endif
                                                 @endif
 
+                                                @if (isset($obj->usuario->calificado))
+                                                    @if ($obj->usuario->calificado == 1)
+                                                        <a href="{{ url('curso/examen') }}/{{ $obj->id }}?exportar=1"
+                                                            target="_blank" class="btn btn-warning shadow btn sharp me-1">
+                                                            <i class="bi bi-file-earmark-pdf"></i>
 
-                                                @if ($obj->usuario->calificado == 1)
-                                                    <a href="{{ url('curso/examen') }}/{{ $obj->id }}?exportar=1"
-                                                        target="_blank" class="btn btn-warning shadow btn sharp me-1">
-                                                        <i class="bi bi-file-earmark-pdf"></i>
-
-                                                    </a>
+                                                        </a>
+                                                    @endif
                                                 @endif
 
-                                                @if ($obj->usuario->impreso == 1)
-                                                    <a href="{{ url('curso/examen') }}/{{ $obj->id }}?exportar=2"
-                                                        target="_blank" class="btn btn-warning shadow btn sharp me-1">
-                                                        <i class="bi bi-archive"></i>
 
-                                                    </a>
+                                                @if (isset($obj->usuario->impreso))
+                                                    @if ($obj->usuario->impreso == 1)
+                                                        <a href="{{ url('curso/examen') }}/{{ $obj->id }}?exportar=2"
+                                                            target="_blank" class="btn btn-warning shadow btn sharp me-1">
+                                                            <i class="bi bi-archive"></i>
+
+                                                        </a>
+                                                    @endif
                                                 @endif
+
 
 
                                                 {{-- <button onclick="load_sections89({{ $obj->id }})"
