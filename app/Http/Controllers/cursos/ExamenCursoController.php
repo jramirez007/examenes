@@ -675,7 +675,7 @@ class ExamenCursoController extends Controller
         $seccion8_id = $request->get('seccion8_id');
         $observations_section8 = $request->get('observations_section8');
         $points80 = $request->get('points80');
-        $user_id = $request->get('points80');
+        $user_id = $request->get('user_id');
 
         if (isset($seccion8_id)) {
             $exam_res8 = ExamenCursoResultado::findOrFail($seccion8_id);
@@ -696,7 +696,7 @@ class ExamenCursoController extends Controller
 
         $examen = ExamenCurso::find($exam_res8->examen_curso_id);
 
-        $user = User::findorFail($examen->usuario->id);
+        $user = User::findorFail($user_id);
         $user->calificado = 1;
         $user->update();
 
