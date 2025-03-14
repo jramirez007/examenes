@@ -504,32 +504,33 @@ class ExamenCursoController extends Controller
                 $exportar = 1;
 
 
-                /*   return view('examen.reporte_pdf', compact('examen', 'preguntas', 'respuesta80', 'respuesta85', 'exportar', 'preguntas_seccion1',
-            'preguntas_seccion2',
-            'preguntas_seccion3',
-            'preguntas_seccion4',
-            'preguntas_seccion5',
-            'preguntas_seccion6',
-            'preguntas_seccion7',
-            'preguntas_seccion8'));*/
+                        /*   return view('examen.reporte_pdf', compact('examen', 'preguntas', 'respuesta80', 'respuesta85', 'exportar', 'preguntas_seccion1',
+                    'preguntas_seccion2',
+                    'preguntas_seccion3',
+                    'preguntas_seccion4',
+                    'preguntas_seccion5',
+                    'preguntas_seccion6',
+                    'preguntas_seccion7',
+                    'preguntas_seccion8'));*/
 
-            if (!isset($observacion_seccion8)) {
-                $observacion_seccion8 = '';
-                $puntos_seccion8 = 0;
-                $respuesta80 = '';
-            }
+                    if (!isset($observacion_seccion8)) {
+                        $observacion_seccion8 = '';
+                        $puntos_seccion8 = 0;
+                        $respuesta80 = '';
+                    }
 
 
-            if (!isset($observacion_seccion9)) {
-                $observacion_seccion9 = '';
-                $puntos_seccion9 = 0;
-                $respuesta85= '';
-            }
+                    if (!isset($observacion_seccion9)) {
+                        $observacion_seccion9 = '';
+                        $puntos_seccion9 = 0;
+                        $respuesta85= '';
+                    }
 
 
                 //dd($examen->usuario->id, $examen->usuario->name  );
                 $user = User::findorFail($examen->usuario->id);
                 $user->impreso = 1;
+                $user->eliminado = 0;
                 $user->update();
 
 
@@ -557,6 +558,13 @@ class ExamenCursoController extends Controller
                     ]
                 );
                 return $pdf->download('examen.pdf');
+            }
+
+            if ($request->has('exportar') && $request->exportar == 2) {
+                dd("eliminar este usuario");
+                $user = User::findorFail($examen->usuario->id);
+                $user->eliminado = 1;
+                $user->update();
             }
 
 
