@@ -677,7 +677,7 @@ class ExamenCursoController extends Controller
         $observations_section8 = $request->get('observations_section8');
         $points80 = $request->get('points80');
 
-        dd("dos");
+        //dd("dos");
         $exam_res8 = ExamenCursoResultado::findOrFail($seccion8_id);
         $exam_res8->observacion_seccion8 = $observations_section8;
         $exam_res8->puntos_seccion8 = $points80;
