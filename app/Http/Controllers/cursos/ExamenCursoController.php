@@ -683,7 +683,6 @@ class ExamenCursoController extends Controller
             $exam_res8->puntos_seccion8 = $points80;
             $exam_res8->update();
         }
-
         $seccion9_id = $request->get('seccion9_id');
         $observations_section9 = $request->get('observations_section9');
         $points85 = $request->get('points85');
@@ -697,7 +696,7 @@ class ExamenCursoController extends Controller
 
         //$examen = ExamenCurso::find($exam_res8->examen_curso_id);
 
-        $user = User::findorFail($user_id);
+        $user = User::findorFail($examen->usuario->id);
         $user->calificado = 1;
         $user->update();
 
