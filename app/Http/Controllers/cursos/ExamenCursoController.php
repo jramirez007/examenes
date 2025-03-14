@@ -672,7 +672,7 @@ class ExamenCursoController extends Controller
 
     public function evaluate_section89(Request $request)
     {
-        dd("uno");
+        //dd("uno");
         $seccion8_id = $request->get('seccion8_id');
         $observations_section8 = $request->get('observations_section8');
         $points80 = $request->get('points80');
