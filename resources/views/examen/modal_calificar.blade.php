@@ -17,6 +17,7 @@
                         <b>
                             <center>Writing</center>
                             <input type="hidden" value="{{ $obj->getSeccion8Id() }}" name="seccion8_id" readonly />
+                            <input type="hidden" value="{{ $obj->usuario->id }}" name="user_id" readonly />
                         </b>
 
                         Global warming has become a serious threat to our planet.

@@ -672,35 +672,35 @@ class ExamenCursoController extends Controller
 
     public function evaluate_section89(Request $request)
     {
-        //dd("uno");
         $seccion8_id = $request->get('seccion8_id');
         $observations_section8 = $request->get('observations_section8');
         $points80 = $request->get('points80');
+        $user_id = $request->get('points80');
 
-        //dd("dos");
-        $exam_res8 = ExamenCursoResultado::findOrFail($seccion8_id);
-        $exam_res8->observacion_seccion8 = $observations_section8;
-        $exam_res8->puntos_seccion8 = $points80;
-        $exam_res8->update();
-        //dd("tres");
+        if (isset($seccion8_id)) {
+            $exam_res8 = ExamenCursoResultado::findOrFail($seccion8_id);
+            $exam_res8->observacion_seccion8 = $observations_section8;
+            $exam_res8->puntos_seccion8 = $points80;
+            $exam_res8->update();
+        }
+
         $seccion9_id = $request->get('seccion9_id');
         $observations_section9 = $request->get('observations_section9');
         $points85 = $request->get('points85');
-        //dd("cuatro");
-        dd($seccion8_id, $seccion9_id);
-        $exam_res9 = ExamenCursoResultado::findOrFail($seccion9_id);
-        $exam_res9->observacion_seccion9 = $observations_section9;
-        $exam_res9->puntos_seccion9 = $points85;
-        $exam_res9->update();
-        dd("cinco");
 
+        if (isset($seccion9_id)) {
+            $exam_res9 = ExamenCursoResultado::findOrFail($seccion9_id);
+            $exam_res9->observacion_seccion9 = $observations_section9;
+            $exam_res9->puntos_seccion9 = $points85;
+            $exam_res9->update();
+        }
 
-        $examen = ExamenCurso::find($exam_res8->examen_curso_id);
+        //$examen = ExamenCurso::find($exam_res8->examen_curso_id);
 
-        $user = User::findorFail($examen->usuario->id);
+        $user = User::findorFail($user_id);
         $user->calificado = 1;
         $user->update();
-        dd("seis");
+
         alert()->success("Seccion 8 y 9 calificada correctamente");
         return Redirect('curso/examen/admin');
     }
