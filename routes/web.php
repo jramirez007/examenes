@@ -89,6 +89,7 @@ Route::get('get_correcta/{codigo}', [CursoControler::class, 'get_correcta']);
 Route::get('get_examenes/{curso_id}', [CursoControler::class, 'get_examenes']);
 
 Route::get('curso/reporte/{id}', [ReporteController::class,'index']);
+Route::get('curso/reporte/test', [ReporteController::class,'test']);
 
 Route::get('face_api/models/{filename}', function ($filename) {
     $path = storage_path('app/face_api/models/' . $filename);

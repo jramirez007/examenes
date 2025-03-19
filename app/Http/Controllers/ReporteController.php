@@ -33,4 +33,8 @@ class ReporteController extends Controller
         }
 
     }
+
+    public function test(){
+        dd("test");
+    }
 }
