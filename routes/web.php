@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Route::get('/', [WelcomeController::class, 'index']);
+
+
 Route::get('/', [HomeController::class, 'redirectToLogin']);
 
 Route::get('login/{id}', [LoginController::class,'login']);
@@ -87,3 +89,11 @@ Route::get('get_correcta/{codigo}', [CursoControler::class, 'get_correcta']);
 Route::get('get_examenes/{curso_id}', [CursoControler::class, 'get_examenes']);
 
 Route::get('curso/reporte/{id}', [ReporteController::class,'index']);
+
+Route::get('face_api/models/{filename}', function ($filename) {
+    $path = storage_path('app/face_api/models/' . $filename);
+    if (file_exists($path)) {
+        return response()->file($path);
+    }
+    abort(404);
+});
