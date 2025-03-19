@@ -23,7 +23,6 @@ Promise.all([
     faceapi.nets.faceLandmark68Net.loadFromUri('/face_api/models'),
     faceapi.nets.faceLandmark68TinyNet.loadFromUri('/face_api/models'),
     faceapi.nets.faceRecognitionNet.loadFromUri('/face_api/models'),
-    faceapi.nets.ssdMobilenetv1.loadFromUri('/face_api/models'),
     faceapi.nets.tinyFaceDetector.loadFromUri('/face_api/models'),
 ]).then(cargarCamera)
 
