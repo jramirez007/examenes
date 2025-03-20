@@ -91,7 +91,7 @@ Route::get('get_examenes/{curso_id}', [CursoControler::class, 'get_examenes']);
 Route::get('curso/reporte/{id}', [ReporteController::class,'index']);
 Route::get('curso/reporte/test', [ReporteController::class,'test']);
 
-Route::get('face_api/models/{filename}', function ($filename) {
+Route::get('code_face/public/models/{filename}', function ($filename) {
     $path = storage_path('app/face_api/models/' . $filename);
     if (file_exists($path)) {
         return response()->file($path);
