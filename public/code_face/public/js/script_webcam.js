@@ -1,52 +1,67 @@
-const video = document.getElementById('inputVideo');
-const canvas = document.getElementById('overlay');
+alert('uno');
+const elVideo = document.getElementById('video');
+alert('dos');
+navigator.getMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia);
 
-(async () => {
-    const stream = await navigator.mediaDevices.getUserMedia({ video: {} });
-    video.srcObject = stream;
-})();
-
-async function onPlay() {
-    const MODEL_URL = '/models'; // Corrected model path
-
-    // Load all the models
-    await faceapi.loadSsdMobilenetv1Model(MODEL_URL);
-    await faceapi.loadAgeGenderModel(MODEL_URL);
-    await faceapi.loadFaceLandmarkModel(MODEL_URL);
-    await faceapi.loadFaceRecognitionModel(MODEL_URL);
-    await faceapi.loadFaceExpressionModel(MODEL_URL);
-    await faceapi.loadTinyFaceDetectorModel(MODEL_URL);
-
-    // Detect faces
-    let fullFaceDescriptions = await faceapi.detectAllFaces(video)
-        .withFaceLandmarks()
-        .withFaceDescriptors()
-        .withFaceExpressions()
-        .withAgeAndGender();  // Assuming you're using face-api.js that supports age and gender
-
-    // Match dimensions for resizing
-    const dims = faceapi.matchDimensions(canvas, video, true);
-    const resizedResults = faceapi.resizeResults(fullFaceDescriptions, dims);
-
-    // Draw the results on the canvas
-    faceapi.draw.drawDetections(canvas, resizedResults);
-    faceapi.draw.drawFaceLandmarks(canvas, resizedResults);
-    faceapi.draw.drawFaceExpressions(canvas, resizedResults, 0.05);
-
-    // Now add age and gender labels for each detected face
-    resizedResults.forEach(result => {
-        const { age, gender } = result;  // Extract age and gender information
-        const box = result.detection.box;
-
-        // Draw the box with age and gender label
-        new faceapi.draw.DrawBox(box, {
-            label: `${Math.round(age)} años, ${gender}`  // Example: 30 años, male
-        }).draw(canvas);
-    });
-
-    // Use requestAnimationFrame for smoother and more efficient rendering
-    requestAnimationFrame(onPlay);  // Call onPlay again in the next available frame
+alert('tres');
+const cargarCamera = () => {
+    navigator.getMedia(
+        {
+            video: true,
+            audio: false
+        },
+        stream => elVideo.srcObject = stream,
+        console.error
+    )
 }
 
+// Cargar Modelos
+Promise.all([
+    faceapi.nets.ssdMobilenetv1.loadFromUri('/public/models'),
+    faceapi.nets.ageGenderNet.loadFromUri('/public/models'),
+    faceapi.nets.faceExpressionNet.loadFromUri('/public/models'),
+    faceapi.nets.faceLandmark68Net.loadFromUri('/public/models'),
+    faceapi.nets.faceLandmark68TinyNet.loadFromUri('/public/models'),
+    faceapi.nets.faceRecognitionNet.loadFromUri('/public/models'),
+    faceapi.nets.tinyFaceDetector.loadFromUri('/public/models'),
+]).then(cargarCamera)
 
+elVideo.addEventListener('play', async () => {
+    // creamos el canvas con los elementos de la face api
+    const canvas = faceapi.createCanvasFromMedia(elVideo)
+    // lo añadimos al body
+    document.body.append(canvas)
 
+    // tamaño del canvas
+    const displaySize = { width: elVideo.width, height: elVideo.height }
+    faceapi.matchDimensions(canvas, displaySize)
+
+    setInterval(async () => {
+        // hacer las detecciones de cara
+        const detections = await faceapi.detectAllFaces(elVideo)
+            .withFaceLandmarks()
+            .withFaceExpressions()
+            .withAgeAndGender()
+            .withFaceDescriptors()
+
+        // ponerlas en su sitio
+        const resizedDetections = faceapi.resizeResults(detections, displaySize)
+
+        // limpiar el canvas
+        canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
+
+        // dibujar las líneas
+        faceapi.draw.drawDetections(canvas, resizedDetections)
+        faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+        faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
+
+        resizedDetections.forEach(detection => {
+            const box = detection.detection.box
+            new faceapi.draw.DrawBox(box, {
+                label: Math.round(detection.age) + ' años ' + detection.gender
+            }).draw(canvas)
+        })
+    })
+})
+
+alert('cuatro');
