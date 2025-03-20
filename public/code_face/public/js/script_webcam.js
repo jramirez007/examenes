@@ -21,7 +21,8 @@ async function onPlay() {
     let fullFaceDescriptions = await faceapi.detectAllFaces(video)
         .withFaceLandmarks()
         .withFaceDescriptors()
-        .withFaceExpressions();
+        .withFaceExpressions()
+        .withAgeAndGender();  // Assuming you're using face-api.js that supports age and gender
 
     // Match dimensions for resizing
     const dims = faceapi.matchDimensions(canvas, video, true);
@@ -32,8 +33,20 @@ async function onPlay() {
     faceapi.draw.drawFaceLandmarks(canvas, resizedResults);
     faceapi.draw.drawFaceExpressions(canvas, resizedResults, 0.05);
 
+    // Now add age and gender labels for each detected face
+    resizedResults.forEach(result => {
+        const { age, gender } = result;  // Extract age and gender information
+        const box = result.detection.box;
+
+        // Draw the box with age and gender label
+        new faceapi.draw.DrawBox(box, {
+            label: `${Math.round(age)} años, ${gender}`  // Example: 30 años, male
+        }).draw(canvas);
+    });
+
     // Use requestAnimationFrame for smoother and more efficient rendering
     requestAnimationFrame(onPlay);  // Call onPlay again in the next available frame
 }
+
 
 
