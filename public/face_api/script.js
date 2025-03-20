@@ -17,13 +17,13 @@ const cargarCamera = () => {
 
 // Cargar Modelos
 Promise.all([
-    faceapi.nets.ssdMobilenetv1.loadFromUri('/public/models'),
-    faceapi.nets.ageGenderNet.loadFromUri('/public/models'),
-    faceapi.nets.faceExpressionNet.loadFromUri('/public/models'),
-    faceapi.nets.faceLandmark68Net.loadFromUri('/public/models'),
-    faceapi.nets.faceLandmark68TinyNet.loadFromUri('/public/models'),
-    faceapi.nets.faceRecognitionNet.loadFromUri('/public/models'),
-    faceapi.nets.tinyFaceDetector.loadFromUri('/public/models'),
+    faceapi.nets.ssdMobilenetv1.loadFromUri('/models'),
+    faceapi.nets.ageGenderNet.loadFromUri('/models'),
+    faceapi.nets.faceExpressionNet.loadFromUri('/models'),
+    faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+    faceapi.nets.faceLandmark68TinyNet.loadFromUri('/models'),
+    faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
+    faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
 ]).then(cargarCamera)
 
 elVideo.addEventListener('play', async () => {
