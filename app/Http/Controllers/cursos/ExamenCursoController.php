@@ -26,7 +26,7 @@ class ExamenCursoController extends Controller
                 return Redirect::to('login/1');
             } else {
                 session()->flush();
-                return Redirect::to('login/2');
+                return Redirect::to('login/3');
             }
         } else {
 

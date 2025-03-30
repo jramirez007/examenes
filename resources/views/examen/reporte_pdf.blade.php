@@ -1349,7 +1349,7 @@
             </tr>
             <tr>
                 <td>
-                    <b>GENERAL TOTAL</b>
+                    <b>TOTAL</b>
                 </td>
                 <td>
                     <b>{{ $total_points_ok_section1 + $total_points_ok_section2 + $total_points_ok_section3 + $total_points_ok_section4 +
