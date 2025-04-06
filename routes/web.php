@@ -79,6 +79,7 @@ Route::post('curso/examen/section_final', [ExamenCursoController::class, 'store_
 Route::post('curso/examen/finalizado', [ExamenCursoController::class, 'finalizado']);
 Route::get('curso/examen/section/{number}', [ExamenCursoController::class, 'show_section'])->name('curso.examen.section');
 Route::resource('curso/examen', ExamenCursoController::class);
+Route::post('curso/examen/eliminar', [ExamenCursoController::class, 'eliminar']);
 // Route::post('upload_audio', [CursoControler::class, 'upload_audio'])->name('upload_audio');
 // Route::post('delete_audio', [CursoControler::class, 'delete_audio'])->name('delete_audio');
 

@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
+
 class ExamenCursoController extends Controller
 {
 
@@ -567,8 +568,10 @@ class ExamenCursoController extends Controller
                 $user->update();
 
                 alert()->success("Registro eliminado correctamente");
-                return back();
-                return Redirect('curso/examen/admin');
+                $examenes = ExamenCurso::get();
+
+                return view('examen.index_admin', compact('examenes'));
+                //return view('examen.index_admin');
             }
 
 
@@ -615,6 +618,17 @@ class ExamenCursoController extends Controller
         $examen->finalizado = 1;
         $examen->save();
         return Redirect::to('curso/examen');
+    }
+
+    public function eliminar(Request $request)
+    {
+        $user_id = $request->get('student_id');
+        $user = User::findorFail($user_id);
+        $user->eliminado = 1;
+        $user->update();
+
+        alert()->success("Examen eliminado correctamente");
+        return Redirect('curso/examen/admin');
     }
 
     /**

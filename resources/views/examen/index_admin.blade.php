@@ -14,6 +14,10 @@
         }
     </style>
 
+    <!-- SweetAlert CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 
     <div class="row">
         <div class="col-xl-12">
@@ -151,12 +155,22 @@
 
                                                     @if (isset($obj->usuario->impreso))
                                                         @if ($obj->usuario->impreso == 1)
-                                                            <a href="{{ url('curso/examen') }}/{{ $obj->id }}?exportar=2"
-                                                                target="_blank"
+                                                            <form action="{{ url('curso/examen/eliminar') }}"
+                                                                method="POST" id="form1">
+                                                                @csrf
+                                                                <input type="hidden" name="student_id"
+                                                                    value="{{ $obj->usuario->id }}" readonly>
+                                                                <button type="button"
+                                                                    class="btn btn-danger shadow btn sharp me-1"
+                                                                    onclick="confirmarEliminacion()">
+                                                                    <i class="bi bi-archive"></i>
+                                                                </button>
+                                                            </form>
+                                                            {{-- <a href="{{ url('curso/examen') }}/{{ $obj->id }}?exportar=2" id="btn_eliminar"
                                                                 class="btn btn-danger shadow btn sharp me-1">
                                                                 <i class="bi bi-archive"></i>
 
-                                                            </a>
+                                                            </a> --}}
                                                         @endif
                                                     @endif
 
@@ -181,6 +195,26 @@
 
 
     <script src="{{ asset('assets/js/jquery-3.6.1.min.js') }}" crossorigin="anonymous"></script>
+    <script>
+        function confirmarEliminacion() {
+            // Show the SweetAlert confirmation dialog
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: '¡Esta acción no se puede deshacer!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // If confirmed, submit the form
+                    document.getElementById('form1').submit();
+                }
+            });
+        }
+    </script>
+
 
 
     <script src="{{ asset('assets/js/datatable/jquery.dataTables.min.js') }}"></script>
